@@ -14,13 +14,19 @@ class ShoesRepository implements ShoesRepositoryInterface
         $paginate = Shoes::with(['images', 'reviews'])->paginate(12)->toArray();
 
         foreach ($paginate['data'] as $value) {
-
+            //average rating
+            $ratingData = [];
+            foreach ($value['reviews'] as $ratingValue) {
+                $ratingData[] = $ratingValue['rating'];
+                $averageRating = (array_sum($ratingData)) / (count($ratingData));
+            }
+            //format shoes data
             $shoesData[] = [
                 'title' => $value['title'],
                 'price' => $value['price'],
                 'style_code' => $value['style_code'],
                 'image_url' => Storage::disk('public')->url('img/' .  $value['images']['0']['name'] . '.webp'),
-                'average_rating' =>  $value['reviews']
+                'average_rating' =>  $averageRating
             ];
         }
 
