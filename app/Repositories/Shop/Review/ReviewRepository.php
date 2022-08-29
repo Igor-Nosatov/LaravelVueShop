@@ -15,19 +15,14 @@ class ReviewRepository implements ReviewRepositoryInterface
         $review = Review::create($request->all());
         return $review;
     }
-    public function updateReviewComment(ReviewUpdateRequest $request, int $id)
+    public function updateReviewComment(ReviewUpdateRequest $request, Review $review)
     {
-        $input = $request->all();
-
-         $review = Review::find($id);   
-         $review->update($request->all());  
-         $review->save();
-
+         $review->update($request->all());
          return $review; 
     }
-    public function deleteReviewComment(int $id):void
+    public function deleteReviewComment(Review $review):void
     {
-        return Review::destroy($id);
+        $review->delete();
     }
 }
 

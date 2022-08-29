@@ -2,22 +2,51 @@
 
 namespace App\Repositories\Shop\Cart;
 
-use App\Models\Shop\Cart;
-use Illuminate\Http\Request;
-use App\Repositories\Shop\Cart\CartRepositoryInterface;
 
+use App\Http\Requests\Cart\CartCreateRequest;
+use App\Http\Requests\Cart\CartUpdateRequest;
+use App\Models\Shop\Cart;
+use App\Repositories\Shop\Cart\CartRepositoryInterface;
+use Illuminate\Support\Facades\Auth;
+
+/**
+ *
+ */
 class CartRepository implements CartRepositoryInterface
 {
-    public function addToCart()
+    /**
+     * @return array
+     */
+    public function getCartData():array
     {
-        $cart = Cart::create($request->all());
+       return  Cart::where('user_id', Auth:id())->get()->toArray();
+    }
+    /**
+     * @param CartCreateRequest $request
+     * @return mixed
+     */
+    public function addToCart(CartCreateRequest $request)
+    {
+        return Cart::create($request->all());
+    }
+
+    /**
+     * @param CartUpdateRequest $request
+     * @param Cart $cart
+     * @return Cart
+     */
+    public function updateToCart(CartUpdateRequest $request, Cart $cart)
+    {
+        $cart->update($request->all());
         return $cart;
     }
 
-    public function updateToCart()
+    /**
+     * @param Cart $cart
+     * @return mixed
+     */
+    public function deleteFromCart(Cart $cart):void
     {
-    }
-    public function deleteFromCart()
-    {
+        $cart->delete();
     }
 }
