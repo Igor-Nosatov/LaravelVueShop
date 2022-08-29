@@ -16,7 +16,6 @@ class Favourite extends Model
      * @var array
      */
     protected $fillable = [
-        'quantity',
         'shoes_id',
         'user_id'
     ];
@@ -27,7 +26,6 @@ class Favourite extends Model
      * @var array
      */
     protected $casts = [
-        'quantity' => 'integer',
         'shoes_id' => 'integer',
         'user_id' => 'integer',
     ];
