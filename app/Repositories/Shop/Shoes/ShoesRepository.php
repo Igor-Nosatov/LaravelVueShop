@@ -45,4 +45,20 @@ class ShoesRepository implements ShoesRepositoryInterface
             'data' => $shoesData
         ];
     }
+
+    public function getShoesSingleData(Shoes $shoes)
+    {
+        return $shoes->with([
+            'features',
+            'colors',
+            'reviews',
+            'images',
+            'width',
+            'footwearSizes',
+            'gender',
+            'category',
+            'sampler',
+            'type'
+            ])->get();
+    }
 }

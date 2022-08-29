@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Shop;
 use Illuminate\Http\Request;
 use App\Repositories\Shop\Shoes\ShoesRepositoryInterface;
 use App\Http\Controllers\Api\BaseController;
+use App\Models\Shop\Shoes;
 
 class ShoesController  extends BaseController
 {
@@ -28,6 +29,12 @@ class ShoesController  extends BaseController
     {
         $response = $this->shoesRepository->getShoesData();
         return $this->successPaginationResponse($response['meta'],$response['data'], 'Get data for Shop page');
+    }
+
+    public function show(Shoes $shoes)
+    {
+        $response = $this->shoesRepository-> getShoesSingleData($shoes);
+        return  $response;  //$this->successResponse($response, 'Get data for Snickers Single Page');
     }
 
 }

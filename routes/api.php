@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\Shop\AuthController;
 use App\Http\Controllers\Api\Shop\FavouriteController;
 use App\Http\Controllers\Api\Shop\CartController;
 use App\Http\Controllers\Api\Shop\CheckoutController;
+use App\Http\Controllers\Api\Shop\AccountController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -36,7 +37,7 @@ Route::group([
   Route::post('login', [AuthController::class, 'login']);
 });
 
-
+Route::get('/shop/{shoes}', [ShoesController::class, 'show']);
 Route::middleware(['auth:sanctum'])->group(function () {
   /** GET          /me        */
   Route::get('/me', [AuthController::class, 'show']);
@@ -52,6 +53,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
   Route::post('/checkout', [CheckoutController::class, 'store']);
   Route::get('/checkout', [CheckoutController::class, 'index']);
   Route::delete('/checkout/{checkout}', [CheckoutController::class, 'delete']);
+
+  Route::get('/account', [AccountController::class, 'index']);
+
 
 });
 

@@ -9,8 +9,6 @@ use App\Repositories\Shop\GiftCard\GiftCardRepository;
 use App\Repositories\Shop\GiftCard\GiftCardRepositoryInterface;
 use App\Repositories\Shop\Cart\CartRepository;
 use App\Repositories\Shop\Cart\CartRepositoryInterface;
-use App\Repositories\Shop\Product\ProductRepository;
-use App\Repositories\Shop\Product\ProductRepositoryInterface;
 use App\Repositories\Shop\Review\ReviewRepository;
 use App\Repositories\Shop\Review\ReviewRepositoryInterface;
 use App\Repositories\Shop\Shoes\ShoesRepository;
@@ -37,7 +35,6 @@ class RepositoryServiceProvider extends ServiceProvider
             $this->app->bind(HomeRepositoryInterface::class, HomeRepository::class);
             $this->app->bind(GiftCardRepositoryInterface::class, GiftCardRepository::class);
             $this->app->bind(CartRepositoryInterface::class, CartRepository::class);
-            $this->app->bind(ProductRepositoryInterface::class, ProductRepository::class);
             $this->app->bind(ReviewRepositoryInterface::class, ReviewRepository::class);
             $this->app->bind(ShoesRepositoryInterface::class, ShoesRepository::class);
             $this->app->bind(CheckoutRepositoryInterface::class, CheckoutRepository::class);
