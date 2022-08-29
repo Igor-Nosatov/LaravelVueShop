@@ -22,9 +22,9 @@ class ShoesController  extends BaseController
     }
 
     /**
-     * @return JsonResponse
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function index():JsonResponse
+    public function index()
     {
         $response = $this->shoesRepository->getShoesData();
         return $this->successPaginationResponse($response['meta'],$response['data'], 'Get data for Shop page');

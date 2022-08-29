@@ -7,9 +7,6 @@ use App\Repositories\Shop\Shoes\ShoesRepositoryInterface;
 use App\Models\Shop\Shoes;
 use Illuminate\Support\Facades\Storage;
 
-/**
- *
- */
 class ShoesRepository implements ShoesRepositoryInterface
 {
     /**
@@ -36,7 +33,7 @@ class ShoesRepository implements ShoesRepositoryInterface
             ];
         }
 
-        $response = [
+        return [
             'meta' => [
                 'total' => $paginate['total'],
                 'per_page' => $paginate['per_page'],
@@ -47,7 +44,5 @@ class ShoesRepository implements ShoesRepositoryInterface
             ],
             'data' => $shoesData
         ];
-
-        return $response;
     }
 }

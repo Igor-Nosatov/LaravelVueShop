@@ -5,5 +5,8 @@ use Illuminate\Http\Request;
 
 interface ShoesRepositoryInterface
 {
+    /**
+     * @return array
+     */
     public function getShoesData():array;
 }
