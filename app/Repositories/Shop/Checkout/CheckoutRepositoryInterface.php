@@ -8,7 +8,20 @@ use Illuminate\Http\Request;
 
 interface CheckoutRepositoryInterface
 {
+    /**
+     * @return array
+     */
     public function getCheckoutData():array;
-    public function addToCheckoutForm(CheckoutRequest $request);
+
+    /**
+     * @param CheckoutRequest $request
+     * @return mixed
+     */
+    public function addToCheckoutForm(CheckoutRequest $request): mixed;
+
+    /**
+     * @param Checkout $checkout
+     * @return void
+     */
     public function deleteFromCheckoutForm(Checkout $checkout):void;
 }

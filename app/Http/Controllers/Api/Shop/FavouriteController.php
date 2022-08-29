@@ -9,8 +9,14 @@ use App\Repositories\Shop\Favourite\FavouriteRepositoryInterface;
 
 class FavouriteController extends  BaseController
 {
+    /**
+     * @var FavouriteRepositoryInterface
+     */
     private FavouriteRepositoryInterface $favouriteRepository;
 
+    /**
+     * @param FavouriteRepositoryInterface $favouriteRepository
+     */
     public function __construct(FavouriteRepositoryInterface $favouriteRepository)
     {
         $this->favouriteRepository = $favouriteRepository;
@@ -27,6 +33,10 @@ class FavouriteController extends  BaseController
         return $this->createResponse($response, 'Add item to favourite');
     }
 
+    /**
+     * @param Favourite $favourite
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function delete(Favourite $favourite)
     {
         $this->favouriteRepository->deleteFromFavourite($favourite);

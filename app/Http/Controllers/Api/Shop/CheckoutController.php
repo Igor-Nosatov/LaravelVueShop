@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Shop;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Checkout\CheckoutRequest;
+use App\Models\Shop\Checkout;
 use App\Repositories\Shop\Checkout\CheckoutRepositoryInterface;
 
 class CheckoutController extends Controller

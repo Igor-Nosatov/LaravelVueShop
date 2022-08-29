@@ -8,9 +8,6 @@ use App\Http\Requests\Cart\CartCreateRequest;
 use App\Http\Requests\Cart\CartUpdateRequest;
 use App\Models\Shop\Cart;
 
-/**
- *
- */
 class CartController extends BaseController
 {
     /**
@@ -50,23 +47,19 @@ class CartController extends BaseController
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param CartUpdateRequest $request
+     * @param Cart $cart
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(CartUpdateRequest $request, Cart $cart)
     {
-        $response = $this->cartRepository->addToCart($request,$cart );
+        $response = $this->cartRepository->addToCart($request, $cart );
         return $this->successResponse($response, 'Update to Cart Data');
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Cart $cart
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Cart $cart)
     {

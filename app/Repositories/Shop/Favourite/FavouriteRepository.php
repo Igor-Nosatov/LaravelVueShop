@@ -6,9 +6,6 @@ use App\Http\Requests\Favourite\FavouriteCreateRequest;
 use App\Models\Shop\Favourite;
 use Illuminate\Http\Request;
 
-/**
- *
- */
 class FavouriteRepository implements FavouriteRepositoryInterface
 {
     /**

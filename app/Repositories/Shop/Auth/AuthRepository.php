@@ -11,16 +11,13 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Auth\AuthRequest;
 use App\Repositories\Shop\Auth\AuthRepositoryInterface;
 
-/**
- *
- */
 class AuthRepository implements AuthRepositoryInterface
 {
     /**
      * @param AuthRequest $request
      * @return mixed
      */
-    public function registerUser(AuthRequest $request)
+    public function registerUser(AuthRequest $request):mixed
     {
         $user = User::create([
             'name' => $request['name'],
@@ -40,7 +37,7 @@ class AuthRepository implements AuthRepositoryInterface
      * @param Request $request
      * @return mixed
      */
-    public function loginUser(Request $request)
+    public function loginUser(Request $request):mixed
     {
         $user = User::where('email', $request['email'])->first();
         if (!$user || !Hash::check($request['password'], $user->password)) {
@@ -59,7 +56,7 @@ class AuthRepository implements AuthRepositoryInterface
     /**
      * @return mixed
      */
-    public function logoutUser()
+    public function logoutUser():mixed
     {
         Auth::user()->tokens()->delete();
         return response()->json([
@@ -71,7 +68,7 @@ class AuthRepository implements AuthRepositoryInterface
      * @param Request $request
      * @return mixed
      */
-    public function updateUser(Request $request)
+    public function updateUser(Request $request):mixed
     {
         $user_id = Auth::id();
         $user = User::findOrFail($user_id);
@@ -81,7 +78,7 @@ class AuthRepository implements AuthRepositoryInterface
     /**
      * @return mixed
      */
-    public function showUser()
+    public function showUser():mixed
     {
         $user = Auth::user()->role->name;
         return response()->json($user);
