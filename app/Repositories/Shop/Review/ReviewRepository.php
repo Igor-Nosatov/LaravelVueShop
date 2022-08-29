@@ -16,8 +16,7 @@ class ReviewRepository implements ReviewRepositoryInterface
      */
     public function addReviewComment(ReviewCreateRequest $request):mixed
     {
-        $review = Review::create($request->all());
-        return $review;
+        return Review::create($request->all());
     }
 
     /**

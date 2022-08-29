@@ -8,9 +8,12 @@ use App\Repositories\Shop\GiftCard\GiftCardRepositoryInterface;
 
 class GiftCardRepository implements GiftCardRepositoryInterface
 {
-    public function createGiftCard(GiftCardRequest $request ) 
+    /**
+     * @param GiftCardRequest $request
+     * @return mixed
+     */
+    public function createGiftCard(GiftCardRequest $request ):mixed
     {
-        $giftCard = GiftCard::create($request->all($request));
-        return $giftCard;
+        return GiftCard::create($request->all($request));
     }
 }

@@ -8,13 +8,24 @@ use App\Repositories\Shop\GiftCard\GiftCardRepositoryInterface;
 
 class GiftCardController extends BaseController
 {
+    /**
+     * @var GiftCardRepositoryInterface
+     */
     private GiftCardRepositoryInterface $giftCardRepository;
 
+    /**
+     * @param GiftCardRepositoryInterface $giftCardRepository
+     */
     public function __construct(GiftCardRepositoryInterface $giftCardRepository)
     {
         $this->giftCardRepository = $giftCardRepository;
     }
-    public function create(GiftCardRequest $request)
+
+    /**
+     * @param GiftCardRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function store(GiftCardRequest $request)
     {
         $response = $this->reviewRepository->addReviewComment($request);
         return $this->createResponse($response, 'Gift Card Create');
