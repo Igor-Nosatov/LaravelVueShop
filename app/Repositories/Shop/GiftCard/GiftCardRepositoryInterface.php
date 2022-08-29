@@ -1,15 +1,13 @@
 <?php
 
 namespace App\Repositories\Shop\GiftCard;
+
+use App\Http\Requests\GiftCard\GiftCardRequest;
 use Illuminate\Http\Request;
 
 interface GiftCardRepositoryInterface
 {
-    public function getAllGiftCard();
 
-    public function getGiftCardById($id);
+    public function createGiftCard(GiftCardRequest $request );
 
-    public function createOrUpdateGiftCard( $id = null, $collection = [] );
-
-    public function deleteGiftCard($id);
 }

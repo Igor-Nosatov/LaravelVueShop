@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller;
 
-class BaseController extends Controller
+class BaseController extends Controller 
 {
     protected function createResponse(array $data, string $message, int $status = JsonResponse::HTTP_CREATED): JsonResponse
     {
