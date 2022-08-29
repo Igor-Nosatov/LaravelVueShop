@@ -19,7 +19,7 @@ use App\Http\Controllers\Api\Shop\AuthController;
 
 /** POST               */
 Route::get('/', [HomeController::class, 'index']);
-/** POST          /shop       api.shop.index*/
+/** POST          /shop      */
 Route::get('/shop', [ShoesController::class, 'index']);
 /** POST          /options      */
 Route::get('/options', [OptionController::class, 'index']);
@@ -37,7 +37,7 @@ Route::group([
 Route::middleware(['auth:sanctum'])->group(function () {
   /** GET          /me        */
   Route::get('/me', [AuthController::class, 'show']);
-
+  Route::post('/favourite', [FavouriteController::class, 'store']);
 });
 
 //middleware(['can:isManager'])
