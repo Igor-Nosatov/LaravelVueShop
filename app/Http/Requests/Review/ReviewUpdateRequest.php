@@ -52,7 +52,8 @@ class ReviewUpdateRequest extends FormRequest
             ],
             'image' => [
                 'required',
-                'string',
+                'mimes:jpeg,png,jpg,gif',
+                'size:1024'
             ],
             'location' => [
                 'required',

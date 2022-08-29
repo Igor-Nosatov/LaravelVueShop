@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Repositories\Shop\Review;
-use Illuminate\Http\Request;
+
+use App\Http\Requests\Review\ReviewCreateRequest;
+use App\Http\Requests\Review\ReviewUpdateRequest;
 
 interface ReviewRepositoryInterface
 {
-    public function addReviewComment();
-    public function updateReviewComment();
-    public function deleteReviewComment();
+    public function addReviewComment(ReviewCreateRequest $request);
+    public function updateReviewComment(ReviewUpdateRequest $request, int $id);
+    public function deleteReviewComment(int $id):void;
 }
