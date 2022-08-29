@@ -9,9 +9,6 @@ use App\Models\Shop\Cart;
 use App\Repositories\Shop\Cart\CartRepositoryInterface;
 use Illuminate\Support\Facades\Auth;
 
-/**
- *
- */
 class CartRepository implements CartRepositoryInterface
 {
     /**
@@ -35,7 +32,7 @@ class CartRepository implements CartRepositoryInterface
      * @param Cart $cart
      * @return Cart
      */
-    public function updateToCart(CartUpdateRequest $request, Cart $cart)
+    public function updateToCart(CartUpdateRequest $request, Cart $cart): Cart
     {
         $cart->update($request->all());
         return $cart;

@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 
 interface FavouriteRepositoryInterface
 {
+    /**
+     * @param FavouriteCreateRequest $request
+     * @return mixed
+     */
     public function addToFavouriteForm(FavouriteCreateRequest $request);
+
+    /**
+     * @param Favourite $favourite
+     * @return void
+     */
     public function deleteFromFavourite(Favourite $favourite):void;
 }

@@ -10,16 +10,31 @@ use App\Models\Shop\Review;
 
 class ReviewRepository implements ReviewRepositoryInterface
 {
-    public function addReviewComment(ReviewCreateRequest $request)
+    /**
+     * @param ReviewCreateRequest $request
+     * @return mixed
+     */
+    public function addReviewComment(ReviewCreateRequest $request):mixed
     {
         $review = Review::create($request->all());
         return $review;
     }
-    public function updateReviewComment(ReviewUpdateRequest $request, Review $review)
+
+    /**
+     * @param ReviewUpdateRequest $request
+     * @param Review $review
+     * @return Review
+     */
+    public function updateReviewComment(ReviewUpdateRequest $request, Review $review):Review
     {
          $review->update($request->all());
          return $review; 
     }
+
+    /**
+     * @param Review $review
+     * @return void
+     */
     public function deleteReviewComment(Review $review):void
     {
         $review->delete();

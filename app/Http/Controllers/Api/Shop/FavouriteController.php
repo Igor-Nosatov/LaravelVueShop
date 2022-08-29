@@ -7,9 +7,6 @@ use App\Http\Requests\Favourite\FavouriteCreateRequest;
 use App\Models\Shop\Favourite;
 use App\Repositories\Shop\Favourite\FavouriteRepositoryInterface;
 
-/**
- *
- */
 class FavouriteController extends  BaseController
 {
     /**
@@ -27,7 +24,7 @@ class FavouriteController extends  BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\Favourite\FavouriteCreateRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(FavouriteCreateRequest $request)
@@ -42,7 +39,7 @@ class FavouriteController extends  BaseController
      */
     public function delete(Favourite $favourite)
     {
-        $response = $this->favouriteRepository->deleteFromFavourite($favourite);
+        $this->favouriteRepository->deleteFromFavourite($favourite);
         return $this->emptyResponse('Delete item from favourite');
     }
 }

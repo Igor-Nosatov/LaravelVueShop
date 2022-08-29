@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\Shop\OptionController;
 use App\Http\Controllers\Api\Shop\AuthController;
 use App\Http\Controllers\Api\Shop\FavouriteController;
 use App\Http\Controllers\Api\Shop\CartController;
+use App\Http\Controllers\Api\Shop\CheckoutController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -43,10 +44,15 @@ Route::middleware(['auth:sanctum'])->group(function () {
   Route::post('/favourite', [FavouriteController::class, 'store']);
   Route::delete('/favourite/{favourite}', [FavouriteController::class, 'delete']);
 
-  Route::post('/cart', [FavouriteController::class, 'store']);
-  Route::get('/cart', [FavouriteController::class, 'index']);
-  Route::put('/cart/{cart}', [FavouriteController::class, 'update']);
-  Route::delete('/cart/{cart}', [FavouriteController::class, 'delete']);
+  Route::post('/cart', [CartController::class, 'store']);
+  Route::get('/cart', [CartController::class, 'index']);
+  Route::put('/cart/{cart}', [CartController::class, 'update']);
+  Route::delete('/cart/{cart}', [CartController::class, 'delete']);
+
+  Route::post('/checkout', [CheckoutController::class, 'store']);
+  Route::get('/checkout', [CheckoutController::class, 'index']);
+  Route::delete('/checkout/{checkout}', [CheckoutController::class, 'delete']);
+
 });
 
 //middleware(['can:isManager'])

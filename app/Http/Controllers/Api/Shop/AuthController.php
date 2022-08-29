@@ -9,9 +9,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Auth\AuthRequest;
 use Illuminate\Http\JsonResponse;
 
-/**
- *
- */
 class AuthController  extends BaseController
 {
     /**

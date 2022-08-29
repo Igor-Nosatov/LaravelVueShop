@@ -12,7 +12,10 @@ use App\Repositories\Shop\Option\OptionRepositoryInterface;
 
 class OptionRepository implements OptionRepositoryInterface
 {
-    public function getOptions()
+    /**
+     * @return array
+     */
+    public function getOptions():array
     {
         $categories = Category::get()->toArray();
         $colors = Color::get()->toArray();
