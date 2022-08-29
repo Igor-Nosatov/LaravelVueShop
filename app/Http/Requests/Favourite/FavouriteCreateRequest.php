@@ -24,10 +24,6 @@ class FavouriteCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'quantity' => [
-                'required',
-                'integer'
-            ],
             'shoes_id' => [
                 'exists:App\Models\Shop\Shoes,id'
             ],

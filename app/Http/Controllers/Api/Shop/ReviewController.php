@@ -2,84 +2,37 @@
 
 namespace App\Http\Controllers\Api\Shop;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\BaseController;
+use App\Repositories\Shop\Review\ReviewRepositoryInterface;
+use App\Http\Requests\Review\ReviewCreateRequest;
+use App\Http\Requests\Review\ReviewUpdateRequest;
 
-class ReviewController extends Controller
+class ReviewController extends BaseController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    private ReviewRepositoryInterface $reviewRepository;
+
+    public function __construct(ReviewRepositoryInterface $reviewRepository)
     {
-        //
+        $this->reviewRepository = $reviewRepository;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function store(ReviewCreateRequest $request)
     {
-        //
+        $response = $this->reviewRepository->addReviewComment($request);
+        return $this->createResponse($response, 'Review Create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+ 
+    public function update(ReviewUpdateRequest $request, int $id)
     {
-        //
+        $response = $this->reviewRepository->updateReviewComment($request, $id);
+        return $this->successResponse($response, 'Review Update');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+  
+    public function destroy(int $id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $response = $this->reviewRepository->deleteReviewComment($id);
+        return $this->emptyResponse('Review Delete');
     }
 }

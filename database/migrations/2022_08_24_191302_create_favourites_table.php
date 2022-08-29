@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('favourites', function (Blueprint $table) {
             $table->id();
-            $table->integer('quantity');
             $table->foreignId('user_id')
                 ->constrained()
                 ->onUpdate('cascade')
