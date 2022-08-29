@@ -7,9 +7,15 @@ use App\Repositories\Shop\Shoes\ShoesRepositoryInterface;
 use App\Models\Shop\Shoes;
 use Illuminate\Support\Facades\Storage;
 
+/**
+ *
+ */
 class ShoesRepository implements ShoesRepositoryInterface
 {
-    public function getShoesData()
+    /**
+     * @return array
+     */
+    public function getShoesData():array
     {
         $paginate = Shoes::with(['images', 'reviews'])->paginate(12)->toArray();
 

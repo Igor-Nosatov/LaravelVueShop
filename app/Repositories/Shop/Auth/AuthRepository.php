@@ -11,8 +11,15 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Auth\AuthRequest;
 use App\Repositories\Shop\Auth\AuthRepositoryInterface;
 
+/**
+ *
+ */
 class AuthRepository implements AuthRepositoryInterface
 {
+    /**
+     * @param AuthRequest $request
+     * @return mixed
+     */
     public function registerUser(AuthRequest $request)
     {
         $user = User::create([
@@ -29,6 +36,10 @@ class AuthRepository implements AuthRepositoryInterface
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function loginUser(Request $request)
     {
         $user = User::where('email', $request['email'])->first();
@@ -45,6 +56,9 @@ class AuthRepository implements AuthRepositoryInterface
         return response($response, 200);
     }
 
+    /**
+     * @return mixed
+     */
     public function logoutUser()
     {
         Auth::user()->tokens()->delete();
@@ -53,6 +67,10 @@ class AuthRepository implements AuthRepositoryInterface
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function updateUser(Request $request)
     {
         $user_id = Auth::id();
@@ -60,7 +78,9 @@ class AuthRepository implements AuthRepositoryInterface
         return $user->update($request->all());
     }
 
-
+    /**
+     * @return mixed
+     */
     public function showUser()
     {
         $user = Auth::user()->role->name;

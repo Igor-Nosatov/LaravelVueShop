@@ -1,14 +1,25 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\Shop;
 
+use App\Http\Controllers\Api\BaseController;
 use App\Http\Requests\Favourite\FavouriteCreateRequest;
+use App\Models\Shop\Favourite;
 use App\Repositories\Shop\Favourite\FavouriteRepositoryInterface;
 
-class FavouriteController extends Controller
+/**
+ *
+ */
+class FavouriteController extends  BaseController
 {
+    /**
+     * @var FavouriteRepositoryInterface
+     */
     private FavouriteRepositoryInterface $favouriteRepository;
 
+    /**
+     * @param FavouriteRepositoryInterface $favouriteRepository
+     */
     public function __construct(FavouriteRepositoryInterface $favouriteRepository)
     {
         $this->favouriteRepository = $favouriteRepository;
@@ -16,12 +27,22 @@ class FavouriteController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Favourite\FavouriteCreateRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(FavouriteCreateRequest $request)
     {
-        $response = $this->authRepository->loginUser($request);
+        $response = $this->favouriteRepository->addToFavouriteForm($request);
         return $this->createResponse($response, 'Add item to favourite');
+    }
+
+    /**
+     * @param Favourite $favourite
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function delete(Favourite $favourite)
+    {
+        $response = $this->favouriteRepository->deleteFromFavourite($favourite);
+        return $this->emptyResponse('Delete item from favourite');
     }
 }

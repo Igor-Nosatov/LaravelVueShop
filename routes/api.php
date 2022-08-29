@@ -6,6 +6,8 @@ use App\Http\Controllers\Api\Shop\HomeController;
 use App\Http\Controllers\Api\Shop\ShoesController;
 use App\Http\Controllers\Api\Shop\OptionController;
 use App\Http\Controllers\Api\Shop\AuthController;
+use App\Http\Controllers\Api\Shop\FavouriteController;
+use App\Http\Controllers\Api\Shop\CartController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -25,19 +27,26 @@ Route::get('/shop', [ShoesController::class, 'index']);
 Route::get('/options', [OptionController::class, 'index']);
 
 Route::group([
-    'prefix' => '/auth',
-  ], function () {
-    /** POST          /auth/register      */
-    Route::post('register', [AuthController::class, 'register']);
-    /** POST          /auth/login      */
-    Route::post('login', [AuthController::class, 'login']);
-  });
+  'prefix' => '/auth',
+], function () {
+  /** POST          /auth/register      */
+  Route::post('register', [AuthController::class, 'register']);
+  /** POST          /auth/login      */
+  Route::post('login', [AuthController::class, 'login']);
+});
 
 
 Route::middleware(['auth:sanctum'])->group(function () {
   /** GET          /me        */
   Route::get('/me', [AuthController::class, 'show']);
+
   Route::post('/favourite', [FavouriteController::class, 'store']);
+  Route::delete('/favourite/{favourite}', [FavouriteController::class, 'delete']);
+
+  Route::post('/cart', [FavouriteController::class, 'store']);
+  Route::get('/cart', [FavouriteController::class, 'index']);
+  Route::put('/cart/{cart}', [FavouriteController::class, 'update']);
+  Route::delete('/cart/{cart}', [FavouriteController::class, 'delete']);
 });
 
 //middleware(['can:isManager'])
