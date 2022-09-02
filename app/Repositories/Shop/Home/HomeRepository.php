@@ -9,7 +9,10 @@ use Illuminate\Support\Facades\Storage;
 
 class  HomeRepository implements HomeRepositoryInterface
 {
-    public function getShoesDataForHomePage()
+    /**
+     * @return array[]
+     */
+    public function getShoesDataForHomePage():array
     {
         $itemsMensShoesData = Shoes::with(['images','gender'])->where('gender_id',1)->take(4)->get();
         foreach ($itemsMensShoesData as $value) {

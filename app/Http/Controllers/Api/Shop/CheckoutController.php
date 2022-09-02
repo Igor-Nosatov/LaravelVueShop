@@ -2,11 +2,21 @@
 
 namespace App\Http\Controllers\Api\Shop;
 
+use App\Http\Controllers\Api\BaseController;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\Checkout\CheckoutRequest;
+use App\Models\Shop\Checkout;
+use App\Repositories\Shop\Checkout\CheckoutRepositoryInterface;
 
-class CheckoutController extends Controller
+class CheckoutController extends BaseController
 {
+    private CheckoutRepositoryInterface $checkoutRepository;
+
+    public function __construct(CheckoutRepositoryInterface $checkoutRepository)
+    {
+        $this->checkoutRepository = $checkoutRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,17 +24,8 @@ class CheckoutController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $response = $this->checkoutRepository->getCheckoutData();
+        return $response; //$this->successResponse($response, 'Get Checkout Data');
     }
 
     /**
@@ -33,43 +34,10 @@ class CheckoutController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CheckoutRequest $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+        $response = $this->checkoutRepository->addToCheckoutForm($request);
+        return $this->createResponse($response->toArray(), 'Add item to Checkout');
     }
 
     /**
@@ -78,8 +46,11 @@ class CheckoutController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Checkout $checkout)
     {
-        //
+        $this->checkoutRepository->deleteFromCheckoutForm($checkout);
+        return $this->emptyResponse('Delete item from Checkout');
     }
 }
+
+

@@ -24,6 +24,7 @@ class Shoes extends Model
         'category_id',
         'type_id',
         'sampler_id',
+        'color_id',
     ];
 
     /**
@@ -40,6 +41,7 @@ class Shoes extends Model
         'category_id' => 'integer',
         'type_id' => 'integer',
         'sampler_id' => 'integer',
+        'color_id' => 'integer',
     ];
 
      /**
@@ -47,7 +49,7 @@ class Shoes extends Model
      */
     public function features(): BelongsToMany
     {
-        return $this->belongsToMany(Feature::class);
+        return $this->belongsToMany(Feature::class,'feature_shoes','feature_id','shoes_id');
     }
 
     /**
@@ -70,15 +72,15 @@ class Shoes extends Model
      */
     public function width(): BelongsToMany
     {
-        return $this->belongsToMany(Width::class);
+        return $this->belongsToMany(Width::class,'shoes_width','shoes_id','width_id');
     }
 
     /**
      * @return BelongsToMany
      */
-    public function footwearSizes(): BelongsToMany
+    public function sizes(): BelongsToMany
     {
-        return $this->belongsToMany(FootwearSize::class);
+        return $this->belongsToMany(Size::class, 'size_shoes','size_id','shoes_id');
     }
 
     /**
@@ -95,6 +97,14 @@ class Shoes extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function color(): BelongsTo
+    {
+        return $this->belongsTo(Color::class);
     }
 
     /**

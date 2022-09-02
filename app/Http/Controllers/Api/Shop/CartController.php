@@ -1,11 +1,29 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\Shop;
 
+use App\Http\Controllers\Api\BaseController;
+use App\Repositories\Shop\Cart\CartRepositoryInterface;
+use App\Http\Requests\Cart\CartCreateRequest;
+use App\Http\Requests\Cart\CartUpdateRequest;
+use App\Models\Shop\Cart;
 use Illuminate\Http\Request;
 
-class CartController extends Controller
+class CartController extends BaseController
 {
+    /**
+     * @var CartRepositoryInterface
+     */
+    private CartRepositoryInterface $cartRepository;
+
+    /**
+     * @param CartRepositoryInterface $cartRepository
+     */
+    public function __construct(CartRepositoryInterface $cartRepository)
+    {
+        $this->cartRepository = $cartRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,17 +31,8 @@ class CartController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $response = $this->cartRepository->getCartData();
+        return $response; //$this->successResponse($response, 'Get Cart Data');
     }
 
     /**
@@ -32,53 +41,31 @@ class CartController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CartCreateRequest $request)
     {
-        //
+        $response = $this->cartRepository->addToCart($request)->toArray();
+        return $this->createResponse($response, 'Add  Cart Data');
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param CartUpdateRequest $request
+     * @param Cart $cart
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function show($id)
+    public function update(CartUpdateRequest $request, Cart $cart)
     {
-        //
+        $response = $this->cartRepository->updateToCart($request, $cart );
+        return $this->successResponse($response->toArray(), 'Update Cart Data');
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Cart $cart
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function edit($id)
+    public function destroy(Cart $cart)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $this->cartRepository->deleteFromCart($cart);
+        return $this->emptyResponse('Delete item from cart');
     }
 }
+

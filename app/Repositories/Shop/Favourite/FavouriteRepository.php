@@ -8,9 +8,21 @@ use Illuminate\Http\Request;
 
 class FavouriteRepository implements FavouriteRepositoryInterface
 {
+    /**
+     * @param FavouriteCreateRequest $request
+     * @return mixed
+     */
     public function addToFavouriteForm(FavouriteCreateRequest $request)
     {
-        $favourites = Favourite::create($request->all());
-        return $favourites;
+        return Favourite::create($request->all());
     }
-} 
+
+    /**
+     * @param Favourite $favourite
+     * @return void
+     */
+    public function deleteFromFavourite(Favourite $favourite):void
+    {
+       $favourite->delete();
+    }
+}

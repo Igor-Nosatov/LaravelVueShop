@@ -24,35 +24,29 @@ class GiftCardRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => [
+         'name' => [
                 'required',
-                'min:3',
                 'max:100',
                 'string'
             ],
-            'email' => [
+             'email' => [
                 'required',
                 'email',
-                'min:3',
                 'max:100',
                 'unique:App\Models\Shop\GiftCard,email'
             ],
             'recipient_name' => [
                 'required',
-                'min:3',
                 'max:100',
                 'string'
             ],
             'recipient_email' => [
                 'required',
                 'email',
-                'min:3',
                 'max:100',
                 'unique:App\Models\Shop\GiftCard,email'
             ],
-            'message' => [
-                'required',
-                'min:10',
+           'message' => [
                 'max:100',
                 'string'
             ],
@@ -60,7 +54,7 @@ class GiftCardRequest extends FormRequest
                 'required',
                 'integer'
             ],
-            'user_id' => [
+              'user_id' => [
                 'exists:App\Models\User,id'
                 ]
         ];

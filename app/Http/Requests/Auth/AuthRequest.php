@@ -34,13 +34,13 @@ class AuthRequest extends FormRequest
             'email' => [
                 'required',
                 'string',
-                'min:5',
+                'min:3',
                 'max:255'
             ],
             'password' => [
                 'required',
                 'string',
-                'min:10',
+                'min:5',
                 'max:255'
             ],
         ];

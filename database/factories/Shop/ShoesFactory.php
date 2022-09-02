@@ -29,6 +29,7 @@ class ShoesFactory extends Factory
             'category_id' => rand(1, 6),
             'type_id' => rand(1, 3),
             'sampler_id' => rand(1, 11),
+            'color_id' => rand(1, 12),
         ];
     }
 }

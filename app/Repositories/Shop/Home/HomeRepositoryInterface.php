@@ -5,5 +5,5 @@ use Illuminate\Http\Request;
 
 interface HomeRepositoryInterface
 {
-    public function getShoesDataForHomePage();
+    public function getShoesDataForHomePage():array;
 }

@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-class FootWearSizeSeeder extends Seeder
+
+class SizeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,7 +15,7 @@ class FootWearSizeSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('foot_wear_sizes')->insert(
+        DB::table('sizes')->insert(
             [
                 ['name' => '5'],
                 ['name' => '5.5'],

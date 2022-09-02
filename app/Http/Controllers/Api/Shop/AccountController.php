@@ -1,11 +1,24 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\Shop;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\BaseController;
+use App\Repositories\Shop\Account\AccountRepositoryInterface;
 
-class AccountController extends Controller
+class AccountController extends BaseController
 {
+    /**
+     * @var AccountRepositoryInterface
+     */
+    private  AccountRepositoryInterface $accountRepository;
+
+    /**
+     * @param AccountRepositoryInterface $accountRepository
+     */
+    public function __construct(AccountRepositoryInterface $accountRepository)
+    {
+        $this->accountRepository = $accountRepository;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,72 +26,7 @@ class AccountController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $response =  $this->accountRepository->getAccountData();
+        return $this->successResponse($response, 'get Account Data');
     }
 }

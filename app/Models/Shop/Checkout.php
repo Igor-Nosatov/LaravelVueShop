@@ -4,7 +4,7 @@ namespace App\Models\Shop;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Checkout extends Model
 {
@@ -22,7 +22,8 @@ class Checkout extends Model
         'zip_code',
         'phone',
         'email',
-        'cart_id'
+        'cart_id',
+        'user_id'
     ];
 
     /**
@@ -39,13 +40,22 @@ class Checkout extends Model
         'phone' => 'string',
         'email' => 'string',
         'cart_id' => 'integer',
+        'user_id' => 'integer',
     ];
 
     /**
-     * @return HasMany
+     * @return BelongsTo
      */
-    public function cart():HasMany
+    public function cart(): BelongsTo
     {
-        return $this->hasMany(Cart::class);
+        return $this->belongsTo(Cart::class);
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }

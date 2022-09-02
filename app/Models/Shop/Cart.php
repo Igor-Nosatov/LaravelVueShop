@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+
 class Cart extends Model
 {
     use HasFactory;
@@ -17,6 +18,7 @@ class Cart extends Model
      * @var array
      */
     protected $fillable = [
+        'id',
         'quantity',
         'promo_code',
         'shipped_days',
@@ -30,6 +32,7 @@ class Cart extends Model
      * @var array
      */
     protected $casts = [
+        'id'=> 'integer',
         'quantity' => 'integer',
         'promo_code' => 'integer',
         'shipped_days' => 'string',
@@ -56,8 +59,8 @@ class Cart extends Model
     /**
      * @return BelongsTo
      */
-    public function checkout():BelongsTo
+    public function checkout(): HasMany
     {
-        return $this->belongsTo(Checkout::class);
+        return $this->hasMany(Checkout::class);
     }
 }

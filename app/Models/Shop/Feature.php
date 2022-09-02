@@ -33,6 +33,6 @@ class Feature extends Model
      */
     public function shoes(): BelongsToMany
     {
-        return $this->belongsToMany(Shoes::class);
+        return $this->belongsToMany(Shoes::class,'feature_shoes','feature_id','shoes_id');
     }
 }

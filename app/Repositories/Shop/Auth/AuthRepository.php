@@ -9,11 +9,16 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\Auth\AuthRequest;
+use App\Http\Requests\Auth\LoginRequest;
 use App\Repositories\Shop\Auth\AuthRepositoryInterface;
 
 class AuthRepository implements AuthRepositoryInterface
 {
-    public function registerUser(AuthRequest $request)
+    /**
+     * @param AuthRequest $request
+     * @return mixed
+     */
+    public function registerUser(AuthRequest $request):mixed
     {
         $user = User::create([
             'name' => $request['name'],
@@ -23,13 +28,18 @@ class AuthRepository implements AuthRepositoryInterface
 
         $token = $user->createToken('shop-token')->plainTextToken;
 
-        return response()->json([
+        $authData = [
             'access_token' => $token,
             'token_type' => 'Bearer',
-        ]);
+        ];
+        return $authData;
     }
 
-    public function loginUser(Request $request)
+    /**
+     * @param LoginRequest $request
+     * @return mixed
+     */
+    public function loginUser(LoginRequest $request):mixed
     {
         $user = User::where('email', $request['email'])->first();
         if (!$user || !Hash::check($request['password'], $user->password)) {
@@ -38,14 +48,18 @@ class AuthRepository implements AuthRepositoryInterface
             ], 401);
         }
         $token = $user->createToken('shop-token')->plainTextToken;
-        $response = [
+
+        $authData = [
             'user' => $user,
             'token' => $token,
         ];
-        return response($response, 200);
+        return $authData;
     }
 
-    public function logoutUser()
+    /**
+     * @return mixed
+     */
+    public function logoutUser():mixed
     {
         Auth::user()->tokens()->delete();
         return response()->json([
@@ -53,15 +67,21 @@ class AuthRepository implements AuthRepositoryInterface
         ]);
     }
 
-    public function updateUser(Request $request)
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function updateUser(Request $request):mixed
     {
         $user_id = Auth::id();
         $user = User::findOrFail($user_id);
         return $user->update($request->all());
     }
 
-
-    public function showUser()
+    /**
+     * @return mixed
+     */
+    public function showUser():mixed
     {
         $user = Auth::user()->role->name;
         return response()->json($user);

@@ -28,7 +28,7 @@ class Category extends Model
         'name' => 'string',
     ];
 
-    public function products(): HasMany
+    public function shoes(): HasMany
     {
         return $this->hasMany(Shoes::class);
     }

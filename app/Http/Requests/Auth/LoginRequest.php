@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Cart;
+namespace App\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CartCreateRequest extends FormRequest
+class LoginRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,28 +24,18 @@ class CartCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'quantity'=> [
+            'email' => [
                 'required',
-                'integer'
-            ],
-            'promo_code'=> [
                 'string',
-                'min:5',
+                'min:3',
                 'max:255'
             ],
-           'shipped_days'=> [
+            'password' => [
                 'required',
                 'string',
-                'max:20'
+                'min:3',
+                'max:255'
             ],
-            'user_id' => [
-                'required',
-                'exists:App\Models\User,id'
-            ],
-            'shoes_id' => [
-                'required',
-                'exists:App\Models\Shop\Shoes,id'
-            ]
         ];
     }
 }
