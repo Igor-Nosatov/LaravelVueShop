@@ -55,8 +55,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
   Route::delete('/checkout/{checkout}', [CheckoutController::class, 'delete']);
 
   Route::get('/account', [AccountController::class, 'index']);
-
-
 });
 
 //middleware(['can:isManager'])
