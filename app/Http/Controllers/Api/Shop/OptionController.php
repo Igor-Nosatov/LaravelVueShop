@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Api\Shop;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\BaseController;
 use App\Repositories\Shop\Option\OptionRepositoryInterface;
-class OptionController extends Controller
+class OptionController extends BaseController
 {
     /**
      * @var OptionRepositoryInterface

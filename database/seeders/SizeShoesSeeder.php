@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class ColorShoesSeeder extends Seeder
+class SizeShoesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,14 +15,13 @@ class ColorShoesSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 1; $i <= 120; $i++) {
-            DB::table('color_shoes')->insert(
+        for ($i = 1; $i <= 300; $i++) {
+            DB::table('size_shoes')->insert(
                 [
                     [
-                        'color_id' => rand(1, 12),
-                        'shoes_id' => $i,
+                        'size_id' => rand(1, 21),
+                        'shoes_id' => rand(1, 120),
                     ],
-                   
                 ]
             );
         }

@@ -29,15 +29,13 @@ class CartUpdateRequest extends FormRequest
                 'integer'
             ],
             'promo_code'=> [
-                'required',
                 'string',
                 'min:5',
                 'max:255'
             ],
             'shipped_days'=> [
                 'required',
-                'integer',
-                'min:5',
+                'string',
                 'max:20'
             ],
             'user_id' => [

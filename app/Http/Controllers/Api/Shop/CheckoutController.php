@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Api\Shop;
 
+use App\Http\Controllers\Api\BaseController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Checkout\CheckoutRequest;
 use App\Models\Shop\Checkout;
 use App\Repositories\Shop\Checkout\CheckoutRepositoryInterface;
 
-class CheckoutController extends Controller
+class CheckoutController extends BaseController
 {
     private CheckoutRepositoryInterface $checkoutRepository;
 
@@ -24,7 +25,7 @@ class CheckoutController extends Controller
     public function index()
     {
         $response = $this->checkoutRepository->getCheckoutData();
-        return $this->successResponse($response, 'Get Checkout Data');
+        return $response; //$this->successResponse($response, 'Get Checkout Data');
     }
 
     /**
@@ -36,7 +37,7 @@ class CheckoutController extends Controller
     public function store(CheckoutRequest $request)
     {
         $response = $this->checkoutRepository->addToCheckoutForm($request);
-        return $this->createResponse($response, 'Add item to Checkout');
+        return $this->createResponse($response->toArray(), 'Add item to Checkout');
     }
 
     /**

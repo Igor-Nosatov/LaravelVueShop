@@ -25,8 +25,6 @@ class FeatureSeeder extends Seeder
                 ['name' => 'Available in extended width sizes'],
                 ['name' => 'Rubber outsole with 5% recycled rubber'],
                 ['name' => 'Midsole foam uses approximately 3% bio-based content made from renewable sources to help reduce our carbon footprint'],
-                ['name' => 'Rubber outsole with 5% recycled rubber'],
-                ['name' => 'Midsole foam uses approximately 3% bio-based content made from renewable sources to help reduce our carbon footprint'],
                 ['name' => 'ENCAP midsole cushioning combines soft foam with a durable polyurethane rim to deliver all-day support'],
                 ['name' => 'Vamp, collar and tongue mesh are 100% recycled polyester'],
                 ['name' => 'Suede / mesh upper'],

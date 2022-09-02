@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\Shop\Auth\AuthRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Http\Requests\Auth\AuthRequest;
+use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\JsonResponse;
 
 class AuthController  extends BaseController
@@ -38,10 +39,10 @@ class AuthController  extends BaseController
      * @param Request $request
      * @return JsonResponse
      */
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
         $response = $this->authRepository->loginUser($request);
-        return $this->successResponse($response, 'User Login');
+        return $response;//$this->successResponse($response, 'User Login');
     }
 
     /**

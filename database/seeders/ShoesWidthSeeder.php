@@ -2,10 +2,11 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class FeatureShoesSeeder extends Seeder
+class ShoesWidthSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,11 +16,11 @@ class FeatureShoesSeeder extends Seeder
     public function run()
     {
         for ($i = 1; $i <= 300; $i++) {
-            DB::table('feature_shoes')->insert(
+            DB::table('shoes_width')->insert(
                 [
                     [
-                        'feature_id' => rand(1, 21),
                         'shoes_id' => rand(1, 120),
+                        'width_id' => rand(1, 8),
                     ],
                 ]
             );

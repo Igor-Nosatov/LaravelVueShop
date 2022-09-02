@@ -13,12 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('feature_shoes', function (Blueprint $table) {
-            $table->id();
-            $table->integer('feature_id')->unsigned()->nullable()->constrained()
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
-            $table->integer('shoes_id')->unsigned()->nullable()->constrained()
+        Schema::table('shoes', function (Blueprint $table) {
+            $table->foreignId('color_id')->nullable()->constrained()
             ->onUpdate('cascade')
             ->onDelete('cascade');
         });
@@ -31,6 +27,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('feature_shoes');
+        Schema::table('shoes', function (Blueprint $table) {
+            $table->dropForeign('color_id');
+            $table->dropColumn('color_id');
+        });
     }
 };

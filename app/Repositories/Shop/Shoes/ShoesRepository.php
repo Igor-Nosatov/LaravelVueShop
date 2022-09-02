@@ -12,7 +12,7 @@ class ShoesRepository implements ShoesRepositoryInterface
     /**
      * @return array
      */
-    public function getShoesData():array
+    public function getShoesData(): array
     {
         $paginate = Shoes::with(['images', 'reviews'])->paginate(12)->toArray();
 
@@ -48,17 +48,53 @@ class ShoesRepository implements ShoesRepositoryInterface
 
     public function getShoesSingleData(Shoes $shoes)
     {
-        return $shoes->with([
-            'features',
-            'colors',
-            'reviews',
-            'images',
-            'width',
-            'footwearSizes',
-            'gender',
+        $shoesDataById = $shoes->with([
             'category',
+            'type',
+            'gender',
             'sampler',
-            'type'
-            ])->get();
+            'images',
+            'color',
+            'features',
+            'sizes',
+            'width',
+            'reviews'
+        ])->find($shoes['id']);
+
+        $imageArray = [];
+        $reviewArray = [];
+        $featuresArray = [];
+        $sizesArray = [];
+        $widthArray = [];
+
+
+        foreach ($shoesDataById['images'] as $value) {
+            $imageArray[] = [
+                'image_url' =>  Storage::disk('public')->url('img/' .  $value->name . '.webp')
+            ];
+        }
+
+        foreach ($shoesDataById['reviews'] as $value) {
+            $reviewArray[] = $value;
+        }
+
+        $shoesArrayById = [
+            'id' => $shoesDataById['id'],
+            'title' => $shoesDataById['title'],
+            'style_code' => $shoesDataById['style_code'],
+            'price' =>  $shoesDataById['price'],
+            'description' => $shoesDataById['description'],
+            'category' => $shoesDataById['category']['name'],
+            'gender' =>  $shoesDataById['gender']['name'],
+            'type' =>  $shoesDataById['type']['name'],
+            'sampler' =>  $shoesDataById['sampler']['name'],
+            'color' =>  $shoesDataById['color']['name'],
+            'images' =>  $imageArray,
+            'reviews' => $reviewArray,
+            'features' =>  $featuresArray,
+            'sizes' =>  $sizesArray,
+            'width' => $widthArray,
+        ];
+        return $shoesArrayById;
     }
 }

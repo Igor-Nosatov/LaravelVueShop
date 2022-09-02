@@ -30,14 +30,14 @@ class FavouriteController extends  BaseController
     public function store(FavouriteCreateRequest $request)
     {
         $response = $this->favouriteRepository->addToFavouriteForm($request);
-        return $this->createResponse($response, 'Add item to favourite');
+        return $this->createResponse($response->toArray(), 'Add item to favourite');
     }
 
     /**
      * @param Favourite $favourite
      * @return \Illuminate\Http\JsonResponse
      */
-    public function delete(Favourite $favourite)
+    public function destroy(Favourite $favourite)
     {
         $this->favouriteRepository->deleteFromFavourite($favourite);
         return $this->emptyResponse('Delete item from favourite');

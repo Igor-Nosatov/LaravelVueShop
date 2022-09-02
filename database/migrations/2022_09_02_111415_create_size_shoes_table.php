@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('feature_shoes', function (Blueprint $table) {
+        Schema::create('size_shoes', function (Blueprint $table) {
             $table->id();
-            $table->integer('feature_id')->unsigned()->nullable()->constrained()
+            $table->integer('size_id')->unsigned()->nullable()->constrained()
             ->onUpdate('cascade')
             ->onDelete('cascade');
             $table->integer('shoes_id')->unsigned()->nullable()->constrained()
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('feature_shoes');
+        Schema::dropIfExists('size_shoes');
     }
 };

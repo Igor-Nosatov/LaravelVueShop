@@ -10,5 +10,5 @@ interface GiftCardRepositoryInterface
      * @param GiftCardRequest $request
      * @return mixed
      */
-    public function createGiftCard(GiftCardRequest $request):mixed;
+    public function createGiftCard(GiftCardRequest $request);
 }

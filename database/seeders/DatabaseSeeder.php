@@ -14,7 +14,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(FootWearSizeSeeder::class);
         $this->call(CategorySeeder::class);
         $this->call(ColorSeeder::class);
         $this->call(WidthSeeder::class);
@@ -26,6 +25,9 @@ class DatabaseSeeder extends Seeder
         $this->call(ImageSeeder::class);
         $this->call(ReviewSeeder::class);
         $this->call(FeatureSeeder::class);
+        $this->call(SizeSeeder::class);
+        $this->call(SizeShoesSeeder::class);
         $this->call(FeatureShoesSeeder::class);
+        $this->call(ShoesWidthSeeder::class);
     }
 }

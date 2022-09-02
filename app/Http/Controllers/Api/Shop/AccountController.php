@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\Shop;
 
+use App\Http\Controllers\Api\BaseController;
 use App\Repositories\Shop\Account\AccountRepositoryInterface;
-use Illuminate\Http\Request;
 
-class AccountController extends Controller
+class AccountController extends BaseController
 {
     /**
      * @var AccountRepositoryInterface

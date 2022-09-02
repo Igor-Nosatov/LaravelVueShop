@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Width extends Model
+class Size extends Model
 {
     use HasFactory;
 
@@ -33,6 +33,6 @@ class Width extends Model
      */
     public function shoes(): BelongsToMany
     {
-        return $this->belongsToMany(Shoes::class, 'shoes_width','shoes_id','width_id');
+        return $this->belongsToMany(Shoes::class, 'size_shoes','size_id','shoes_id');
     }
 }

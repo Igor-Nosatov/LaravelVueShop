@@ -5,6 +5,7 @@ namespace App\Repositories\Shop\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\Auth\AuthRequest;
+use App\Http\Requests\Auth\LoginRequest;
 
 interface AuthRepositoryInterface
 {
@@ -18,7 +19,7 @@ interface AuthRepositoryInterface
      * @param Request $request
      * @return mixed
      */
-    public function loginUser(Request $request): mixed;
+    public function loginUser(LoginRequest $request): mixed;
 
     /**
      * @param Request $request

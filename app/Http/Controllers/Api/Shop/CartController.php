@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\Shop;
 
 use App\Http\Controllers\Api\BaseController;
 use App\Repositories\Shop\Cart\CartRepositoryInterface;
 use App\Http\Requests\Cart\CartCreateRequest;
 use App\Http\Requests\Cart\CartUpdateRequest;
 use App\Models\Shop\Cart;
+use Illuminate\Http\Request;
 
 class CartController extends BaseController
 {
@@ -31,7 +32,7 @@ class CartController extends BaseController
     public function index()
     {
         $response = $this->cartRepository->getCartData();
-        return $this->successResponse($response, 'Get Cart Data');
+        return $response; //$this->successResponse($response, 'Get Cart Data');
     }
 
     /**
@@ -42,8 +43,8 @@ class CartController extends BaseController
      */
     public function store(CartCreateRequest $request)
     {
-        $response = $this->cartRepository->addToCart($request);
-        return $this->createResponse($response, 'Add to Cart Data');
+        $response = $this->cartRepository->addToCart($request)->toArray();
+        return $this->createResponse($response, 'Add  Cart Data');
     }
 
     /**
@@ -53,8 +54,8 @@ class CartController extends BaseController
      */
     public function update(CartUpdateRequest $request, Cart $cart)
     {
-        $response = $this->cartRepository->addToCart($request, $cart );
-        return $this->successResponse($response, 'Update to Cart Data');
+        $response = $this->cartRepository->updateToCart($request, $cart );
+        return $this->successResponse($response->toArray(), 'Update Cart Data');
     }
 
     /**

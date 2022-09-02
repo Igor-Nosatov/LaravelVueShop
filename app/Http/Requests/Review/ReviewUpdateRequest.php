@@ -27,19 +27,16 @@ class ReviewUpdateRequest extends FormRequest
             'review_headline' => [
                 'required',
                 'string',
-                'min:5',
                 'max:255'
             ],
             'nickname' => [
                 'required',
                 'string',
-                'min:5',
                 'max:255'
             ],
             'comment' => [
                 'required',
                 'string',
-                'min:5',
                 'max:1200'
             ],
             'overall_fit' => [
@@ -51,18 +48,15 @@ class ReviewUpdateRequest extends FormRequest
                 'integer'
             ],
             'image' => [
-                'required',
                 'mimes:jpeg,png,jpg,gif',
                 'size:1024'
             ],
             'location' => [
-                'required',
                 'string',
             ],
             'email' => [
                 'required',
                 'email',
-                'min:3',
                 'max:100',
                 'unique:App\Models\Shop\GiftCard,email'
             ],

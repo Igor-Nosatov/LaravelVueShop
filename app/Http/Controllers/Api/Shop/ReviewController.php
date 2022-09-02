@@ -6,7 +6,7 @@ use App\Http\Controllers\Api\BaseController;
 use App\Repositories\Shop\Review\ReviewRepositoryInterface;
 use App\Http\Requests\Review\ReviewCreateRequest;
 use App\Http\Requests\Review\ReviewUpdateRequest;
-
+use App\Models\Shop\Review;
 class ReviewController extends BaseController
 {
     /**
@@ -29,7 +29,7 @@ class ReviewController extends BaseController
     public function store(ReviewCreateRequest $request)
     {
         $response = $this->reviewRepository->addReviewComment($request);
-        return $this->createResponse($response, 'Review Create');
+        return $this->createResponse($response->toArray(), 'Review Create');
     }
 
     /**
@@ -40,7 +40,7 @@ class ReviewController extends BaseController
     public function update(ReviewUpdateRequest $request, Review $review)
     {
         $response = $this->reviewRepository->updateReviewComment($request, $review);
-        return $this->successResponse($response, 'Review Update');
+        return $this->successResponse($response->toArray(), 'Review Update');
     }
 
     /**
