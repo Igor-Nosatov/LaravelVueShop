@@ -76,7 +76,7 @@ class Shoes extends Model
      */
     public function size(): BelongsToMany
     {
-        return $this->belongsToMany(Size::class, 'size_shoes','shoes_id', 'size_id' );
+        return $this->belongsToMany(Size::class, 'size_shoes', 'shoes_id', 'size_id');
     }
     /**
      * @return BelongsTo
@@ -113,9 +113,101 @@ class Shoes extends Model
     {
         return $this->belongsTo(Type::class);
     }
-    public function scopeSearch($query, $title)
+
+    //========Scopes Filters=============
+
+    /**
+     * @param $query
+     * @param $categoryId
+     * @return mixed
+     */
+    public function scopeCategoryFilter($query, $categoryId): mixed
+    {
+        return  $query->whereHas('category', function ($query) use ($categoryId) {
+            $query->where('category_id', $categoryId);
+        });
+    }
+
+    /**
+     * @param $query
+     * @param $typeId
+     * @return mixed
+     */
+    public function scopeTypeFilter($query, $typeId): mixed
+    {
+        return $query->whereHas('type', function ($query) use ($typeId) {
+            $query->where('type_id', $typeId);
+        });
+    }
+
+    /**
+     * @param $query
+     * @param $genderId
+     * @return mixed
+     */
+    public function scopeGenderFilter($query, $genderId): mixed
+    {
+        return  $query->whereHas('gender', function ($query) use ($genderId) {
+            $query->where('gender_id', $genderId);
+        });
+    }
+
+    /**
+     * @param $query
+     * @param $samplerId
+     * @return mixed
+     */
+    public function scopeSamplerFilter($query, $samplerId): mixed
+    {
+        return   $query->whereHas('sampler', function ($query) use ($samplerId) {
+            $query->where('sampler_id', $samplerId);
+        });
+    }
+
+    /**
+     * @param $query
+     * @param $colorId
+     * @return mixed
+     */
+    public function scopeColorFilter($query, $colorId): mixed
+    {
+        return  $query->whereHas('color', function ($query) use ($colorId) {
+            $query->where('color_id', $colorId);
+        });
+    }
+
+    /**
+     * @param $query
+     * @param $sizesId
+     * @return mixed
+     */
+    public function scopeSizeFilter($query, $sizesId): mixed
+    {
+        return $query->whereHas('size', function ($query) use ($sizesId) {
+            $query->where('size_id', $sizesId);
+        });
+    }
+
+    /**
+     * @param $query
+     * @param $widthId
+     * @return mixed
+     */
+    public function scopeWidthFilter($query, $widthId): mixed
+    {
+        return $query->whereHas('width', function ($query) use ($widthId) {
+            $query->where('width_id', $widthId);
+        });
+    }
+
+    /**
+     * @param $query
+     * @param $title
+     * @return mixed
+     */
+    public function scopeSearch($query, $title): mixed
     {
         return $query->where('title', 'LIKE', "%{$title}%")
-        ->orWhere('description', 'LIKE', "%{$title}%");
+            ->orWhere('description', 'LIKE', "%{$title}%");
     }
 }

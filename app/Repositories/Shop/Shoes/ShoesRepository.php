@@ -15,60 +15,28 @@ class ShoesRepository implements ShoesRepositoryInterface
     public function getShoesData(Request $request, int $paginationParam = 9)
     {
         $query = Shoes::query();
+
         if ($request->filled('category')) {
-            $categoryId = $request->category;
-
-            $query->whereHas('category', function ($query) use ($categoryId) {
-                $query->where('category_id', $categoryId);
-            });
+            $query->categoryFilter($request->category);
         }
-
         if ($request->filled('gender')) {
-            $genderId = $request->gender;
-
-            $query->whereHas('gender', function ($query) use ($genderId) {
-                $query->where('gender_id', $genderId);
-            });
+           $query->genderFilter($request->gender);
         }
-
         if ($request->filled('type')) {
-            $typeId = $request->type;
-
-            $query->whereHas('type', function ($query) use ($typeId) {
-                $query->where('type_id', $typeId);
-            });
+            $query->typeFilter($request->type);
         }
-
         if ($request->filled('sampler')) {
-            $samplerId = $request->sampler;
-
-            $query->whereHas('sampler', function ($query) use ($samplerId) {
-                $query->where('sampler_id', $samplerId);
-            });
+            $query->samplerFilter($request->sampler);
         }
-
         if ($request->filled('color')) {
-            $colorId = $request->color;
-
-            $query->whereHas('color', function ($query) use ($colorId) {
-                $query->where('color_id', $colorId);
-            });
+            $query->colorFilter($request->color);
         }
-
         if ($request->filled('size')) {
-            $sizesId = $request->size;
-            $query->whereHas('size', function ($query) use ($sizesId) {
-                $query->where('size_id', $sizesId);
-            });
+            $query->sizeFilter($request->size);
         }
-
         if ($request->filled('width')) {
-            $widthId = $request->width;
-            $query->whereHas('width', function ($query) use ($widthId) {
-                $query->where('width_id', $widthId);
-            });
+            $query->widthFilter($request->width);
         }
-
         if ($request->filled('title')) {
             $query->search($request->title);
         }
@@ -83,7 +51,7 @@ class ShoesRepository implements ShoesRepositoryInterface
             'color',
             'size',
             'width',
-        ])->paginate(9)->toArray();
+        ])->paginate($paginationParam)->toArray();
 
 
           //lists of array for shop data
@@ -162,6 +130,10 @@ class ShoesRepository implements ShoesRepositoryInterface
         ];
     }
 
+    /**
+     * @param Shoes $shoes
+     * @return array
+     */
     public function getShoesSingleData(Shoes $shoes)
     {
         $shoesDataById = $shoes->with([
