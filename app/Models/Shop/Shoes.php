@@ -74,9 +74,9 @@ class Shoes extends Model
     /**
      * @return BelongsToMany
      */
-    public function sizes(): BelongsToMany
+    public function size(): BelongsToMany
     {
-        return $this->belongsToMany(Size::class, 'size_shoes', 'size_id', 'shoes_id');
+        return $this->belongsToMany(Size::class, 'size_shoes','shoes_id', 'size_id' );
     }
     /**
      * @return BelongsTo
@@ -112,5 +112,10 @@ class Shoes extends Model
     public function type(): BelongsTo
     {
         return $this->belongsTo(Type::class);
+    }
+    public function scopeSearch($query, $title)
+    {
+        return $query->where('title', 'LIKE', "%{$title}%")
+        ->orWhere('description', 'LIKE', "%{$title}%");
     }
 }

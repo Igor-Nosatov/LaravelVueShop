@@ -16,84 +16,136 @@ class ShoesRepository implements ShoesRepositoryInterface
     {
         $query = Shoes::query();
         if ($request->filled('category')) {
-            $categorySlug = $request->category;
+            $categoryId = $request->category;
 
-            $query->whereHas('category', function ($query) use ($categorySlug) {
-                $query->where('category_id', $categorySlug);
+            $query->whereHas('category', function ($query) use ($categoryId) {
+                $query->where('category_id', $categoryId);
             });
         }
 
         if ($request->filled('gender')) {
-            $genderSlug = $request->gender;
+            $genderId = $request->gender;
 
-            $query->whereHas('gender', function ($query) use ($genderSlug) {
-                $query->where('gender_id', $genderSlug);
+            $query->whereHas('gender', function ($query) use ($genderId) {
+                $query->where('gender_id', $genderId);
             });
         }
 
         if ($request->filled('type')) {
-            $typeSlug = $request->type;
+            $typeId = $request->type;
 
-            $query->whereHas('type', function ($query) use ($typeSlug) {
-                $query->where('type_id', $typeSlug);
+            $query->whereHas('type', function ($query) use ($typeId) {
+                $query->where('type_id', $typeId);
             });
         }
 
         if ($request->filled('sampler')) {
-            $samplerSlug = $request->sampler;
+            $samplerId = $request->sampler;
 
-            $query->whereHas('sampler', function ($query) use ($samplerSlug) {
-                $query->where('sampler_id', $samplerSlug);
+            $query->whereHas('sampler', function ($query) use ($samplerId) {
+                $query->where('sampler_id', $samplerId);
             });
         }
 
         if ($request->filled('color')) {
-            $colorSlug = $request->color;
+            $colorId = $request->color;
 
-            $query->whereHas('color', function ($query) use ($colorSlug) {
-                $query->where('color_id', $colorSlug);
+            $query->whereHas('color', function ($query) use ($colorId) {
+                $query->where('color_id', $colorId);
             });
         }
 
-        if ($request->filled('sizes')) {
-            $sizesSlug = $request->sizes;
-
-            $query->whereHas('sizes', function ($query) use ($sizesSlug) {
-                $query->where('size_id', $sizesSlug);
+        if ($request->filled('size')) {
+            $sizesId = $request->size;
+            $query->whereHas('size', function ($query) use ($sizesId) {
+                $query->where('size_id', $sizesId);
             });
         }
 
         if ($request->filled('width')) {
-            $widthSlug = $request->width;
-
-            $query->whereHas('width', function ($query) use ($widthSlug) {
-                $query->where('width_id', $widthSlug);
+            $widthId = $request->width;
+            $query->whereHas('width', function ($query) use ($widthId) {
+                $query->where('width_id', $widthId);
             });
         }
 
         if ($request->filled('title')) {
-            $title = $request->title;
-            $query->where('title', 'LIKE', "%{$title}%")
-                ->orWhere('description', 'LIKE', "%{$title}%");
+            $query->search($request->title);
         }
 
-        $paginate = $query->with(['images', 'reviews',])->paginate(9)->toArray();
-      
+        $paginate = $query->with([
+            'images',
+            'reviews',
+            'category',
+            'type',
+            'gender',
+            'sampler',
+            'color',
+            'size',
+            'width',
+        ])->paginate(9)->toArray();
 
-          foreach ($paginate['data'] as $value) {
-            //average rating
+
+          //lists of array for shop data
             $ratingData = [];
+            $sizeData = [];
+            $widthData = [];
+            $shoesData = [];
+            $categoryData = [];
+            $typeData = [];
+            $genderData = [];
+            $samplerData = [];
+            $colorData = [];
+
+        foreach ($paginate['data'] as $value) {
             foreach ($value['reviews'] as $ratingValue) {
                 $ratingData[] = $ratingValue['rating'];
                 $averageRating = (array_sum($ratingData)) / (count($ratingData));
             }
+          
+            foreach ($value['size'] as $sizesValue) {
+                $sizeData[] = [
+                    'id' =>  $sizesValue['id'],
+                    'name' =>  $sizesValue['name']
+                ];
+            }
+           
+            foreach ($value['width'] as $widthValue) {
+                $widthData[] = [
+                    'id' =>  $widthValue['id'],
+                    'name' =>  $widthValue['name']
+                ];
+            }
+
             //format shoes data
             $shoesData[] = [
                 'title' => $value['title'],
                 'price' => $value['price'],
                 'style_code' => $value['style_code'],
                 'image_url' => Storage::disk('public')->url('img/' .  $value['images']['0']['name'] . '.webp'),
-                'average_rating' =>  $averageRating
+                'average_rating' =>  $averageRating,
+                'category' =>  $categoryData = [
+                    'id' => $value['category']['id'],
+                    'name' => $value['category']['name'],
+                ],
+                'type' =>  $typeData = [
+                    'id' => $value['type']['id'],
+                    'name' => $value['type']['name'],
+                ],
+                'gender' =>  $genderData = [
+                    'id' => $value['gender']['id'],
+                    'name' => $value['gender']['name'],
+                ],
+                'sampler' =>  $samplerData = [
+                    'id' => $value['sampler']['id'],
+                    'name' =>  $value['sampler']['name'],
+                ],
+                'color' =>    $colorData = [
+                    'id' => $value['color']['id'],
+                    'name' => $value['color']['name'],
+                ],
+                'size' => $sizeData,
+                'width' => $widthData,
             ];
         }
 
