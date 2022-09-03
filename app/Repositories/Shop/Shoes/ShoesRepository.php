@@ -12,11 +12,74 @@ class ShoesRepository implements ShoesRepositoryInterface
     /**
      * @return array
      */
-    public function getShoesData(): array
+    public function getShoesData(Request $request, int $paginationParam = 9): array
     {
-        $paginate = Shoes::with(['images', 'reviews'])->paginate(12)->toArray();
+        $query = Shoes::query();
+        if ($request->filled('category')) {
+            $categorySlug = $request->category;
 
-        foreach ($paginate['data'] as $value) {
+            $query->whereHas('category', function ($query) use ($categorySlug) {
+                $query->where('category_id', $categorySlug);
+            });
+        }
+
+        if ($request->filled('gender')) {
+            $genderSlug = $request->gender;
+
+            $query->whereHas('gender', function ($query) use ($genderSlug) {
+                $query->where('gender_id', $genderSlug);
+            });
+        }
+
+        if ($request->filled('type')) {
+            $typeSlug = $request->type;
+
+            $query->whereHas('type', function ($query) use ($typeSlug) {
+                $query->where('type_id', $typeSlug);
+            });
+        }
+
+        if ($request->filled('sampler')) {
+            $samplerSlug = $request->sampler;
+
+            $query->whereHas('sampler', function ($query) use ($samplerSlug) {
+                $query->where('sampler_id', $samplerSlug);
+            });
+        }
+
+        if ($request->filled('color')) {
+            $colorSlug = $request->color;
+
+            $query->whereHas('color', function ($query) use ($colorSlug) {
+                $query->where('color_id', $colorSlug);
+            });
+        }
+
+        if ($request->filled('sizes')) {
+            $sizesSlug = $request->sizes;
+
+            $query->whereHas('sizes', function ($query) use ($sizesSlug) {
+                $query->where('size_id', $sizesSlug);
+            });
+        }
+
+        if ($request->filled('width')) {
+            $widthSlug = $request->width;
+
+            $query->whereHas('width', function ($query) use ($widthSlug) {
+                $query->where('width_id', $widthSlug);
+            });
+        }
+
+        if ($request->filled('title')) {
+            $title = $request->title;
+            $query->where('title', 'LIKE', "%{$title}%")
+                ->orWhere('description', 'LIKE', "%{$title}%");
+        }
+
+        return $query->with(['images', 'reviews',])->paginate($paginationParam)->toArray();
+
+        /*foreach ($paginate['data'] as $value) {
             //average rating
             $ratingData = [];
             foreach ($value['reviews'] as $ratingValue) {
@@ -43,7 +106,7 @@ class ShoesRepository implements ShoesRepositoryInterface
                 'next_page_url' => $paginate['next_page_url'],
             ],
             'data' => $shoesData
-        ];
+        ];*/
     }
 
     public function getShoesSingleData(Shoes $shoes)

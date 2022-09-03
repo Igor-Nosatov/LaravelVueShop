@@ -10,7 +10,7 @@ interface ShoesRepositoryInterface
     /**
      * @return array
      */
-    public function getShoesData():array;
+    public function getShoesData(Request $request, int $paginationParam = 9):array;
 
     public function getShoesSingleData(Shoes $shoes);
 }

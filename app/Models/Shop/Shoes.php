@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 class Shoes extends Model
 {
     use HasFactory;
@@ -26,16 +27,15 @@ class Shoes extends Model
         'sampler_id',
         'color_id',
     ];
-
     /**
      * The attributes that should be cast.
      *
      * @var array<string>
      */
     protected $casts = [
-        'title'=> 'string',
-        'description'=> 'string',
-        'style_code'=> 'string',
+        'title' => 'string',
+        'description' => 'string',
+        'style_code' => 'string',
         'price' => 'integer',
         'gender_id' => 'integer',
         'category_id' => 'integer',
@@ -43,15 +43,13 @@ class Shoes extends Model
         'sampler_id' => 'integer',
         'color_id' => 'integer',
     ];
-
-     /**
+    /**
      * @return BelongsToMany
      */
     public function features(): BelongsToMany
     {
-        return $this->belongsToMany(Feature::class,'feature_shoes','feature_id','shoes_id');
+        return $this->belongsToMany(Feature::class, 'feature_shoes', 'feature_id', 'shoes_id');
     }
-
     /**
      * @return HasMany
      */
@@ -59,7 +57,6 @@ class Shoes extends Model
     {
         return $this->hasMany(Review::class);
     }
-
     /**
      * @return HasMany
      */
@@ -72,25 +69,22 @@ class Shoes extends Model
      */
     public function width(): BelongsToMany
     {
-        return $this->belongsToMany(Width::class,'shoes_width','shoes_id','width_id');
+        return $this->belongsToMany(Width::class, 'shoes_width', 'shoes_id', 'width_id');
     }
-
     /**
      * @return BelongsToMany
      */
     public function sizes(): BelongsToMany
     {
-        return $this->belongsToMany(Size::class, 'size_shoes','size_id','shoes_id');
+        return $this->belongsToMany(Size::class, 'size_shoes', 'size_id', 'shoes_id');
     }
-
     /**
      * @return BelongsTo
      */
     public function gender(): BelongsTo
     {
-        return $this->belongsTo(Gender::class,'gender_id');
+        return $this->belongsTo(Gender::class, 'gender_id');
     }
-
     /**
      * @return BelongsTo
      */
@@ -98,7 +92,6 @@ class Shoes extends Model
     {
         return $this->belongsTo(Category::class);
     }
-
     /**
      * @return BelongsTo
      */
@@ -106,7 +99,6 @@ class Shoes extends Model
     {
         return $this->belongsTo(Color::class);
     }
-
     /**
      * @return BelongsTo
      */
@@ -114,7 +106,6 @@ class Shoes extends Model
     {
         return $this->belongsTo(Sampler::class);
     }
-
     /**
      * @return BelongsTo
      */
