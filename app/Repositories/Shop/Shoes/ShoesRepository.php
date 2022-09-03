@@ -12,7 +12,7 @@ class ShoesRepository implements ShoesRepositoryInterface
     /**
      * @return array
      */
-    public function getShoesData(Request $request, int $paginationParam = 9): array
+    public function getShoesData(Request $request, int $paginationParam = 9)
     {
         $query = Shoes::query();
         if ($request->filled('category')) {
@@ -77,9 +77,10 @@ class ShoesRepository implements ShoesRepositoryInterface
                 ->orWhere('description', 'LIKE', "%{$title}%");
         }
 
-        return $query->with(['images', 'reviews',])->paginate($paginationParam)->toArray();
+        $paginate = $query->with(['images', 'reviews',])->paginate(9)->toArray();
+      
 
-        /*foreach ($paginate['data'] as $value) {
+          foreach ($paginate['data'] as $value) {
             //average rating
             $ratingData = [];
             foreach ($value['reviews'] as $ratingValue) {
@@ -106,7 +107,7 @@ class ShoesRepository implements ShoesRepositoryInterface
                 'next_page_url' => $paginate['next_page_url'],
             ],
             'data' => $shoesData
-        ];*/
+        ];
     }
 
     public function getShoesSingleData(Shoes $shoes)
