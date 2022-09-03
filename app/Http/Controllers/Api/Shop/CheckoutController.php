@@ -10,8 +10,14 @@ use App\Repositories\Shop\Checkout\CheckoutRepositoryInterface;
 
 class CheckoutController extends BaseController
 {
+    /**
+     * @var CheckoutRepositoryInterface
+     */
     private CheckoutRepositoryInterface $checkoutRepository;
 
+    /**
+     * @param CheckoutRepositoryInterface $checkoutRepository
+     */
     public function __construct(CheckoutRepositoryInterface $checkoutRepository)
     {
         $this->checkoutRepository = $checkoutRepository;

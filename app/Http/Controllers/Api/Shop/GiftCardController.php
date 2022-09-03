@@ -25,7 +25,6 @@ class GiftCardController extends BaseController
 
     /**
      * @param GiftCardRequest $request
-     * @return \Illuminate\Http\JsonResponse
      */
     public function store(GiftCardRequest $request)
     {

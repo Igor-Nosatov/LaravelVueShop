@@ -31,7 +31,6 @@ class AccountRepository implements AccountRepositoryInterface
                 'image_url' => Storage::disk('public')->url('img/' .  $shoesData['images']['0']['name'] . '.webp')
             ];
         }
-
         $accountData = [
             'user_data' =>  $userData,
             'favourite_data' =>  $shoesArrayData,

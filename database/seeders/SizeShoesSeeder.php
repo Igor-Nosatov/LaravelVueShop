@@ -19,8 +19,8 @@ class SizeShoesSeeder extends Seeder
             DB::table('size_shoes')->insert(
                 [
                     [
-                        'size_id' => rand(1, 21),
                         'shoes_id' => rand(1, 120),
+                        'size_id' => rand(1, 21),
                     ],
                 ]
             );

@@ -13,17 +13,24 @@ use Illuminate\Database\Eloquent\Model;
  * @property string name
  *
  * @property-read Role $role
- *
  */
-
 class Role extends Model
 {
     use HasFactory;
 
+    /**
+     * @var string
+     */
     protected $table = 'roles';
 
+    /**
+     * @var string[]
+     */
     protected $fillable = ['name'];
 
+    /**
+     * @var string[]
+     */
     protected $casts = [
         'id' => 'integer',
         'name' => 'string',

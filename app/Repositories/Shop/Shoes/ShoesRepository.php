@@ -12,24 +12,108 @@ class ShoesRepository implements ShoesRepositoryInterface
     /**
      * @return array
      */
-    public function getShoesData(): array
+    public function getShoesData(Request $request, int $paginationParam = 9)
     {
-        $paginate = Shoes::with(['images', 'reviews'])->paginate(12)->toArray();
+        $query = Shoes::query();
+
+        if ($request->filled('category')) {
+            $query->categoryFilter($request->category);
+        }
+        if ($request->filled('gender')) {
+           $query->genderFilter($request->gender);
+        }
+        if ($request->filled('type')) {
+            $query->typeFilter($request->type);
+        }
+        if ($request->filled('sampler')) {
+            $query->samplerFilter($request->sampler);
+        }
+        if ($request->filled('color')) {
+            $query->colorFilter($request->color);
+        }
+        if ($request->filled('size')) {
+            $query->sizeFilter($request->size);
+        }
+        if ($request->filled('width')) {
+            $query->widthFilter($request->width);
+        }
+        if ($request->filled('title')) {
+            $query->search($request->title);
+        }
+
+        $paginate = $query->with([
+            'images',
+            'reviews',
+            'category',
+            'type',
+            'gender',
+            'sampler',
+            'color',
+            'size',
+            'width',
+        ])->paginate($paginationParam)->toArray();
+
+
+          //lists of array for shop data
+            $ratingData = [];
+            $sizeData = [];
+            $widthData = [];
+            $shoesData = [];
+            $categoryData = [];
+            $typeData = [];
+            $genderData = [];
+            $samplerData = [];
+            $colorData = [];
 
         foreach ($paginate['data'] as $value) {
-            //average rating
-            $ratingData = [];
             foreach ($value['reviews'] as $ratingValue) {
                 $ratingData[] = $ratingValue['rating'];
                 $averageRating = (array_sum($ratingData)) / (count($ratingData));
             }
+          
+            foreach ($value['size'] as $sizesValue) {
+                $sizeData[] = [
+                    'id' =>  $sizesValue['id'],
+                    'name' =>  $sizesValue['name']
+                ];
+            }
+           
+            foreach ($value['width'] as $widthValue) {
+                $widthData[] = [
+                    'id' =>  $widthValue['id'],
+                    'name' =>  $widthValue['name']
+                ];
+            }
+
             //format shoes data
             $shoesData[] = [
                 'title' => $value['title'],
                 'price' => $value['price'],
                 'style_code' => $value['style_code'],
                 'image_url' => Storage::disk('public')->url('img/' .  $value['images']['0']['name'] . '.webp'),
-                'average_rating' =>  $averageRating
+                'average_rating' =>  $averageRating,
+                'category' =>  $categoryData = [
+                    'id' => $value['category']['id'],
+                    'name' => $value['category']['name'],
+                ],
+                'type' =>  $typeData = [
+                    'id' => $value['type']['id'],
+                    'name' => $value['type']['name'],
+                ],
+                'gender' =>  $genderData = [
+                    'id' => $value['gender']['id'],
+                    'name' => $value['gender']['name'],
+                ],
+                'sampler' =>  $samplerData = [
+                    'id' => $value['sampler']['id'],
+                    'name' =>  $value['sampler']['name'],
+                ],
+                'color' =>    $colorData = [
+                    'id' => $value['color']['id'],
+                    'name' => $value['color']['name'],
+                ],
+                'size' => $sizeData,
+                'width' => $widthData,
             ];
         }
 
@@ -46,6 +130,10 @@ class ShoesRepository implements ShoesRepositoryInterface
         ];
     }
 
+    /**
+     * @param Shoes $shoes
+     * @return array
+     */
     public function getShoesSingleData(Shoes $shoes)
     {
         $shoesDataById = $shoes->with([
