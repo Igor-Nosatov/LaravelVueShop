@@ -33,6 +33,6 @@ class Size extends Model
      */
     public function shoes(): BelongsToMany
     {
-        return $this->belongsToMany(Shoes::class, 'size_shoes','size_id','shoes_id');
+        return $this->belongsToMany(Shoes::class, 'shoes_id', 'size_id' ,'shoes_id');
     }
 }

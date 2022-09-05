@@ -28,9 +28,11 @@ class Type extends Model
         'name' => 'string',
     ];
 
+    /**
+     * @return HasMany
+     */
     public function products(): HasMany
     {
         return $this->hasMany(Shoes::class);
     }
-
 }

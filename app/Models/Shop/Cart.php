@@ -57,7 +57,7 @@ class Cart extends Model
     }
 
     /**
-     * @return BelongsTo
+     * @return HasMany
      */
     public function checkout(): HasMany
     {
