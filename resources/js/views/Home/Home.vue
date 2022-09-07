@@ -21,7 +21,10 @@
         <p class="text-start pt-2 fw-bold text-shadow">
           Give their style a fresh start for the new school year.
         </p>
-        <button class="btn btn-danger btn-lg border-none pe-5 ps-5 fw-bold" @click="$router.push('store')">
+        <button
+          class="btn btn-danger btn-lg border-none pe-5 ps-5 fw-bold"
+          @click="$router.push('store')"
+        >
           Shop Now
         </button>
       </div>
@@ -96,71 +99,25 @@
             <div class="carousel-inner">
               <div class="carousel-item active">
                 <div class="row g-0">
-                  <div class="col-md-3">
+                  <div
+                    class="col-md-3 p-1"
+                    v-for="item in kidShoesData"
+                    :key="item.index"
+                  >
                     <div class="card" style="width: 100%">
-                      <img
-                        src="../../../../public/img/m990gl5_nb_02_i.webp"
-                        class="card-img-top"
-                      />
+                      <img :src="item.image_url" class="card-img-top" />
                       <div class="card-body">
                         <p class="card-text">
                           <span class="product-title text-start">
-                            MADE in USA 990v5 Core
+                            {{ item.title }}
                           </span>
-                          <span class="product-price text-end">$184.99</span>
+                          <span class="product-price text-end"
+                            >$ {{ item.price }}</span
+                          >
                         </p>
-                        <small class="product-category">Men's</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="card" style="width: 100%">
-                      <img
-                        src="../../../../public/img/m990gl5_nb_02_i.webp"
-                        class="card-img-top"
-                      />
-                      <div class="card-body">
-                        <p class="card-text">
-                          <span class="product-title text-start">
-                            MADE in USA 990v5 Core
-                          </span>
-                          <span class="product-price text-end">$184.99</span>
-                        </p>
-                        <small class="product-category">Men's</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="card" style="width: 100%">
-                      <img
-                        src="../../../../public/img/m990gl5_nb_02_i.webp"
-                        class="card-img-top"
-                      />
-                      <div class="card-body">
-                        <p class="card-text">
-                          <span class="product-title text-start">
-                            MADE in USA 990v5 Core
-                          </span>
-                          <span class="product-price text-end">$184.99</span>
-                        </p>
-                        <small class="product-category">Men's</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="card" style="width: 100%">
-                      <img
-                        src="../../../../public/img/m990gl5_nb_02_i.webp"
-                        class="card-img-top"
-                      />
-                      <div class="card-body">
-                        <p class="card-text">
-                          <span class="product-title text-start">
-                            MADE in USA 990v5 Core
-                          </span>
-                          <span class="product-price text-end">$184.99</span>
-                        </p>
-                        <small class="product-category">Men's</small>
+                        <small class="product-category">{{
+                          item.gender
+                        }}</small>
                       </div>
                     </div>
                   </div>
@@ -168,71 +125,25 @@
               </div>
               <div class="carousel-item">
                 <div class="row g-0">
-                  <div class="col-md-3">
+                  <div
+                    class="col-md-3 p-1"
+                    v-for="item in kidShoesData"
+                    :key="item.index"
+                  >
                     <div class="card" style="width: 100%">
-                      <img
-                        src="../../../../public/img/m990gl5_nb_02_i.webp"
-                        class="card-img-top"
-                      />
+                      <img :src="item.image_url" class="card-img-top" />
                       <div class="card-body">
                         <p class="card-text">
                           <span class="product-title text-start">
-                            MADE in USA 990v5 Core
+                            {{ item.title }}
                           </span>
-                          <span class="product-price text-end">$184.99</span>
+                          <span class="product-price text-end"
+                            >$ {{ item.price }}</span
+                          >
                         </p>
-                        <small class="product-category">Men's</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="card" style="width: 100%">
-                      <img
-                        src="../../../../public/img/m990gl5_nb_02_i.webp"
-                        class="card-img-top"
-                      />
-                      <div class="card-body">
-                        <p class="card-text">
-                          <span class="product-title text-start">
-                            MADE in USA 990v5 Core
-                          </span>
-                          <span class="product-price text-end">$184.99</span>
-                        </p>
-                        <small class="product-category">Men's</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="card" style="width: 100%">
-                      <img
-                        src="../../../../public/img/m990gl5_nb_02_i.webp"
-                        class="card-img-top"
-                      />
-                      <div class="card-body">
-                        <p class="card-text">
-                          <span class="product-title text-start">
-                            MADE in USA 990v5 Core
-                          </span>
-                          <span class="product-price text-end">$184.99</span>
-                        </p>
-                        <small class="product-category">Men's</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="card" style="width: 100%">
-                      <img
-                        src="../../../../public/img/m990gl5_nb_02_i.webp"
-                        class="card-img-top"
-                      />
-                      <div class="card-body">
-                        <p class="card-text">
-                          <span class="product-title text-start">
-                            MADE in USA 990v5 Core
-                          </span>
-                          <span class="product-price text-end">$184.99</span>
-                        </p>
-                        <small class="product-category">Men's</small>
+                        <small class="product-category">{{
+                          item.gender
+                        }}</small>
                       </div>
                     </div>
                   </div>
@@ -273,78 +184,32 @@
           tabindex="0"
         >
           <div
-            id="carouselShoesControls"
+            id="carouselShoesControls1"
             class="carousel slide"
             data-bs-ride="carousel"
           >
             <div class="carousel-inner">
               <div class="carousel-item active">
                 <div class="row g-0">
-                  <div class="col-md-3">
+                  <div
+                    class="col-md-3 p-1"
+                    v-for="item in womenShoesData"
+                    :key="item.index"
+                  >
                     <div class="card" style="width: 100%">
-                      <img
-                        src="../../../../public/img/m990gl5_nb_02_i.webp"
-                        class="card-img-top"
-                      />
+                      <img :src="item.image_url" class="card-img-top" />
                       <div class="card-body">
                         <p class="card-text">
                           <span class="product-title text-start">
-                            MADE in USA 990v5 Core
+                            {{ item.title }}
                           </span>
-                          <span class="product-price text-end">$184.99</span>
+                          <span class="product-price text-end"
+                            >$ {{ item.price }}</span
+                          >
                         </p>
-                        <small class="product-category">Men's</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="card" style="width: 100%">
-                      <img
-                        src="../../../../public/img/m990gl5_nb_02_i.webp"
-                        class="card-img-top"
-                      />
-                      <div class="card-body">
-                        <p class="card-text">
-                          <span class="product-title text-start">
-                            MADE in USA 990v5 Core
-                          </span>
-                          <span class="product-price text-end">$184.99</span>
-                        </p>
-                        <small class="product-category">Men's</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="card" style="width: 100%">
-                      <img
-                        src="../../../../public/img/m990gl5_nb_02_i.webp"
-                        class="card-img-top"
-                      />
-                      <div class="card-body">
-                        <p class="card-text">
-                          <span class="product-title text-start">
-                            MADE in USA 990v5 Core
-                          </span>
-                          <span class="product-price text-end">$184.99</span>
-                        </p>
-                        <small class="product-category">Men's</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="card" style="width: 100%">
-                      <img
-                        src="../../../../public/img/m990gl5_nb_02_i.webp"
-                        class="card-img-top"
-                      />
-                      <div class="card-body">
-                        <p class="card-text">
-                          <span class="product-title text-start">
-                            MADE in USA 990v5 Core
-                          </span>
-                          <span class="product-price text-end">$184.99</span>
-                        </p>
-                        <small class="product-category">Men's</small>
+                        <small class="product-category">{{
+                          item.gender
+                        }}</small>
                       </div>
                     </div>
                   </div>
@@ -352,71 +217,25 @@
               </div>
               <div class="carousel-item">
                 <div class="row g-0">
-                  <div class="col-md-3">
+                  <div
+                    class="col-md-3 p-1"
+                    v-for="item in womenShoesData"
+                    :key="item.index"
+                  >
                     <div class="card" style="width: 100%">
-                      <img
-                        src="../../../../public/img/m990gl5_nb_02_i.webp"
-                        class="card-img-top"
-                      />
+                      <img :src="item.image_url" class="card-img-top" />
                       <div class="card-body">
                         <p class="card-text">
                           <span class="product-title text-start">
-                            MADE in USA 990v5 Core
+                            {{ item.title }}
                           </span>
-                          <span class="product-price text-end">$184.99</span>
+                          <span class="product-price text-end"
+                            >$ {{ item.price }}</span
+                          >
                         </p>
-                        <small class="product-category">Men's</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="card" style="width: 100%">
-                      <img
-                        src="../../../../public/img/m990gl5_nb_02_i.webp"
-                        class="card-img-top"
-                      />
-                      <div class="card-body">
-                        <p class="card-text">
-                          <span class="product-title text-start">
-                            MADE in USA 990v5 Core
-                          </span>
-                          <span class="product-price text-end">$184.99</span>
-                        </p>
-                        <small class="product-category">Men's</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="card" style="width: 100%">
-                      <img
-                        src="../../../../public/img/m990gl5_nb_02_i.webp"
-                        class="card-img-top"
-                      />
-                      <div class="card-body">
-                        <p class="card-text">
-                          <span class="product-title text-start">
-                            MADE in USA 990v5 Core
-                          </span>
-                          <span class="product-price text-end">$184.99</span>
-                        </p>
-                        <small class="product-category">Men's</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="card" style="width: 100%">
-                      <img
-                        src="../../../../public/img/m990gl5_nb_02_i.webp"
-                        class="card-img-top"
-                      />
-                      <div class="card-body">
-                        <p class="card-text">
-                          <span class="product-title text-start">
-                            MADE in USA 990v5 Core
-                          </span>
-                          <span class="product-price text-end">$184.99</span>
-                        </p>
-                        <small class="product-category">Men's</small>
+                        <small class="product-category">{{
+                          item.gender
+                        }}</small>
                       </div>
                     </div>
                   </div>
@@ -426,7 +245,7 @@
             <button
               class="carousel-control-prev"
               type="button"
-              data-bs-target="#carouselShoesControls"
+              data-bs-target="#carouselShoesControls1"
               data-bs-slide="prev"
             >
               <span
@@ -438,7 +257,7 @@
             <button
               class="carousel-control-next"
               type="button"
-              data-bs-target="#carouselShoesControls"
+              data-bs-target="#carouselShoesControls1"
               data-bs-slide="next"
             >
               <span
@@ -457,78 +276,32 @@
           tabindex="0"
         >
           <div
-            id="carouselShoesControls"
+            id="carouselShoesControls2"
             class="carousel slide"
             data-bs-ride="carousel"
           >
             <div class="carousel-inner">
               <div class="carousel-item active">
                 <div class="row g-0">
-                  <div class="col-md-3">
+                  <div
+                    class="col-md-3 p-1"
+                    v-for="item in menShoesData"
+                    :key="item.index"
+                  >
                     <div class="card" style="width: 100%">
-                      <img
-                        src="../../../../public/img/m990gl5_nb_02_i.webp"
-                        class="card-img-top"
-                      />
+                      <img :src="item.image_url" class="card-img-top" />
                       <div class="card-body">
                         <p class="card-text">
                           <span class="product-title text-start">
-                            MADE in USA 990v5 Core
+                            {{ item.title }}
                           </span>
-                          <span class="product-price text-end">$184.99</span>
+                          <span class="product-price text-end"
+                            >$ {{ item.price }}</span
+                          >
                         </p>
-                        <small class="product-category">Men's</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="card" style="width: 100%">
-                      <img
-                        src="../../../../public/img/m990gl5_nb_02_i.webp"
-                        class="card-img-top"
-                      />
-                      <div class="card-body">
-                        <p class="card-text">
-                          <span class="product-title text-start">
-                            MADE in USA 990v5 Core
-                          </span>
-                          <span class="product-price text-end">$184.99</span>
-                        </p>
-                        <small class="product-category">Men's</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="card" style="width: 100%">
-                      <img
-                        src="../../../../public/img/m990gl5_nb_02_i.webp"
-                        class="card-img-top"
-                      />
-                      <div class="card-body">
-                        <p class="card-text">
-                          <span class="product-title text-start">
-                            MADE in USA 990v5 Core
-                          </span>
-                          <span class="product-price text-end">$184.99</span>
-                        </p>
-                        <small class="product-category">Men's</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="card" style="width: 100%">
-                      <img
-                        src="../../../../public/img/m990gl5_nb_02_i.webp"
-                        class="card-img-top"
-                      />
-                      <div class="card-body">
-                        <p class="card-text">
-                          <span class="product-title text-start">
-                            MADE in USA 990v5 Core
-                          </span>
-                          <span class="product-price text-end">$184.99</span>
-                        </p>
-                        <small class="product-category">Men's</small>
+                        <small class="product-category">{{
+                          item.gender
+                        }}</small>
                       </div>
                     </div>
                   </div>
@@ -536,71 +309,25 @@
               </div>
               <div class="carousel-item">
                 <div class="row g-0">
-                  <div class="col-md-3">
+                  <div
+                    class="col-md-3 p-1"
+                    v-for="item in menShoesData"
+                    :key="item.index"
+                  >
                     <div class="card" style="width: 100%">
-                      <img
-                        src="../../../../public/img/m990gl5_nb_02_i.webp"
-                        class="card-img-top"
-                      />
+                      <img :src="item.image_url" class="card-img-top" />
                       <div class="card-body">
                         <p class="card-text">
                           <span class="product-title text-start">
-                            MADE in USA 990v5 Core
+                            {{ item.title }}
                           </span>
-                          <span class="product-price text-end">$184.99</span>
+                          <span class="product-price text-end"
+                            >$ {{ item.price }}</span
+                          >
                         </p>
-                        <small class="product-category">Men's</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="card" style="width: 100%">
-                      <img
-                        src="../../../../public/img/m990gl5_nb_02_i.webp"
-                        class="card-img-top"
-                      />
-                      <div class="card-body">
-                        <p class="card-text">
-                          <span class="product-title text-start">
-                            MADE in USA 990v5 Core
-                          </span>
-                          <span class="product-price text-end">$184.99</span>
-                        </p>
-                        <small class="product-category">Men's</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="card" style="width: 100%">
-                      <img
-                        src="../../../../public/img/m990gl5_nb_02_i.webp"
-                        class="card-img-top"
-                      />
-                      <div class="card-body">
-                        <p class="card-text">
-                          <span class="product-title text-start">
-                            MADE in USA 990v5 Core
-                          </span>
-                          <span class="product-price text-end">$184.99</span>
-                        </p>
-                        <small class="product-category">Men's</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="card" style="width: 100%">
-                      <img
-                        src="../../../../public/img/m990gl5_nb_02_i.webp"
-                        class="card-img-top"
-                      />
-                      <div class="card-body">
-                        <p class="card-text">
-                          <span class="product-title text-start">
-                            MADE in USA 990v5 Core
-                          </span>
-                          <span class="product-price text-end">$184.99</span>
-                        </p>
-                        <small class="product-category">Men's</small>
+                        <small class="product-category">{{
+                          item.gender
+                        }}</small>
                       </div>
                     </div>
                   </div>
@@ -610,7 +337,7 @@
             <button
               class="carousel-control-prev"
               type="button"
-              data-bs-target="#carouselShoesControls"
+              data-bs-target="#carouselShoesControls2"
               data-bs-slide="prev"
             >
               <span
@@ -622,7 +349,7 @@
             <button
               class="carousel-control-next"
               type="button"
-              data-bs-target="#carouselShoesControls"
+              data-bs-target="#carouselShoesControls2"
               data-bs-slide="next"
             >
               <span
@@ -649,35 +376,15 @@
         Shop by category
       </h3>
       <div class="row g-0">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-4 p-2">
-          <img
-            src="../../../../public/img/category1.jpg"
-            alt=""
-            class="category-image mb-3"
-          />
-          <a href="" class="text-dark text-middle fw-bold p-3 mt-4 fs-5"
-            >Little</a
-          >
-        </div>
-        <div class="col-12 col-sm-12 col-md-12 col-lg-4 p-2">
-          <img
-            src="../../../../public/img/Category2.webp"
-            alt=""
-            class="category-image mb-3"
-          />
-          <a href="" class="text-dark text-middle fw-bold p-3 mt-4 fs-5"
-            >Big Kids</a
-          >
-        </div>
-        <div class="col-12 col-sm-12 col-md-12 col-lg-4 p-2">
-          <img
-            src="../../../../public/img/Category3.webp"
-            alt=""
-            class="category-image mb-3"
-          />
-          <a href="" class="text-dark text-middle fw-bold p-3 mt-4 fs-5"
-            >Adults</a
-          >
+        <div
+          class="col-12 col-sm-12 col-md-12 col-lg-4 p-2"
+          v-for="item in genderCategoryData"
+          :key="item.index"
+        >
+          <img :src="item.image_url" alt="" class="category-image mb-3" />
+          <a href="" class="text-dark text-middle fw-bold p-3 mt-4 fs-5">{{
+            item.name
+          }}</a>
         </div>
       </div>
     </div>
@@ -703,7 +410,7 @@
             </button>
           </div>
         </div>
-       <div class="col-12 col-sm-12 col-md-12 col-lg-6 pt-2 pb-2">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 pt-2 pb-2">
           <img
             src="../../../../public/img/banneer2.webp"
             alt=""
@@ -717,7 +424,7 @@
             <button class="btn btn-danger btn-lg ms-5 border-none fs-5">
               Shop Men
             </button>
-             <button class="btn btn-danger btn-lg ms-5 border-none fs-5">
+            <button class="btn btn-danger btn-lg ms-5 border-none fs-5">
               Shop Women
             </button>
           </div>
@@ -730,188 +437,71 @@
     <div class="col-md-2"></div>
     <div class="col-md-8 d-none d-sm-none d-md-none d-lg-block">
       <h3 class="text-start text-dark fw-bold">Recommended for you</h3>
-      <div
-        id="carouselShoesControls"
-        class="carousel slide"
-        data-bs-ride="carousel"
-      >
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="row g-0">
-              <div class="col-md-3">
-                <div class="card" style="width: 100%">
-                  <img
-                    src="../../../../public/img/m990gl5_nb_02_i.webp"
-                    class="card-img-top"
-                  />
-                  <div class="card-body">
-                    <p class="card-text">
-                      <span class="product-title text-start">
-                        MADE in USA 990v5 Core
-                      </span>
-                      <span class="product-price text-end">$184.99</span>
-                    </p>
-                    <small class="product-category">Men's</small>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="card" style="width: 100%">
-                  <img
-                    src="../../../../public/img/m990gl5_nb_02_i.webp"
-                    class="card-img-top"
-                  />
-                  <div class="card-body">
-                    <p class="card-text">
-                      <span class="product-title text-start">
-                        MADE in USA 990v5 Core
-                      </span>
-                      <span class="product-price text-end">$184.99</span>
-                    </p>
-                    <small class="product-category">Men's</small>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="card" style="width: 100%">
-                  <img
-                    src="../../../../public/img/m990gl5_nb_02_i.webp"
-                    class="card-img-top"
-                  />
-                  <div class="card-body">
-                    <p class="card-text">
-                      <span class="product-title text-start">
-                        MADE in USA 990v5 Core
-                      </span>
-                      <span class="product-price text-end">$184.99</span>
-                    </p>
-                    <small class="product-category">Men's</small>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="card" style="width: 100%">
-                  <img
-                    src="../../../../public/img/m990gl5_nb_02_i.webp"
-                    class="card-img-top"
-                  />
-                  <div class="card-body">
-                    <p class="card-text">
-                      <span class="product-title text-start">
-                        MADE in USA 990v5 Core
-                      </span>
-                      <span class="product-price text-end">$184.99</span>
-                    </p>
-                    <small class="product-category">Men's</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="row g-0">
-              <div class="col-md-3">
-                <div class="card" style="width: 100%">
-                  <img
-                    src="../../../../public/img/m990gl5_nb_02_i.webp"
-                    class="card-img-top"
-                  />
-                  <div class="card-body">
-                    <p class="card-text">
-                      <span class="product-title text-start">
-                        MADE in USA 990v5 Core
-                      </span>
-                      <span class="product-price text-end">$184.99</span>
-                    </p>
-                    <small class="product-category">Men's</small>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="card" style="width: 100%">
-                  <img
-                    src="../../../../public/img/m990gl5_nb_02_i.webp"
-                    class="card-img-top"
-                  />
-                  <div class="card-body">
-                    <p class="card-text">
-                      <span class="product-title text-start">
-                        MADE in USA 990v5 Core
-                      </span>
-                      <span class="product-price text-end">$184.99</span>
-                    </p>
-                    <small class="product-category">Men's</small>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="card" style="width: 100%">
-                  <img
-                    src="../../../../public/img/m990gl5_nb_02_i.webp"
-                    class="card-img-top"
-                  />
-                  <div class="card-body">
-                    <p class="card-text">
-                      <span class="product-title text-start">
-                        MADE in USA 990v5 Core
-                      </span>
-                      <span class="product-price text-end">$184.99</span>
-                    </p>
-                    <small class="product-category">Men's</small>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="card" style="width: 100%">
-                  <img
-                    src="../../../../public/img/m990gl5_nb_02_i.webp"
-                    class="card-img-top"
-                  />
-                  <div class="card-body">
-                    <p class="card-text">
-                      <span class="product-title text-start">
-                        MADE in USA 990v5 Core
-                      </span>
-                      <span class="product-price text-end">$184.99</span>
-                    </p>
-                    <small class="product-category">Men's</small>
-                  </div>
-                </div>
-              </div>
+
+      <div class="row g-0">
+        <div
+          class="col-md-3 p-1"
+          v-for="item in menShoesData"
+          :key="item.index"
+        >
+          <div class="card" style="width: 100%">
+            <img :src="item.image_url" class="card-img-top" />
+            <div class="card-body">
+              <p class="card-text">
+                <span class="product-title text-start">
+                  {{ item.title }}
+                </span>
+                <span class="product-price text-end">$ {{ item.price }}</span>
+              </p>
+              <small class="product-category">{{ item.gender }}</small>
             </div>
           </div>
         </div>
-        <button
-          class="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselShoesControls"
-          data-bs-slide="prev"
-        >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button
-          class="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselShoesControls"
-          data-bs-slide="next"
-        >
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
       </div>
     </div>
     <div class="col-md-2"></div>
   </div>
 </template>
 
+<script>
+import { onMounted } from "vue";
+import { storeToRefs } from "pinia";
+import { homeStore } from "../../store/homeStore";
 
-<script setup>
+export default {
+  setup() {
+    //set specific store
+    const store = homeStore();
+    const { menShoesData, womenShoesData, kidShoesData, genderCategoryData } =
+      storeToRefs(store);
+    //smount data what we use
+    const {
+      fetchMenShoesData,
+      fetchWomenShoesData,
+      fetchKidShoesData,
+      fetchGenderCategoryData,
+    } = homeStore();
+
+    onMounted(() => {
+      fetchMenShoesData(),
+        fetchWomenShoesData(),
+        fetchKidShoesData(),
+        fetchGenderCategoryData();
+    });
+
+    return {
+      menShoesData,
+      womenShoesData,
+      kidShoesData,
+      genderCategoryData,
+    };
+  },
+};
 </script>
 
 <style scoped>
 .category-image {
-  height: 700px;
+  height: 450px;
   width: 100%;
 }
 .banner-img {

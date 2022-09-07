@@ -36,7 +36,7 @@
         <button type="submit" class="btn btn-danger btn-lg d-flex flex-start no-border">
           Login
         </button>
-        <p  class=" text-start">Don't have an account? <a href="" class="text-dark">Create one now</a></p>
+        <p  class=" text-start mt-2">Don't have an account? <router-link :to="{ name: 'register'}"  class="text-dark"> Create now</router-link></p>     
       </form>
     </div>
     <div class="col-md-6"></div>

@@ -32,7 +32,7 @@ Route::group([
 });
 
 /**  GET               */
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/home', [HomeController::class, 'index']);
 /**  GET           api/shop      */
 Route::get('/shop', [ShoesController::class, 'index']);
 /** GET          api/options      */

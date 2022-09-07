@@ -70,8 +70,8 @@
         <button type="submit" class="btn btn-danger btn-lg d-flex flex-start no-border">
           Create Account
         </button>
-        <p class="text-start">
-          Already have an account? <a href="" class="text-dark">Log in</a>
+        <p class="text-start  mt-2">
+          Already have an account?<router-link :to="{ name: 'login'}"  class="text-dark"> Log in</router-link>
         </p>
       </form>
     </div>

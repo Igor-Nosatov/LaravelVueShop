@@ -4,12 +4,16 @@
     <div class="col-10">
       <div class="row g-0">
         <div class="col-sm-6 col-md-2 pt-3">
-           <p class="text-dark fw-bold"><small><i class="fa-solid fa-phone"></i> + 9(999)999-99-09 </small></p>
+          <p class="text-dark fw-bold">
+            <small><i class="fa-solid fa-phone"></i> + 9(999)999-99-09 </small>
+          </p>
         </div>
-        <div class="col-sm-6 col-md-2 offset-md-3  pt-3">
-          <p class="text-dark fw-bold"><small>free delivery from 250$ </small></p>
+        <div class="col-sm-6 col-md-2 offset-md-3 pt-3">
+          <p class="text-dark fw-bold">
+            <small>Free delivery from 250$ </small>
+          </p>
         </div>
-        <div class="col-sm-6 offset-md-3 col-md-2  pt-3">
+        <div class="col-sm-6 offset-md-3 col-md-2 pt-3">
           <small class="ps-2 pe-2 fw-bold">
             <a href="" class="text-dark">Contact</a>
           </small>
@@ -29,12 +33,13 @@
     <div class="col-10 menu-height">
       <nav class="navbar navbar-expand-lg bg-light menu-height">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">
+          <router-link :to="{ name: 'home' }" class="navbar-brand">
             <img
               src="../../../public/img/logo.png"
               alt="new balance logo"
               class="logo"
-          /></a>
+            />
+          </router-link>
           <button
             class="navbar-toggler"
             type="button"
@@ -57,13 +62,10 @@
               <li class="nav-item pe-2 ps-2">
                 <a class="nav-link text-dark" href="#">Women</a>
               </li>
-              <li class="nav-item  pe-2 ps-2">
-                <a class="nav-link text-dark" href="#">Gender Neutral</a>
-              </li>
-              <li class="nav-item  pe-2 ps-2">
+              <li class="nav-item pe-2 ps-2">
                 <a class="nav-link text-dark" href="#">Kids</a>
               </li>
-              <li class="nav-item  pe-2 ps-2">
+              <li class="nav-item pe-2 ps-2">
                 <a class="nav-link text-dark" href="#">Sale</a>
               </li>
             </ul>
@@ -79,9 +81,15 @@
               </div>
             </form>
             <i class="fa-solid fa-user fa-2x ps-5 pe-2"></i>
-            <a href="" class="pe-2 fw-bold text-dark">Log in</a>
+            <router-link :to="{ name: 'login' }" class="pe-2 fw-bold text-dark"
+              >Log in</router-link
+            >
             <span>|</span>
-            <a href="" class="pe-5 ps-2 fw-bold text-dark">Join</a>
+            <router-link
+              :to="{ name: 'register' }"
+              class="pe-5 ps-2 fw-bold text-dark"
+              >Join</router-link
+            >
             <a href=""><i class="fa-solid fa-bag-shopping fa-2x"></i></a>
           </div>
         </div>

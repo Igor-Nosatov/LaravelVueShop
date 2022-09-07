@@ -13,3 +13,4 @@ const vue = createApp(App);
 vue.use(createPinia());
 vue.use(router());
 vue.mount("#app");
+
