@@ -21,9 +21,8 @@ use App\Http\Controllers\Api\Shop\GiftCardController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::post('/gift-card', [GiftCardController::class, 'store']);
 Route::group([
-  'prefix' => '/auth',
+  'prefix' => '/auth', 
 ], function () {
   /** POST          api/auth/register      */
   Route::post('register', [AuthController::class, 'register']);
@@ -70,7 +69,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
   /** GET        api/account      */
   Route::get('/account', [AccountController::class, 'index']);
   /** POST        api/gift-card      */
- 
+  Route::post('/gift-card', [GiftCardController::class, 'store']);
 });
 
 //middleware(['can:isManager'])

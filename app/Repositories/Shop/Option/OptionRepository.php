@@ -4,8 +4,8 @@ namespace App\Repositories\Shop\Option;
 
 use App\Models\Shop\Category;
 use App\Models\Shop\Color;
-use App\Models\Shop\FootWearSize;
 use App\Models\Shop\Sampler;
+use App\Models\Shop\Size;
 use App\Models\Shop\Type;
 use App\Models\Shop\Width;
 use App\Repositories\Shop\Option\OptionRepositoryInterface;
@@ -22,7 +22,7 @@ class OptionRepository implements OptionRepositoryInterface
         $support_types = Type::get()->toArray();
         $models = Sampler::get()->toArray();
         $width = Width::get()->toArray();
-        $footWearSizes = FootWearSize::get()->toArray();
+        $footWearSizes = Size::get()->toArray();
 
         $optionsData = [
             'categories' => $categories,
