@@ -1,17 +1,23 @@
 import axios from 'axios';
 import { defineStore } from 'pinia';
 
-export const shopStore = defineStore('shopStore',{
+export const checkoutStore = defineStore('checkoutStore', {
     state: () => {
         return {
-            menShoesData: [],
-        }
+            allCheckoutData:[],
+        };
     },
     actions: {
-        async fetchMenShoesData() {
-            this.menShoesData = await axios
-            .get('/api/home')
-            .then((response) => response.data.data.men_shoes);
-          },
-    }
+        async fetchAllCheckoutData() {
+            this.allCheckoutData = await axios
+                .get('/api/checkout')
+                .then((response) => response.data.data);
+        },
+        async storeCheckoutData(data){
+            await axios.post('/api/checkout', data)
+        },
+        async destroyCheckoutData(id) {
+            await axios.delete(`/api/checkout/${id}/destroy`);
+        },
+    },
 });

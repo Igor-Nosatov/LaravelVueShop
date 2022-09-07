@@ -1,17 +1,26 @@
 import axios from 'axios';
 import { defineStore } from 'pinia';
 
-export const shopStore = defineStore('shopStore',{
+export const cartStore = defineStore('cartStore',{
     state: () => {
         return {
-            menShoesData: [],
-        }
+            getCartData:[],
+        };
     },
     actions: {
-        async fetchMenShoesData() {
-            this.menShoesData = await axios
-            .get('/api/home')
-            .then((response) => response.data.data.men_shoes);
-          },
-    }
+        async fetchGetCartData() {
+            this.getCartData = await axios
+                .get('/api/cart')
+                .then((response) => response.data.data);
+        },
+        async storeToCart(data){
+            await axios.post('/api/cart', data)
+        },
+        async updateCart(id, cartById){
+            await axios.patch(`/api/cart/${id}/update`, cartById)
+        },
+        async destroyByIdItemFromCart(id) {
+            await axios.delete(`/api/cart/${id}/destroy`);
+        },
+    },
 });

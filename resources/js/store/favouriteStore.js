@@ -1,17 +1,13 @@
-import axios from 'axios';
-import { defineStore } from 'pinia';
+import axios from "axios";
+import { defineStore } from "pinia";
 
-export const shopStore = defineStore('shopStore',{
-    state: () => {
-        return {
-            menShoesData: [],
-        }
-    },
+export const favouriteStore = defineStore("favouriteStore", {
     actions: {
-        async fetchMenShoesData() {
-            this.menShoesData = await axios
-            .get('/api/home')
-            .then((response) => response.data.data.men_shoes);
-          },
-    }
+        async storeNewFavourite(data){
+            await axios.post('/api/favourite', data)
+        },
+        async destroyByIdFavourite(id) {
+            await axios.delete(`/api/favourite/${id}/destroy`);
+        },
+    },
 });
