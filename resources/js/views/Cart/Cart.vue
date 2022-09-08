@@ -332,9 +332,25 @@
   </div>
 </template>
 
+<script>
+  import { onMounted } from "vue";
+  import { storeToRefs } from "pinia";
+  import { cartStore } from "../store/cartStore";
+  export default {
+    setup() {
+          //set specific store
+    const store = cartStore();
+    const { getCartData } = storeToRefs(store);
+      
 
-<script setup>
-</script>
+
+
+      return {
+        getCartData
+      };
+    },
+  };
+  </script>
 
 <style scoped>
 .cart-product-image {

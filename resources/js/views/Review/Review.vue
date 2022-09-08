@@ -2,11 +2,12 @@
   <div class="row g-0 pt-5 pb-5">
     <div class="col-md-2"></div>
     <div class="col-md-8 p-1">
+      <form @submit.prevent="saveNewReview">
       <div class="row g-0">
         <div class="d-flex flex-row justify-content-start">
           <img
             src="../../../../public/img/product1.webp"
-            class="img-review  no-border"
+            class="img-review no-border"
             alt="..."
           />
           <div class="pt-4 ps-2">
@@ -39,13 +40,23 @@
               Review Headline
               <span class="required-mark">*</span></label
             >
-            <input type="text" class="no-border form-control" id="inputHeadline" />
+            <input
+              type="text"
+              class="no-border form-control"
+              id="inputHeadline"
+              v-model="form.review_headline"
+            />
           </div>
           <div class="mb-3 text-start pt-3">
             <label for="inputNickname" class="form-label text-start">
               Nickname <span class="required-mark">*</span></label
             >
-            <input type="text" class="no-border form-control" id="inputNickname" />
+            <input
+              type="text"
+              class="no-border form-control"
+              id="inputNickname"
+              v-model="form.nickname"
+            />
           </div>
           <div class="form-floating">
             <h6 class="text-start">
@@ -56,13 +67,14 @@
               placeholder="How you use the product. Things that are great about it. Things that aren't great about it."
               id="floatingTextarea2"
               style="height: 100px"
+              v-model="form.comment"
             ></textarea>
           </div>
 
           <h5 class="text-start pt-5 fw-bold">Overall Fit</h5>
           <p class="text-start pt-2 pb-2">Select one</p>
 
-          <div class="card card-body flex-row flex-wrap  no-border">
+          <div class="card card-body flex-row flex-wrap no-border">
             <div class="check-btn p-1 flex-fill">
               <input
                 type="checkbox"
@@ -70,6 +82,7 @@
                 id="btn-check-2"
                 name="1"
                 value="2"
+                v-model="form.overall_fit"
               />
               <label class="btn btn-primary btn-category" for="btn-check-2"
                 >Runs small</label
@@ -82,6 +95,7 @@
                 id="btn-check-3"
                 name="1"
                 value="1"
+              
               />
               <label class="btn btn-primary btn-category" for="btn-check-3"
                 >True size</label
@@ -117,17 +131,32 @@
             <label for="inputLocation" class="form-label text-start">
               Location <span class="required-mark">*</span></label
             >
-            <input type="text" class="no-border form-control" id="inputLocation" />
+            <input
+              type="text"
+              class="no-border form-control"
+              id="inputLocation"
+              v-model="form.location"
+            />
           </div>
 
           <div class="mb-3 text-start pt-3">
             <label for="inputEmail1" class="form-label text-start">
               Email address <span class="required-mark">*</span></label
             >
-            <input type="email" class="no-border form-control" id="inputEmail1" />
+            <input
+              type="email"
+              class="no-border form-control"
+              id="inputEmail1"
+              v-model="form.email"
+            />
           </div>
           <div class="mb-3 form-check text-start border-bottom">
-            <input type="checkbox" class="form-check-input no-border" id="iheck1" />
+            <input
+              type="checkbox"
+              class="form-check-input no-border"
+              id="iheck1"
+              v-model="form.policy_agree"
+            />
             <label class="form-check-label text-start" for="iheck1"
               >I agree with the terms and privacy policy</label
             >
@@ -141,14 +170,42 @@
               select third party retailers.</small
             >
           </p>
-          <button class="btn btn-danger btn-lg no-border ">Submit review</button>
+          <button class="btn btn-danger btn-lg no-border">Submit review</button>
         </div>
       </div>
+    </form>
     </div>
-     <div class="col-md-2"></div>
+    <div class="col-md-2"></div>
   </div>
 </template>
 
+<script>
+import { reactive } from "vue";
+import { reviewStore } from "../store/reviewStore";
+export default {
+  setup() {
+    const { storeNewReview } = reviewStore();
+    const form = reactive({
+      review_headline: "",
+      nickname: "",
+      comment: "",
+      overall_fit: "",
+      rating: "",
+      image: "",
+      location: "",
+      email: "",
+      policy_agree: "",
+    });
+    const saveNewReview = async () => {
+      await storeNewReview({ ...form });
+    };
+    return {
+      form,
+      saveNewReview,
+    };
+  },
+};
+</script>
 <style scoped>
 .img-review {
   height: 100px;
@@ -165,17 +222,17 @@
   width: 200px;
 }
 
-.no-border{
-  border-radius:0px;
+.no-border {
+  border-radius: 0px;
 }
 
-.btn-category{
-  width:100%;
-   border-radius:0px;
-   font-weight: bold;
-   padding:10px 20px;
-   color:#fff;
-   background-color: #000;
-   border:1px solid #000;
+.btn-category {
+  width: 100%;
+  border-radius: 0px;
+  font-weight: bold;
+  padding: 10px 20px;
+  color: #fff;
+  background-color: #000;
+  border: 1px solid #000;
 }
 </style>

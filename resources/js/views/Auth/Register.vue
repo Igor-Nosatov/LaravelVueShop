@@ -5,12 +5,12 @@
       <h6 class="fw-bold text-start">Create account</h6>
       <p class="text-danger text-start">*Denotes a required field</p>
 
-      <form>
+      <form @submit.prevent="loginUser">
         <div class="mb-3 text-start">
           <label for="inputFirstName" class="form-label text-start">
             <span class="required-input">*</span> First Name</label
           >
-          <input type="text" class="form-control no-border" id="inputFirstName" />
+          <input type="text" class="form-control no-border" id="inputFirstName"  v-model="form.name"/>
         </div>
 
         <div class="mb-3 text-start">
@@ -27,7 +27,7 @@
           <input
             type="email"
             class="form-control no-border"
-            id="inputEmail1"
+            id="inputEmail1"  v-model="form.email"
           />
 
         </div>
@@ -35,7 +35,7 @@
           <label for="inputPassword1" class="form-label text-start"
             ><span class="required-input">*</span> Password</label
           >
-          <input type="password" class="form-control no-border" id="inputPassword1" />
+          <input type="password" class="form-control no-border" id="inputPassword1"  v-model="form.password"/>
         </div>
         <div class="d-flex title-password-requirements text-start">
           <small class="title-password-requirements text-start"
@@ -81,7 +81,26 @@
 
 
 <script>
-</script>
+  import { reactive } from "vue";
+  import { authStore } from "../store/authStore";
+  export default {
+    setup() {
+      const { registerNewUser } = authStore();
+      const form = reactive({
+        name: "",
+        email: "",
+        password: "",
+      });
+      const registerUser = async () => {
+        await registerNewUser({ ...form });
+      };
+      return {
+        form,
+        registerUser,
+      };
+    },
+  };
+  </script>
 
 <style scoped>
 .title-password-requirements {

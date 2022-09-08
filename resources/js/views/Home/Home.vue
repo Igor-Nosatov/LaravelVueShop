@@ -478,7 +478,7 @@ export default {
       fetchMenShoesData,
       fetchWomenShoesData,
       fetchKidShoesData,
-      fetchGenderCategoryData,
+      fetchGenderCategoryData, 
     } = homeStore();
 
     onMounted(() => {

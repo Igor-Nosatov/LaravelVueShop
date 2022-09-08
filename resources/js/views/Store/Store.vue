@@ -311,12 +311,6 @@
               </div>
             </div>
           </div>
-
-
-
-
-
-
         </div>
         <div class="col-md-9 pt-2 pb-2">
           <div class="row g-0">

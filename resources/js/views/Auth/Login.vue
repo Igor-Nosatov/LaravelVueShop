@@ -5,7 +5,7 @@
       <h6 class="fw-bold text-start">Log in</h6>
       <p class="text-danger text-start">*Denotes a required field</p>
 
-      <form>
+      <form @submit.prevent="loginUser">
         <div class="mb-3 text-start">
           <label for="inputEmail1" class="form-label text-start"
             ><span class="required-input">*</span> Email address</label
@@ -14,13 +14,14 @@
             type="email "
             class="form-control no-border"
             id="inputEmail1"
+            v-model="form.email"
           />
         </div>
         <div class="mb-3 text-start">
           <label for="inputPassword1" class="form-label text-start"
             ><span class="required-input">*</span> Password</label
           >
-          <input type="password" class="form-control no-border" id="inputPassword1" />
+          <input type="password" class="form-control no-border" id="inputPassword1"  v-model="form.password"/>
         </div>
         <div class="mb-3 form-check text-start">
           <input type="checkbox" class="form-check-input no-border" id="iheck1" />
@@ -44,7 +45,25 @@
 </template>
 
 <script>
-</script>
+  import { reactive } from "vue";
+  import { authStore } from "../store/authStore";
+  export default {
+    setup() {
+      const { loginCurrentUser } = authStore();
+      const form = reactive({
+        email: "",
+        password: "",
+      });
+      const loginUser = async () => {
+        await loginCurrentUser({ ...form });
+      };
+      return {
+        form,
+        loginUser,
+      };
+    },
+  };
+  </script>
 
 <style scoped>
 
