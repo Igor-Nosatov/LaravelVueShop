@@ -461,7 +461,7 @@
     </div>
     <div class="col-md-2"></div>
   </div>
-</template>
+</template> 
 
 <script>
 import { onMounted } from "vue";
@@ -472,9 +472,8 @@ export default {
   setup() {
     //set specific store
     const store = homeStore();
-    const { menShoesData, womenShoesData, kidShoesData, genderCategoryData } =
-      storeToRefs(store);
-    //smount data what we use
+    const { menShoesData, womenShoesData, kidShoesData, genderCategoryData } = storeToRefs(store);
+    //mount data what we use
     const {
       fetchMenShoesData,
       fetchWomenShoesData,
@@ -483,7 +482,7 @@ export default {
     } = homeStore();
 
     onMounted(() => {
-      fetchMenShoesData(),
+        fetchMenShoesData(),
         fetchWomenShoesData(),
         fetchKidShoesData(),
         fetchGenderCategoryData();

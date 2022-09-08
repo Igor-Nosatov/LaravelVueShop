@@ -17,71 +17,149 @@
       </div>
       <div class="row g-0">
         <div class="col-md-3 p-2">
-          <div class="category1 pt-4">
+          <div class="category1 pt-2">
             <div
               class="d-flex justify-content-between category-border-bottom pb-2"
             >
               <div class="text-start">
                 <a
                   data-bs-toggle="collapse"
-                  href="#genderCategory"
+                  href="#Category"
                   role="button"
                   aria-expanded="false"
-                  aria-controls="genderCategory"
+                  aria-controls="Category"
                   class="collapse-menu"
                 >
-                  Gender
+                  Category
                 </a>
               </div>
               <div class="text-end">
                 <a
                   data-bs-toggle="collapse"
-                  href="#genderCategory"
+                  href="#Category"
                   role="button"
                   aria-expanded="false"
-                  aria-controls="genderCategory"
+                  aria-controls="Category"
                   class="collapse-menu"
                 >
                   <i class="fa-solid fa-plus"></i>
                 </a>
               </div>
             </div>
-            <div class="collapse" id="genderCategory">
+            <div class="collapse" id="Category">
               <div class="card card-body">
                 <ul class="nav flex-column text-start">
-                  <li class="nav-item">
+                  <li class="nav-item"  
+                  v-for="item in optionsData.categories"
+                  :key="item.index">
                     <div class="mb-3 form-check">
                       <input
                         type="checkbox"
                         class="form-check-input"
-                        id="exampleCheck1"
+                        id="category"
                       />
-                      <label class="form-check-label" for="exampleCheck1"
-                        >Men</label
+                      <label class="form-check-label" for="category"
+                        >{{item.name}}</label
                       >
                     </div>
                   </li>
-                  <li class="nav-item">
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="category1 pt-2">
+            <div
+              class="d-flex justify-content-between category-border-bottom pb-2"
+            >
+              <div class="text-start">
+                <a
+                  data-bs-toggle="collapse"
+                  href="#SupportTypes"
+                  role="button"
+                  aria-expanded="false"
+                  aria-controls="SupportTypes"
+                  class="collapse-menu"
+                >
+                Support Types
+                </a>
+              </div>
+              <div class="text-end">
+                <a
+                  data-bs-toggle="collapse"
+                  href="#SupportTypes"
+                  role="button"
+                  aria-expanded="false"
+                  aria-controls="SupportTypes"
+                  class="collapse-menu"
+                >
+                  <i class="fa-solid fa-plus"></i>
+                </a>
+              </div>
+            </div>
+            <div class="collapse" id="SupportTypes">
+              <div class="card card-body">
+                <ul class="nav flex-column text-start">
+                  <li class="nav-item"  
+                  v-for="item in optionsData.support_types"
+                  :key="item.index">
                     <div class="mb-3 form-check">
                       <input
                         type="checkbox"
                         class="form-check-input"
-                        id="exampleCheck2"
+                        id="supportTypes"
                       />
-                      <label class="form-check-label" for="exampleCheck2"
-                        >Women</label
+                      <label class="form-check-label" for="supportTypes"
+                        >{{item.name}}</label
                       >
                     </div>
                   </li>
-                  <li class="nav-item">
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="category1 pt-2">
+            <div
+              class="d-flex justify-content-between category-border-bottom pb-2"
+            >
+              <div class="text-start">
+                <a
+                  data-bs-toggle="collapse"
+                  href="#width"
+                  role="button"
+                  aria-expanded="false"
+                  aria-controls="width"
+                  class="collapse-menu"
+                >
+                Width
+                </a>
+              </div>
+              <div class="text-end">
+                <a
+                  data-bs-toggle="collapse"
+                  href="#width"
+                  role="button"
+                  aria-expanded="false"
+                  aria-controls="width"
+                  class="collapse-menu"
+                >
+                  <i class="fa-solid fa-plus"></i>
+                </a>
+              </div>
+            </div>
+            <div class="collapse" id="width">
+              <div class="card card-body">
+                <ul class="nav flex-column text-start">
+                  <li class="nav-item"  
+                  v-for="item in optionsData.width"
+                  :key="item.index">
                     <div class="mb-3 form-check">
                       <input
                         type="checkbox"
                         class="form-check-input"
-                        id="exampleCheck3"
+                        id="width"
                       />
-                      <label class="form-check-label" for="exampleCheck3"
-                        >Unisex</label
+                      <label class="form-check-label" for="width"
+                        >{{item.name}}</label
                       >
                     </div>
                   </li>
@@ -90,7 +168,60 @@
             </div>
           </div>
 
-          <div class="category2 pt-4">
+
+          
+
+          <div class="category1 pt-2">
+            <div
+              class="d-flex justify-content-between category-border-bottom pb-2"
+            >
+              <div class="text-start">
+                <a
+                  data-bs-toggle="collapse"
+                  href="#models"
+                  role="button"
+                  aria-expanded="false"
+                  aria-controls="models"
+                  class="collapse-menu"
+                >
+                Models
+                </a>
+              </div>
+              <div class="text-end">
+                <a
+                  data-bs-toggle="collapse"
+                  href="#models"
+                  role="button"
+                  aria-expanded="false"
+                  aria-controls="models"
+                  class="collapse-menu"
+                >
+                  <i class="fa-solid fa-plus"></i>
+                </a>
+              </div>
+            </div>
+            <div class="collapse" id="models">
+              <div class="card card-body">
+                <ul class="nav flex-column text-start">
+                  <li class="nav-item"  
+                  v-for="item in optionsData.models"
+                  :key="item.index">
+                    <div class="mb-3 form-check">
+                      <input
+                        type="checkbox"
+                        class="form-check-input"
+                        id="models"
+                      />
+                      <label class="form-check-label" for="models"
+                        >#{{item.name}}</label
+                      >
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="category2 pt-2">
             <div
               class="d-flex justify-content-between category-border-bottom pb-2"
             >
@@ -121,7 +252,9 @@
             </div>
             <div class="collapse" id="size">
               <div class="card card-body flex-row flex-wrap">
-                <div class="check-btn p-1">
+                <div class="check-btn p-1"  
+                v-for="item in optionsData.foot_wear_sizes"
+                :key="item.index">
                   <input
                     type="checkbox"
                     class="btn-check"
@@ -130,98 +263,13 @@
                     value="2"
                   />
                   <label class="btn btn-primary btn-category" for="btn-check-2"
-                    >XS</label
-                  >
-                </div>
-                <div class="check-btn p-1">
-                  <input
-                    type="checkbox"
-                    class="btn-check"
-                    id="btn-check-3"
-                    name="1"
-                    value="1"
-                  />
-                  <label class="btn btn-primary btn-category" for="btn-check-3"
-                    >XS</label
-                  >
-                </div>
-                <div class="check-btn p-1">
-                  <input
-                    type="checkbox"
-                    class="btn-check"
-                    id="btn-check-3"
-                    name="1"
-                    value="1"
-                  />
-                  <label class="btn btn-primary btn-category" for="btn-check-3"
-                    >XS</label
-                  >
-                </div>
-                <div class="check-btn p-1">
-                  <input
-                    type="checkbox"
-                    class="btn-check"
-                    id="btn-check-3"
-                    name="1"
-                    value="1"
-                  />
-                  <label class="btn btn-primary btn-category" for="btn-check-3"
-                    >XS</label
-                  >
-                </div>
-                <div class="check-btn p-1">
-                  <input
-                    type="checkbox"
-                    class="btn-check"
-                    id="btn-check-3"
-                    name="1"
-                    value="1"
-                  />
-                  <label class="btn btn-primary btn-category" for="btn-check-3"
-                    >XS</label
-                  >
-                </div>
-                <div class="check-btn p-1">
-                  <input
-                    type="checkbox"
-                    class="btn-check"
-                    id="btn-check-3"
-                    name="1"
-                    value="1"
-                  />
-                  <label class="btn btn-primary btn-category" for="btn-check-3"
-                    >XS</label
-                  >
-                </div>
-                <div class="check-btn p-1">
-                  <input
-                    type="checkbox"
-                    class="btn-check"
-                    id="btn-check-3"
-                    name="1"
-                    value="1"
-                  />
-                  <label class="btn btn-primary btn-category" for="btn-check-3"
-                    >XS</label
-                  >
-                </div>
-                <div class="check-btn p-1">
-                  <input
-                    type="checkbox"
-                    class="btn-check"
-                    id="btn-check-3"
-                    name="1"
-                    value="1"
-                  />
-                  <label class="btn btn-primary btn-category" for="btn-check-3"
-                    >XS</label
+                    >{{item.name}}</label
                   >
                 </div>
               </div>
             </div>
           </div>
-
-          <div class="category3 pt-4">
+          <div class="category3 pt-2">
             <div
               class="d-flex justify-content-between category-border-bottom pb-2"
             >
@@ -252,282 +300,67 @@
             </div>
             <div class="collapse" id="color">
               <div class="card card-body flex-row flex-wrap">
-                <div class="check-btn p-1">
-                  <input type="checkbox" class="checkbox-round-red" /> Red (82)
-                </div>
-                <div class="check-btn p-1">
-                  <input type="checkbox" class="checkbox-round-green" /> Red
-                  (99)
-                </div>
-                <div class="check-btn p-1">
-                  <input type="checkbox" class="checkbox-round-blue" /> Red
-                  (192)
-                </div>
-                <div class="check-btn p-1">
-                  <input type="checkbox" class="checkbox-round-red" /> Red (82)
-                </div>
-                <div class="check-btn p-1">
-                  <input type="checkbox" class="checkbox-round-green" /> Red
-                  (99)
-                </div>
-                <div class="check-btn p-1">
-                  <input type="checkbox" class="checkbox-round-blue" /> Red
-                  (192)
-                </div>
+              
+                   <div class="col-4"  v-for="item in optionsData.colors"
+                   :key="item.index">
+                    <div class="check-btn p-1">
+                      <input type="checkbox" class="checkbox-round" :style="{'background-color':item.name }"/> {{ item.name }}
+                    </div>
+                   </div>
+              
               </div>
             </div>
           </div>
+
+
+
+
+
+
         </div>
         <div class="col-md-9 pt-2 pb-2">
           <div class="row g-0">
-            <div class="col-md-4 p-1">
+            <div
+              class="col-md-4 p-1"
+              v-for="item in shoesData"
+              :key="item.index"
+            >
               <div class="card" style="width: 100%">
                 <a href="" class="relative-icon"
                   ><i class="fa-solid fa-heart fa-2x"></i
                 ></a>
                 <a href="">
                   <img
-                    src="../../../../public/img/storeProduct.webp"
+                    :src="item.image_url"
                     class="card-img-top img-fluid no-border"
-                    alt="..."
+                    :alt="item.title"
                   />
                 </a>
 
                 <div class="card-body">
                   <div class="d-flex flex-row justify-content-between">
-                    <h5 class="card-title tgenderCategory-start fw-bold">
-                      <a href="" class="tgenderCategory-dark fw-bold">
-                        Fresh Foam X 1080v12</a
+                    <h5 class="card-title tCategory-start fw-bold">
+                      <a href="" class="tCategory-dark fw-bold">
+                        {{ item.title }}</a
                       >
                     </h5>
-                    <p class="card-title tgenderCategory-start fw-bold">
-                      $159.99
+                    <p class="card-title tCategory-start fw-bold">
+                      ${{ item.price }}
                     </p>
                   </div>
 
-                  <p
-                    class="
-                        text-start
-                    "
-                  >
-                    Men's Running
-                  </p>
+                  <p class="text-start">{{ item.category.name }}</p>
                   <div class="d-flex flex-row justify-content-start">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 p-1">
-              <div class="card" style="width: 100%">
-                <a href="" class="relative-icon"
-                  ><i class="fa-solid fa-heart fa-2x"></i
-                ></a>
-                <a href="">
-                  <img
-                    src="../../../../public/img/storeProduct.webp"
-                    class="card-img-top img-fluid no-border"
-                    alt="..."
-                  />
-                </a>
-
-                <div class="card-body">
-                  <div class="d-flex flex-row justify-content-between">
-                    <h5 class="card-title tgenderCategory-start fw-bold">
-                      <a href="" class="tgenderCategory-dark fw-bold">
-                        Fresh Foam X 1080v12</a
-                      >
-                    </h5>
-                    <p class="card-title tgenderCategory-start fw-bold">
-                      $159.99
-                    </p>
-                  </div>
-
-                  <p
-                    class="
-                        text-start
-                    "
-                  >
-                    Men's Running
-                  </p>
-                  <div class="d-flex flex-row justify-content-start">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 p-1">
-              <div class="card" style="width: 100%">
-                <a href="" class="relative-icon"
-                  ><i class="fa-solid fa-heart fa-2x"></i
-                ></a>
-                <a href="">
-                  <img
-                    src="../../../../public/img/storeProduct.webp"
-                    class="card-img-top img-fluid no-border"
-                    alt="..."
-                  />
-                </a>
-
-                <div class="card-body">
-                  <div class="d-flex flex-row justify-content-between">
-                    <h5 class="card-title tgenderCategory-start fw-bold">
-                      <a href="" class="tgenderCategory-dark fw-bold">
-                        Fresh Foam X 1080v12</a
-                      >
-                    </h5>
-                    <p class="card-title tgenderCategory-start fw-bold">
-                      $159.99
-                    </p>
-                  </div>
-
-                  <p
-                    class="
-                        text-start
-                    "
-                  >
-                    Men's Running
-                  </p>
-                  <div class="d-flex flex-row justify-content-start">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 p-1">
-              <div class="card" style="width: 100%">
-                <a href="" class="relative-icon"
-                  ><i class="fa-solid fa-heart fa-2x"></i
-                ></a>
-                <a href="">
-                  <img
-                    src="../../../../public/img/storeProduct.webp"
-                    class="card-img-top img-fluid no-border"
-                    alt="..."
-                  />
-                </a>
-
-                <div class="card-body">
-                  <div class="d-flex flex-row justify-content-between">
-                    <h5 class="card-title tgenderCategory-start fw-bold">
-                      <a href="" class="tgenderCategory-dark fw-bold">
-                        Fresh Foam X 1080v12</a
-                      >
-                    </h5>
-                    <p class="card-title tgenderCategory-start fw-bold">
-                      $159.99
-                    </p>
-                  </div>
-
-                  <p
-                    class="
-                        text-start
-                    "
-                  >
-                    Men's Running
-                  </p>
-                  <div class="d-flex flex-row justify-content-start">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 p-1">
-              <div class="card" style="width: 100%">
-                <a href="" class="relative-icon"
-                  ><i class="fa-solid fa-heart fa-2x"></i
-                ></a>
-                <a href="">
-                  <img
-                    src="../../../../public/img/storeProduct.webp"
-                    class="card-img-top img-fluid no-border"
-                    alt="..."
-                  />
-                </a>
-
-                <div class="card-body">
-                  <div class="d-flex flex-row justify-content-between">
-                    <h5 class="card-title tgenderCategory-start fw-bold">
-                      <a href="" class="tgenderCategory-dark fw-bold">
-                        Fresh Foam X 1080v12</a
-                      >
-                    </h5>
-                    <p class="card-title tgenderCategory-start fw-bold">
-                      $159.99
-                    </p>
-                  </div>
-
-                  <p
-                    class="
-                        text-start
-                    "
-                  >
-                    Men's Running
-                  </p>
-                  <div class="d-flex flex-row justify-content-start">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 p-1">
-              <div class="card" style="width: 100%">
-                <a href="" class="relative-icon"
-                  ><i class="fa-solid fa-heart fa-2x"></i
-                ></a>
-                <a href="">
-                  <img
-                    src="../../../../public/img/storeProduct.webp"
-                    class="card-img-top img-fluid no-border"
-                    alt="..."
-                  />
-                </a>
-
-                <div class="card-body">
-                  <div class="d-flex flex-row justify-content-between">
-                    <h5 class="card-title tgenderCategory-start fw-bold">
-                      <a href="" class="tgenderCategory-dark fw-bold">
-                        Fresh Foam X 1080v12</a
-                      >
-                    </h5>
-                    <p class="card-title tgenderCategory-start fw-bold">
-                      $159.99
-                    </p>
-                  </div>
-
-                  <p
-                    class="
-                        text-start
-                    "
-                  >
-                    Men's Running
-                  </p>
-                  <div class="d-flex flex-row justify-content-start">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
+                    <i
+                      class="fa-solid fa-star star-yellow"
+                      v-for="n in item.average_rating"
+                      :key="n"
+                    ></i>
+                    <i
+                      class="fa-solid fa-star"
+                      v-for="n in item.count_empty_star"
+                      :key="n"
+                    ></i>
                   </div>
                 </div>
               </div>
@@ -549,11 +382,35 @@
       </div>
     </div>
     <div class="col-md-2"></div>
+
+    {{ optionsData }}
   </div>
 </template>
 
 
 <script>
+import { onMounted } from "vue";
+import { storeToRefs } from "pinia";
+import { shopStore } from "../../store/shopStore";
+
+export default {
+  setup() {
+    const store = shopStore();
+
+    const { shoesData, optionsData } = storeToRefs(store);
+
+    const { fetchShoesData, fetchOptionsData } = shopStore();
+
+    onMounted(() => {
+      fetchShoesData(), fetchOptionsData();
+    });
+
+    return {
+      shoesData,
+      optionsData,
+    };
+  },
+};
 </script>
 
 <style scoped>
@@ -596,10 +453,9 @@
   padding: 10px 0px;
 }
 
-.checkbox-round-red {
+.checkbox-round {
   width: 1.3em;
   height: 1.3em;
-  background-color: #ec1111;
   border-radius: 50%;
   vertical-align: middle;
   border: 0.5px solid #777777;
@@ -609,48 +465,15 @@
   cursor: pointer;
 }
 
-.checkbox-round-red:checked {
-  background-color: rgb(236, 17, 17);
+.checkbox-round:checked {
   border: 1px solid #1d1c1c;
 }
 
-.checkbox-round-green {
-  width: 1.3em;
-  height: 1.3em;
-  background-color: #11ec44;
-  border-radius: 50%;
-  vertical-align: middle;
-  border: 0.5px solid #777777;
-  appearance: none;
-  -webkit-appearance: none;
-  outline: none;
-  cursor: pointer;
-}
-
-.checkbox-round-green:checked {
-  background-color: rgb(30, 181, 35);
-  border: 1px solid #1d1c1c;
-}
-
-.checkbox-round-blue {
-  width: 1.3em;
-  height: 1.3em;
-  background-color: #05aefc;
-  border-radius: 50%;
-  vertical-align: middle;
-  border: 0.5px solid #777777;
-  appearance: none;
-  -webkit-appearance: none;
-  outline: none;
-  cursor: pointer;
-}
-
-.checkbox-round-blue:checked {
-  background-color: rgb(35, 142, 196);
-  border: 1px solid #1d1c1c;
-}
 
 .no-border {
   border-radius: 0px;
+}
+.star-yellow {
+  color: #f3f35a;
 }
 </style>

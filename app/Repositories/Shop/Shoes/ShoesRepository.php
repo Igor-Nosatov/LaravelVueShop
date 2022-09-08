@@ -17,28 +17,28 @@ class ShoesRepository implements ShoesRepositoryInterface
         $query = Shoes::query();
 
         if ($request->filled('category')) {
-            $query->categoryFilter($request->category);
+            $query = $query->categoryFilter($request->category);
         }
         if ($request->filled('gender')) {
-           $query->genderFilter($request->gender);
+            $query = $query->genderFilter($request->gender);
         }
         if ($request->filled('type')) {
-            $query->typeFilter($request->type);
+            $query = $query->typeFilter($request->type);
         }
         if ($request->filled('sampler')) {
-            $query->samplerFilter($request->sampler);
+            $query = $query->samplerFilter($request->sampler);
         }
         if ($request->filled('color')) {
-            $query->colorFilter($request->color);
+            $query = $query->colorFilter($request->color);
         }
         if ($request->filled('size')) {
-            $query->sizeFilter($request->size);
+            $query = $query->sizeFilter($request->size);
         }
         if ($request->filled('width')) {
-            $query->widthFilter($request->width);
+            $query = $query->widthFilter($request->width);
         }
         if ($request->filled('title')) {
-            $query->search($request->title);
+            $query = $query->search($request->title);
         }
 
         $paginate = $query->with([
@@ -88,10 +88,11 @@ class ShoesRepository implements ShoesRepositoryInterface
             //format shoes data
             $shoesData[] = [
                 'title' => $value['title'],
-                'price' => $value['price'],
+                'price' =>  (float)number_format(( $value['price']/100), 2, '.', '') ,   
                 'style_code' => $value['style_code'],
                 'image_url' => Storage::disk('public')->url('img/' .  $value['images']['0']['name'] . '.webp'),
                 'average_rating' =>  $averageRating,
+                'count_empty_star' =>  '5' - $averageRating,
                 'category' =>  $categoryData = [
                     'id' => $value['category']['id'],
                     'name' => $value['category']['name'],
@@ -170,7 +171,7 @@ class ShoesRepository implements ShoesRepositoryInterface
             'id' => $shoesDataById['id'],
             'title' => $shoesDataById['title'],
             'style_code' => $shoesDataById['style_code'],
-            'price' =>  $shoesDataById['price'],
+            'price' => $shoesDataById['price'],                 
             'description' => $shoesDataById['description'],
             'category' => $shoesDataById['category']['name'],
             'gender' =>  $shoesDataById['gender']['name'],

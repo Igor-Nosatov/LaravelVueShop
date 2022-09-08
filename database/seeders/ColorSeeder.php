@@ -16,18 +16,18 @@ class ColorSeeder extends Seeder
     {
         DB::table('colors')->insert(
             [
-                ['name' => 'Black'],
-                ['name' => 'Green'],
-                ['name' => 'White'],
-                ['name' => 'Red'],
-                ['name' => 'Blue'],
-                ['name' => 'Brown'],
-                ['name' => 'Gray'],
-                ['name' => 'Yellow'],
-                ['name' => 'Orange'],
-                ['name' => 'Purple'],
-                ['name' => 'Pink'],
-                ['name' => 'Tan'],
+                ['name' => 'black'],
+                ['name' => 'green'],
+                ['name' => 'white'],
+                ['name' => 'red'],
+                ['name' => 'blue'],
+                ['name' => 'brown'],
+                ['name' => 'gray'],
+                ['name' => 'yellow'],
+                ['name' => 'orange'],
+                ['name' => 'purple'],
+                ['name' => 'pink'],
+                ['name' => 'tan'],
             ]
         );
     }
