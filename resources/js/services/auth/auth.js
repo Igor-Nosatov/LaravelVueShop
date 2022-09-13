@@ -11,6 +11,7 @@ const auth = {
         if (!localStorage) return null;
         return localStorage.getItem('token');
     },
+
 };
 
 export default auth;
