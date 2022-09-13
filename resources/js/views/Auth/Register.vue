@@ -5,19 +5,31 @@
       <h6 class="fw-bold text-start">Create account</h6>
       <p class="text-danger text-start">*Denotes a required field</p>
 
-      <form @submit.prevent="loginUser">
+      <form @submit.prevent="registerUser">
         <div class="mb-3 text-start">
           <label for="inputFirstName" class="form-label text-start">
             <span class="required-input">*</span> First Name</label
           >
-          <input type="text" class="form-control no-border" id="inputFirstName"  v-model="form.name"/>
+          <input
+            type="text"
+            class="form-control no-border"
+            id="inputFirstName"
+            v-model="form.first_name"
+            required
+          />
         </div>
 
         <div class="mb-3 text-start">
           <label for="inputLastName" class="form-label text-start"
             ><span class="required-input">*</span> Last Name</label
           >
-          <input type="text" class="form-control no-border" id="inputLastName" />
+          <input
+            type="text"
+            class="form-control no-border"
+            id="inputLastName"
+            v-model="form.last_name"
+            required
+          />
         </div>
 
         <div class="mb-3 text-start">
@@ -27,15 +39,22 @@
           <input
             type="email"
             class="form-control no-border"
-            id="inputEmail1"  v-model="form.email"
+            id="inputEmail1"
+            v-model="form.email"
+            required
           />
-
         </div>
         <div class="mb-3 text-start">
           <label for="inputPassword1" class="form-label text-start"
             ><span class="required-input">*</span> Password</label
           >
-          <input type="password" class="form-control no-border" id="inputPassword1"  v-model="form.password"/>
+          <input
+            type="password"
+            class="form-control no-border"
+            id="inputPassword1"
+            v-model="form.password"
+            required
+          />
         </div>
         <div class="d-flex title-password-requirements text-start">
           <small class="title-password-requirements text-start"
@@ -49,29 +68,20 @@
           <li>At least one number</li>
           <li>At least one special character (! @ # $ % &)</li>
         </ul>
-        <div class="mb-3 form-check text-start">
-          <input type="checkbox" class="form-check-input no-border" id="iheck1" />
-          <label class="form-check-label text-start" for="iheck1"
-            >Sign up for email to hear about product launches, exclusive offers
-            and athlete news</label
-          >
-        </div>
 
-        <div class="mb-3 form-check text-start">
-          <input type="checkbox" class="form-check-input no-border" id="iheck1" />
-          <label class="form-check-label text-start" for="iheck1"
-            >By checking the box, you are creating an account with New Balance
-            and you agree to the
-            <a href="" class="text-dark">Terms & Conditions</a> and
-            <a href="" class="text-dark">Privacy Policy.</a></label
-          >
-        </div>
-
-        <button type="submit" class="btn btn-danger btn-lg d-flex flex-start no-border">
+        <button
+          type="submit"
+          class="btn btn-danger btn-lg d-flex flex-start no-border"
+        >
           Create Account
         </button>
-        <p class="text-start  mt-2">
-          Already have an account?<router-link :to="{ name: 'login'}"  class="text-dark"> Log in</router-link>
+        <p class="text-start mt-2">
+          Already have an account?<router-link
+            :to="{ name: 'login' }"
+            class="text-dark"
+          >
+            Log in</router-link
+          >
         </p>
       </form>
     </div>
@@ -79,28 +89,35 @@
   </div>
 </template>
 
-
 <script>
-  import { reactive } from "vue";
-  import { authStore } from "../store/authStore";
-  export default {
-    setup() {
-      const { registerNewUser } = authStore();
-      const form = reactive({
-        name: "",
-        email: "",
-        password: "",
-      });
-      const registerUser = async () => {
-        await registerNewUser({ ...form });
-      };
-      return {
-        form,
-        registerUser,
-      };
-    },
-  };
-  </script>
+import { reactive } from "vue";
+import { authStore } from "../../store/authStore";
+import { useRouter } from "vue-router";
+
+export default {
+  setup() {
+    const router = useRouter();
+    const { registerNewUser } = authStore();
+
+    const form = reactive({
+      first_name: "",
+      last_name: "",
+      email: "",
+      password: "",
+    });
+
+    const registerUser = async () => {
+      await registerNewUser({ ...form });
+      await router.push({ name: "home" });
+    };
+
+    return {
+      form,
+      registerUser,
+    };
+  },
+};
+</script>
 
 <style scoped>
 .title-password-requirements {
@@ -112,8 +129,7 @@
   font-size: 10px;
 }
 
-.no-border{
-  border-radius:0px;
+.no-border {
+  border-radius: 0px;
 }
-
 </style>

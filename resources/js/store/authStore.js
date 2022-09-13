@@ -4,10 +4,11 @@ import { defineStore } from "pinia";
 export const authStore = defineStore("authStore", {
     actions: {
         async registerNewUser(data){
-            await axios.post('/api/register', data)
+            console.log(data);
+            await axios.post('/api/auth/register', data)
         },
         async loginCurrentUser(data){
-            await axios.post('/api/login', data)
+            await axios.post('/api/auth/login', data)
         },
     },
 });

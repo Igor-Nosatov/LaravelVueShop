@@ -46,7 +46,7 @@
 
 <script>
   import { reactive } from "vue";
-  import { authStore } from "../store/authStore";
+  import { authStore } from "../../store/authStore";
   export default {
     setup() {
       const { loginCurrentUser } = authStore();

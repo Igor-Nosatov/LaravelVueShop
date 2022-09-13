@@ -181,7 +181,7 @@
 
 <script>
 import { reactive } from "vue";
-import { reviewStore } from "../store/reviewStore";
+import { reviewStore } from "../../store/reviewStore";
 export default {
   setup() {
     const { storeNewReview } = reviewStore();

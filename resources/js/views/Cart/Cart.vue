@@ -335,7 +335,7 @@
 <script>
   import { onMounted } from "vue";
   import { storeToRefs } from "pinia";
-  import { cartStore } from "../store/cartStore";
+  import { cartStore } from "../../store/cartStore";
   export default {
     setup() {
           //set specific store
