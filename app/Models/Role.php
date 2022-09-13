@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * Role Model
@@ -35,4 +37,9 @@ class Role extends Model
         'id' => 'integer',
         'name' => 'string',
     ];
+
+    public function users():HasOne
+    {
+        return $this->hasOne(User::class);
+    }
 }

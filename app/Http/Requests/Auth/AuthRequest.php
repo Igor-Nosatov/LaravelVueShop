@@ -25,7 +25,7 @@ class AuthRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => [
+           'first_name' => [
                 'required',
                 'string',
                 'min:5',

@@ -8,23 +8,26 @@ export const authStore = defineStore("authStore", {
       axios.defaults.headers.common = { Authorization: "" };
     },
 
-    async setTokenAndUserData(accessToken) {
+    async setTokenAndUserData( accessToken, userRole ) {
       const token = accessToken;
       localStorage.setItem("token", accessToken);
+      localStorage.setItem("userRole", userRole);
       axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
     },
 
     async registerNewUser(data) {
       const response = await axios.post("/api/auth/register", data);
       this.setTokenAndUserData(
-        response.data.data.access_token
+        response.data.data.access_token,
+        response.data.data.userRole
       );
     },
 
     async loginCurrentUser(data) {
       const response = await axios.post("/api/auth/login", data);
       this.setTokenAndUserData(
-        response.data.data.access_token
+        response.data.data.access_token,
+        response.data.data.userRole
       );
     },
 
