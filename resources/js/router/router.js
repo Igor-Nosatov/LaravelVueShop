@@ -43,12 +43,18 @@ const routes = [
     path: "/product/:id",
     name: "product",
     component: Product,
+    meta: {
+      requiresAuth: true
+    }
   },
   
   {
     path: "/review/:id",
     name: "review",
     component: Review,
+    meta: {
+      requiresAuth: true
+    }
   },
 
   {
@@ -63,18 +69,27 @@ const routes = [
     path: "/cart",
     name: "cart",
     component: Cart,
+    meta: {
+      requiresAuth: true
+    }
   },
 
   {
     path: "/checkout",
     name: "checkout",
     component: Checkout,
+    meta: {
+      requiresAuth: true
+    }
   },
 
   {
     path: "/gift-card",
     name: "giftCard",
     component:  GiftCard,
+    meta: {
+      requiresAuth: true
+    }
   },
 ];
 
@@ -96,3 +111,36 @@ router.beforeEach((to, from, next) => {
 });
 
 export default router;
+
+/*
+
+   /* if (to.matched.some(record => record.meta.admin)) {
+      if (user.admin == 1) {
+          next();
+      } else {
+          next({ name: "home" });
+      }
+    } else {
+      next();
+  }
+    
+    if (to.matched.some(record => record.meta.manager)) {
+      if (user.manager == 2) {
+          next();
+      } else {
+          next({ name: "home" });
+      }
+    } else {
+      next();
+  }
+    
+    if (to.matched.some(record => record.meta.client)) {
+      if (user.client == 3) {
+          next();
+      } else {
+          next({ name: "home" });
+      }
+    } else {
+      next();
+  }
+*/
