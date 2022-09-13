@@ -1,7 +1,5 @@
-import {
-  createRouter,
-  createWebHistory,
-} from "vue-router/dist/vue-router.esm-bundler";
+import { createRouter, createWebHistory } from "vue-router";
+
 import Home from "../views/Home/Home.vue";
 import Login from "../views/Auth/Login.vue";
 import Register from "../views/Auth/Register.vue";
@@ -13,67 +11,88 @@ import Account from "../views/Account/Account.vue";
 import Checkout from "../views/Checkout/Checkout.vue";
 import GiftCard from "../views/GiftCard/GiftCard.vue";
 
-export default () =>
-  createRouter({
-    history: createWebHistory(),
-    routes: [
-      {
-        path: "/",
-        name: "home",
-        component: Home,
-      },
+import auth from "../services/auth/auth";
+auth.init();
 
-      {
-        path: "/login",
-        name: "login",
-        component: Login,
-      },
+const routes = [
+  {
+    path: "/",
+    name: "home",
+    component: Home,
+  },
 
-      {
-        path: "/register",
-        name: "register", 
-        component: Register,
-      },
+  {
+    path: "/login",
+    name: "login",
+    component: Login,
+  },
 
-      {
-        path: "/store",
-        name: "store",
-        component: Store,
-      },
+  {
+    path: "/register",
+    name: "register", 
+    component: Register,
+  },
 
-      {
-        path: "/product/:id",
-        name: "product",
-        component: Product,
-      },
-      
-      {
-        path: "/review/:id",
-        name: "review",
-        component: Review,
-      },
+  {
+    path: "/store",
+    name: "store",
+    component: Store,
+  },
 
-      {
-        path: "/account",
-        name: "account",
-        component: Account,
-      },
-      {
-        path: "/cart",
-        name: "cart",
-        component: Cart,
-      },
+  {
+    path: "/product/:id",
+    name: "product",
+    component: Product,
+  },
+  
+  {
+    path: "/review/:id",
+    name: "review",
+    component: Review,
+  },
 
-      {
-        path: "/checkout",
-        name: "checkout",
-        component: Checkout,
-      },
+  {
+    path: "/account",
+    name: "account",
+    component: Account,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/cart",
+    name: "cart",
+    component: Cart,
+  },
 
-      {
-        path: "/gift-card",
-        name: "giftCard",
-        component:  GiftCard,
-      },
-    ],
-  });
+  {
+    path: "/checkout",
+    name: "checkout",
+    component: Checkout,
+  },
+
+  {
+    path: "/gift-card",
+    name: "giftCard",
+    component:  GiftCard,
+  },
+];
+
+const router = createRouter({
+  history:createWebHistory(),
+  routes
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+      if (!auth.loggedIn()) {
+          next({ name: "login" });
+      } else {
+          next();
+      }
+  } else {
+      next();
+  }
+});
+
+export default router;

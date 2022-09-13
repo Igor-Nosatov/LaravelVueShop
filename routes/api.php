@@ -70,10 +70,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
   Route::get('/account', [AccountController::class, 'index']);
   /** POST        api/gift-card      */
   Route::post('/gift-card', [GiftCardController::class, 'store']);
+   /** POST        api/auth/logout      */
+  Route::post('/auth/logout', [AuthController::class, 'logout']);
 });
-
-//middleware(['can:isManager'])
-
-//Route::fallback(function () {
-
-//});

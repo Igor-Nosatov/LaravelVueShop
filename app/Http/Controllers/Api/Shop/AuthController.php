@@ -42,7 +42,7 @@ class AuthController  extends BaseController
     public function login(LoginRequest $request)
     {
         $response = $this->authRepository->loginUser($request);
-        return $response;//$this->successResponse($response, 'User Login');
+        return $this->successResponse($response, 'User Login');
     }
 
     /**

@@ -11,6 +11,6 @@ import router from "./router/router";
 const vue = createApp(App);
 
 vue.use(createPinia());
-vue.use(router());
+vue.use(router);
 vue.mount("#app");
 

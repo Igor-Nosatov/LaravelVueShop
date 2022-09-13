@@ -27,9 +27,10 @@ class AuthRepository implements AuthRepositoryInterface
             'password' => Hash::make($request['password']),
         ]);
 
-        $token = $user->createToken('shop-token')->plainTextToken;
+        $token = $user->createToken('access_token')->plainTextToken;
 
         $authData = [
+            'user' => $user,
             'access_token' => $token,
             'token_type' => 'Bearer',
         ];
@@ -48,11 +49,12 @@ class AuthRepository implements AuthRepositoryInterface
                 'message' => 'Bad creds',
             ], 401);
         }
-        $token = $user->createToken('shop-token')->plainTextToken;
+        $token = $user->createToken('access_token')->plainTextToken;
 
         $authData = [
             'user' => $user,
-            'token' => $token,
+            'access_token' => $token,
+            'token_type' => 'Bearer',
         ];
         return $authData;
     }
