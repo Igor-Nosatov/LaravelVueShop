@@ -146,7 +146,7 @@ class ShoesRepository implements ShoesRepositoryInterface
             'images',
             'color',
             'features',
-            'sizes',
+            'size',
             'width',
             'reviews'
         ])->find($shoes['id']);
@@ -168,11 +168,23 @@ class ShoesRepository implements ShoesRepositoryInterface
             $reviewArray[] = $value;
         }
 
+        foreach ($shoesDataById['width'] as $value) {
+            $widthArray[] = $value;
+        }
+
+        foreach ($shoesDataById['features'] as $value) {
+            $featuresArray[] = $value;
+        }
+
+        foreach ($shoesDataById['size'] as $value) {
+            $sizesArray[] = $value;
+        }
+
         $shoesArrayById = [
             'id' => $shoesDataById['id'],
             'title' => $shoesDataById['title'],
             'style_code' => $shoesDataById['style_code'],
-            'price' => $shoesDataById['price'],                 
+            'price' => (float)number_format(( $shoesDataById['price']/100), 2, '.', ''),             
             'description' => $shoesDataById['description'],
             'category' => $shoesDataById['category']['name'],
             'gender' =>  $shoesDataById['gender']['name'],

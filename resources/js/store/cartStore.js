@@ -14,6 +14,7 @@ export const cartStore = defineStore('cartStore',{
                 .then((response) => response.data.data);
         },
         async storeToCart(data){
+            console.log(data);
             await axios.post('/api/cart', data)
         },
         async updateCart(id, cartById){
