@@ -30,6 +30,7 @@ class AuthRepository implements AuthRepositoryInterface
         $token = $user->createToken('access_token')->plainTextToken;
 
         $authData = [
+            'userId' => User::where('id',$user->id)->first()->id,
             'userRole' => User::with(['role'])->where('id',$user->id)->first()->role_id,
             'access_token' => $token,
             'token_type' => 'Bearer',
@@ -52,6 +53,7 @@ class AuthRepository implements AuthRepositoryInterface
         $token = $user->createToken('access_token')->plainTextToken;
 
         $authData = [
+            'userId' => User::where('id',$user->id)->first()->id,
             'userRole' => User::with(['role'])->where('id',$user->id)->first()->role_id,
             'access_token' => $token,
             'token_type' => 'Bearer',

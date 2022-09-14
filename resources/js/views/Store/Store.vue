@@ -49,18 +49,20 @@
             <div class="collapse" id="Category">
               <div class="card card-body">
                 <ul class="nav flex-column text-start">
-                  <li class="nav-item"  
-                  v-for="item in optionsData.categories"
-                  :key="item.index">
+                  <li
+                    class="nav-item"
+                    v-for="item in optionsData.categories"
+                    :key="item.index"
+                  >
                     <div class="mb-3 form-check">
                       <input
                         type="checkbox"
                         class="form-check-input"
                         id="category"
                       />
-                      <label class="form-check-label" for="category"
-                        >{{item.name}}</label
-                      >
+                      <label class="form-check-label" for="category">{{
+                        item.name
+                      }}</label>
                     </div>
                   </li>
                 </ul>
@@ -80,7 +82,7 @@
                   aria-controls="SupportTypes"
                   class="collapse-menu"
                 >
-                Support Types
+                  Support Types
                 </a>
               </div>
               <div class="text-end">
@@ -99,18 +101,20 @@
             <div class="collapse" id="SupportTypes">
               <div class="card card-body">
                 <ul class="nav flex-column text-start">
-                  <li class="nav-item"  
-                  v-for="item in optionsData.support_types"
-                  :key="item.index">
+                  <li
+                    class="nav-item"
+                    v-for="item in optionsData.support_types"
+                    :key="item.index"
+                  >
                     <div class="mb-3 form-check">
                       <input
                         type="checkbox"
                         class="form-check-input"
                         id="supportTypes"
                       />
-                      <label class="form-check-label" for="supportTypes"
-                        >{{item.name}}</label
-                      >
+                      <label class="form-check-label" for="supportTypes">{{
+                        item.name
+                      }}</label>
                     </div>
                   </li>
                 </ul>
@@ -130,7 +134,7 @@
                   aria-controls="width"
                   class="collapse-menu"
                 >
-                Width
+                  Width
                 </a>
               </div>
               <div class="text-end">
@@ -149,27 +153,26 @@
             <div class="collapse" id="width">
               <div class="card card-body">
                 <ul class="nav flex-column text-start">
-                  <li class="nav-item"  
-                  v-for="item in optionsData.width"
-                  :key="item.index">
+                  <li
+                    class="nav-item"
+                    v-for="item in optionsData.width"
+                    :key="item.index"
+                  >
                     <div class="mb-3 form-check">
                       <input
                         type="checkbox"
                         class="form-check-input"
                         id="width"
                       />
-                      <label class="form-check-label" for="width"
-                        >{{item.name}}</label
-                      >
+                      <label class="form-check-label" for="width">{{
+                        item.name
+                      }}</label>
                     </div>
                   </li>
                 </ul>
               </div>
             </div>
           </div>
-
-
-          
 
           <div class="category1 pt-2">
             <div
@@ -184,7 +187,7 @@
                   aria-controls="models"
                   class="collapse-menu"
                 >
-                Models
+                  Models
                 </a>
               </div>
               <div class="text-end">
@@ -203,9 +206,11 @@
             <div class="collapse" id="models">
               <div class="card card-body">
                 <ul class="nav flex-column text-start">
-                  <li class="nav-item"  
-                  v-for="item in optionsData.models"
-                  :key="item.index">
+                  <li
+                    class="nav-item"
+                    v-for="item in optionsData.models"
+                    :key="item.index"
+                  >
                     <div class="mb-3 form-check">
                       <input
                         type="checkbox"
@@ -213,7 +218,7 @@
                         id="models"
                       />
                       <label class="form-check-label" for="models"
-                        >#{{item.name}}</label
+                        >#{{ item.name }}</label
                       >
                     </div>
                   </li>
@@ -252,9 +257,11 @@
             </div>
             <div class="collapse" id="size">
               <div class="card card-body flex-row flex-wrap">
-                <div class="check-btn p-1"  
-                v-for="item in optionsData.foot_wear_sizes"
-                :key="item.index">
+                <div
+                  class="check-btn p-1"
+                  v-for="item in optionsData.foot_wear_sizes"
+                  :key="item.index"
+                >
                   <input
                     type="checkbox"
                     class="btn-check"
@@ -262,8 +269,10 @@
                     name="1"
                     value="2"
                   />
-                  <label class="btn btn-primary btn-category" for="btn-check-2"
-                    >{{item.name}}</label
+                  <label
+                    class="btn btn-primary btn-category"
+                    for="btn-check-2"
+                    >{{ item.name }}</label
                   >
                 </div>
               </div>
@@ -300,14 +309,20 @@
             </div>
             <div class="collapse" id="color">
               <div class="card card-body flex-row flex-wrap">
-              
-                   <div class="col-4"  v-for="item in optionsData.colors"
-                   :key="item.index">
-                    <div class="check-btn p-1">
-                      <input type="checkbox" class="checkbox-round" :style="{'background-color':item.name }"/> {{ item.name }}
-                    </div>
-                   </div>
-              
+                <div
+                  class="col-4"
+                  v-for="item in optionsData.colors"
+                  :key="item.index"
+                >
+                  <div class="check-btn p-1">
+                    <input
+                      type="checkbox"
+                      class="checkbox-round"
+                      :style="{ 'background-color': item.name }"
+                    />
+                    {{ item.name }}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -320,30 +335,35 @@
               :key="item.index"
             >
               <div class="card" style="width: 100%">
-                <a href="" class="relative-icon"
-                  ><i class="fa-solid fa-heart fa-2x"></i
-                ></a>
-                <a href="">
-                  <img
-                    :src="item.image_url"
-                    class="card-img-top img-fluid no-border"
-                    :alt="item.title"
-                  />
+                <a
+                  href=""
+                  class="relative-icon"
+                  @click="favouriteItems(item.id)"
+                >
+                  <i class="fa-solid fa-heart fa-2x"></i>
                 </a>
+                <img
+                  :src="item.image_url"
+                  class="card-img-top img-fluid no-border"
+                  :alt="item.title"
+                />
 
                 <div class="card-body">
                   <div class="d-flex flex-row justify-content-between">
-                    <h5 class="card-title tCategory-start fw-bold">
-                      <a href="" class="tCategory-dark fw-bold">
-                        {{ item.title }}</a
+                    <h5 class="card-title Category-start fw-bold">
+                      <router-link
+                        :to="{ name: 'product', params: { id: item.id } }"
+                        class="Category-dark fw-bold"
                       >
+                        {{ item.title }}
+                      </router-link>
                     </h5>
-                    <p class="card-title tCategory-start fw-bold">
+                    <p class="card-title Category-start fw-bold">
                       ${{ item.price }}
                     </p>
                   </div>
 
-                  <p class="text-start">{{ item.category.name }}</p>
+                  <p class="text-start">Category: {{ item.category.name }}</p>
                   <div class="d-flex flex-row justify-content-start">
                     <i
                       class="fa-solid fa-star star-yellow"
@@ -376,8 +396,6 @@
       </div>
     </div>
     <div class="col-md-2"></div>
-
-    {{ optionsData }}
   </div>
 </template>
 
@@ -386,14 +404,28 @@
 import { onMounted } from "vue";
 import { storeToRefs } from "pinia";
 import { shopStore } from "../../store/shopStore";
+import { favouriteStore } from "../../store/favouriteStore";
+import { useRouter } from "vue-router";
 
 export default {
   setup() {
     const store = shopStore();
+    const router = useRouter();
 
     const { shoesData, optionsData } = storeToRefs(store);
-
     const { fetchShoesData, fetchOptionsData } = shopStore();
+    
+    const { storeNewFavourite } = favouriteStore();
+
+    async function favouriteItems(shoesId) {
+      if (JSON.parse(localStorage.getItem("userId"))) {
+        let user_id = JSON.parse(localStorage.getItem("userId"));
+        let shoes_id = shoesId;
+        await storeNewFavourite({ shoes_id, user_id });
+      } else {
+        await router.push({ name: "login" });
+      }
+    }
 
     onMounted(() => {
       fetchShoesData(), fetchOptionsData();
@@ -402,6 +434,7 @@ export default {
     return {
       shoesData,
       optionsData,
+      favouriteItems,
     };
   },
 };
@@ -462,7 +495,6 @@ export default {
 .checkbox-round:checked {
   border: 1px solid #1d1c1c;
 }
-
 
 .no-border {
   border-radius: 0px;

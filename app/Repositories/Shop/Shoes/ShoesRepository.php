@@ -87,6 +87,7 @@ class ShoesRepository implements ShoesRepositoryInterface
 
             //format shoes data
             $shoesData[] = [
+                'id' => $value['id'],
                 'title' => $value['title'],
                 'price' =>  (float)number_format(( $value['price']/100), 2, '.', '') ,   
                 'style_code' => $value['style_code'],
