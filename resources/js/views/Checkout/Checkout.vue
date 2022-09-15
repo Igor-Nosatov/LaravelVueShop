@@ -69,11 +69,11 @@
                 />
               </div>
               <div class="col-md-4 p-1">
-                <select class="form-select form-control-checkout">
+                <select class="form-select form-control-checkout"  v-model="form.state">
                   <option selected>Choose state</option>
-                  <option value="1">Alaska</option>
-                  <option value="2">Idaho</option>
-                  <option value="3">Hawai</option>
+                  <option  :value="{ state: 1 }"> Alaska</option>
+                  <option  :value="{ state: 2 }"> Idaho</option>
+                  <option  :value="{ state: 3 }"> Hawai</option>
                 </select>
               </div>
               <div class="col-md-4 p-1">
@@ -81,7 +81,8 @@
                   type="text"
                   class="form-control form-control-checkout"
                   placeholder="Zip code"
-                />
+                  v-model="form.zip_code"
+               required />
               </div>
             </div>
 
@@ -112,7 +113,8 @@
                     type="email"
                     class="form-control form-control-checkout"
                     placeholder="Email"
-                  />
+                    v-model="form.email"
+                  required/>
                 </div>
               </div>
             </div>
