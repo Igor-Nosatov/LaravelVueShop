@@ -54,13 +54,14 @@
               aria-labelledby="pills-egift-tab"
               tabindex="0"
             >
-              <form class="text-start">
+              <form class="text-start" @submit.prevent="buyGiftCardElectronic">
                 <div class="mb-3 text-start pt-2 pb-2">
                   <input
                     type="text"
                     class="form-control form-control-gift-cart"
                     placeholder="Your Name"
-                  />
+                    v-model="form_card_electronic.name"
+                    required/>
                 </div>
 
                 <div class="mb-3 text-start pt-2 pb-2">
@@ -68,7 +69,8 @@
                     type="email"
                     class="form-control form-control-gift-cart"
                     placeholder="Your Email"
-                  />
+                    v-model="form_card_electronic.email"
+                  required/>
                 </div>
 
                 <div class="mb-3 text-start pt-2 pb-2">
@@ -76,7 +78,8 @@
                     type="text"
                     class="form-control form-control-gift-cart"
                     placeholder="Recipient's Name"
-                  />
+                    v-model="form_card_electronic.recipient_name"
+                    required/>
                 </div>
 
                 <div class="mb-3 text-start pt-2 pb-2">
@@ -84,7 +87,8 @@
                     type="text"
                     class="form-control form-control-gift-cart"
                     placeholder="Confirm Recipient's Email"
-                  />
+                    v-model="form_card_electronic.recipient_email"
+                    required />
                 </div>
 
                 <div class="mb-3 text-start pt-2 pb-2">
@@ -92,21 +96,22 @@
                     type="text"
                     class="form-control form-control-gift-cart"
                     placeholder="Add a message(Optional)"
+                    v-model="form_card_electronic.message"
                   />
                 </div>
 
                 <div class="select-amount pt-3 pb-3">
                   <label for="amount">Amount</label>
                   <br />
-                  <select name="amount" id="amount">
-                    <option value="25">$25</option>
-                    <option value="125">$125</option>
-                    <option value="225">$225</option>
-                    <option value="325">$325</option>
+                  <select name="amount" id="amount" v-model="form_card_electronic.amount">
+                    <option :value="{ amount: 25 }">$25</option>
+                    <option :value="{ amount: 50 }">$50</option>
+                    <option :value="{ amount: 100 }">$100</option>
+                    <option :value="{ amount: 200 }">$200</option>
                   </select>
                 </div>
 
-                <button type="button" class="btn btn-danger btn-gift">
+                <button type="submit" class="btn btn-danger btn-gift">
                   Add to cart <i class="fa-solid fa-bag-shopping"></i>
                 </button>
               </form>
@@ -118,35 +123,35 @@
               aria-labelledby="pills-physical-gift-tab"
               tabindex="0"
             >
-              <form action="">
+              <form @submit.prevent="buyGiftCardPhysic">
                 <div class="row g-0">
                   <div class="col-md-6">
                     <div class="select-amount pt-3 pb-3">
                       <label for="amount">Amount</label>
                       <br />
-                      <select name="amount" id="amount">
-                        <option value="25">$25</option>
-                        <option value="125">$125</option>
-                        <option value="225">$225</option>
-                        <option value="325">$325</option>
+                      <select name="amount" id="amount" v-model="form_card_physic.amount">
+                        <option :value="{ amount: 25 }">$25</option>
+                        <option :value="{ amount: 50 }">$50</option>
+                        <option :value="{ amount: 100 }">$100</option>
+                        <option :value="{ amount: 200 }">$200</option>
                       </select>
                     </div>
                   </div>
                    <div class="col-md-6">
                     <div class="select-amount pt-3 pb-3">
-                      <label for="amount">Qty</label>
+                      <label for="qty">Qty</label>
                       <br />
-                      <select name="amount" id="amount">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
+                      <select name="qty" id="qty"  v-model="form_card_physic.qty">
+                        <option :value="{ amount: 1 }"> 1 </option>
+                        <option :value="{ amount: 2 }"> 2 </option>
+                        <option :value="{ amount: 3 }"> 3 </option>
+                        <option :value="{ amount: 4 }"> 4 </option>
                       </select>
                     </div>
                   </div>
                 </div>
 
-                <button type="button" class="btn btn-danger btn-gift">
+                <button type="submit" class="btn btn-danger btn-gift">
                   Add to cart <i class="fa-solid fa-bag-shopping"></i>
                 </button>
               </form>
@@ -160,7 +165,51 @@
 </template>
 
 
-<script setup>
+<script>
+import { reactive } from "vue";
+import { giftCardStore } from "../../store/giftCardStore";
+import { useRouter } from "vue-router";
+
+export default {
+  setup() {
+    const router = useRouter();
+    const { storeGiftCard } = giftCardStore();
+
+    const form_card_electronic = reactive({
+      name : "",
+      email : "",
+      recipient_name : "",
+      recipient_email : "",
+      message : "",
+      amount : ""
+    });
+
+    const form_card_physic = reactive({
+      amount : "",
+      qty:""
+    });
+
+    const buyGiftCardElectronic = async () => {
+      let user_id = JSON.parse(localStorage.getItem("userId"));
+      await storeGiftCard({ ...form_card_electronic, user_id});
+      await router.push({ name: "home" });
+    };
+
+    const buyGiftCardPhysic = async () => {
+      let user_id = JSON.parse(localStorage.getItem("userId"));
+      await storeGiftCard({ ...form_card_physic, user_id});
+      await router.push({ name: "home" });
+    };
+
+    return {
+      form_card_electronic,
+      form_card_physic,
+      buyGiftCardElectronic ,
+      buyGiftCardPhysic 
+    };
+  },
+};
+
 </script>
 
 <style scoped>
