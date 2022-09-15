@@ -12,10 +12,10 @@
           >
           <input
             type="email "
-            class="form-control no-border"
+            class="form-control no-border" 
             id="inputEmail1"
             v-model="form.email"
-          />
+          required/>
         </div>
         <div class="mb-3 text-start">
           <label for="inputPassword1" class="form-label text-start"
@@ -26,7 +26,7 @@
             class="form-control no-border"
             id="inputPassword1"
             v-model="form.password"
-          />
+          required/>
         </div>
         <p class="text-start">
           By logging into my account, I agree to New Balance's

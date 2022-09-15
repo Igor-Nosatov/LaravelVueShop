@@ -12,7 +12,7 @@
               Shipping Address
             </h6>
           </div>
-          <form class="pt-4 pb-4 text-start">
+          <form class="pt-4 pb-4 text-start" @submit.prevent="makeCheckout">
             <div class="row g-0">
               <div class="col-md-6 p-1">
                 <div class="mb-3 text-start">
@@ -20,7 +20,8 @@
                     type="text"
                     class="form-control form-control-checkout"
                     placeholder="First Name"
-                  />
+                    v-model="form.first_name"
+                  required/>
                 </div>
               </div>
 
@@ -30,7 +31,8 @@
                     type="text"
                     class="form-control form-control-checkout"
                     placeholder="Last Name"
-                  />
+                    v-model="form.last_name"
+                    required/>
                 </div>
               </div>
             </div>
@@ -41,7 +43,8 @@
                     type="text"
                     class="form-control form-control-checkout"
                     placeholder="Street Address"
-                  />
+                    v-model="form.street"
+                    required/>
                 </div>
               </div>
 
@@ -61,6 +64,8 @@
                   type="text"
                   class="form-control form-control-checkout"
                   placeholder="City"
+                  v-model="form.city"
+                  required
                 />
               </div>
               <div class="col-md-4 p-1">
@@ -264,7 +269,36 @@
 </template>
 
 
-<script setup>
+<script>
+import { reactive } from "vue";
+import { checkoutStore } from "../../store/checkoutStore";
+
+export default {
+  setup() {
+    const { storeCheckoutData } = checkoutStore();
+
+    const form = reactive({
+      first_name: "",
+      last_name: "",
+      street: "",
+      state: "",
+      zip_code: "",
+      phone: "",
+      email: "",
+      cart_id: ""
+    });
+
+    const makeCheckout = async () => {
+      let user_id = JSON.parse(localStorage.getItem("userId"));
+      await storeCheckoutData({ ...form, user_id });
+    };
+
+    return {
+      form,
+      makeCheckout,
+    };
+  },
+};
 </script>
 
 <style scoped>

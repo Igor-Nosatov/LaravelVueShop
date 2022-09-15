@@ -182,8 +182,11 @@
 <script>
 import { reactive } from "vue";
 import { reviewStore } from "../../store/reviewStore";
+import { useRouter } from "vue-router";
+
 export default {
   setup() {
+    const router = useRouter();
     const { storeNewReview } = reviewStore();
     const form = reactive({
       review_headline: "",
@@ -197,7 +200,9 @@ export default {
       policy_agree: "",
     });
     const saveNewReview = async () => {
-      await storeNewReview({ ...form });
+      let user_id = JSON.parse(localStorage.getItem("userId"));
+      await storeNewReview({ ...form, user_id });
+      await router.push({ name: "home" });
     };
     return {
       form,
