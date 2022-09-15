@@ -191,6 +191,7 @@ class ShoesRepository implements ShoesRepositoryInterface
             'type' =>  $shoesDataById['type']['name'],
             'sampler' =>  $shoesDataById['sampler']['name'],
             'color' =>  $shoesDataById['color']['name'],
+            'reviewCount' =>  count($reviewArray),
             'images' =>  $imageArray,
             'reviews' => $reviewArray,
             'features' =>  $featuresArray,

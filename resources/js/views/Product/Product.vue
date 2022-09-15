@@ -208,16 +208,16 @@
             <i class="fa-solid fa-star"></i>
             <i class="fa-solid fa-star"></i>
             <i class="fa-solid fa-star"></i>
-            <p>3 Reviews</p>
+            <p> {{ shoesById.reviewCount }} Reviews</p>
           </div>
           <div class="d-flex flex-row justify-content-start">
-            <button type="button" class="btn btn-outline-danger">
-              Write a Review
-            </button>
+            <router-link :to="{ name: 'review' }" class="btn btn-outline-danger">
+              Create now
+            </router-link>
           </div>
         </div>
         <div class="col-md-12 count-block-reviews">
-          <p class="text-start fw-bold pt-3 ps-3">Reviewed by 3 customers</p>
+          <p class="text-start fw-bold pt-3 ps-3">Reviewed by {{ shoesById.reviewCount }} customers</p>
         </div>
         <div class="col-md-12">
           <div
@@ -227,18 +227,13 @@
           >
             <div class="col-md-9 p-1">
               <div class="d-flex flex-row justify-content-start">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <p>{{ item.review_headline }}</p>
+
+                <i class="fa-solid fa-star" v-for="n in  itemReview.rating" :key="n"></i>
+             
+                <p>{{ itemReview.review_headline }}</p>
               </div>
               <p class="text-desc">
-                {{ item.review_headline }}
-              </p>
-              <p class="text-start">
-                <span class="fw-bold">{{ item.overall_fit }}</span> True to Size
+                {{ itemReview.nickname }}
               </p>
               <p class="text-start fw-bold">
                 Was this review helpful to you?
@@ -250,9 +245,9 @@
                 <span class="fw-bold"> Submitted</span> 2 days ago
               </p>
               <p class="text-start">
-                <span class="fw-bold">By </span>Karl Hungus
+                <span class="fw-bold">By </span> {{ itemReview.nickname }}
               </p>
-              <p class="text-start"><span class="fw-bold">From </span> NH</p>
+              <p class="text-start"><span class="fw-bold">From {{ itemReview.email }} </span> </p>
             </div>
           </div>
         </div>

@@ -34,18 +34,18 @@ const routes = [
     },
 
     {
-        path: "/store",
+        path: "/shop",
         name: "store",
         component: Store
     }, {
-        path: "/product/:id",
+        path: "/shop/:id",
         name: "product",
         component: Product,
         meta: {
             requiresAuth: true
         }
     }, {
-        path: "/review/:id",
+        path: "/review/",
         name: "review",
         component: Review,
         meta: {
