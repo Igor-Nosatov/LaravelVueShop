@@ -29,6 +29,6 @@ class GiftCardController extends BaseController
     public function store(GiftCardRequest $request)
     {
         $response = $this->giftCardRepository->createGiftCard($request);
-        return $this->createResponse($response->toArray(), 'Gift Card Create');
+        return $this->createResponse($response, 'Gift Card Create');
     }
 }

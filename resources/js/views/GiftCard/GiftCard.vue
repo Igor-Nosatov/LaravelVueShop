@@ -3,10 +3,7 @@
     <div class="col-md-2"></div>
     <div class="col-md-8">
       <div class="row g-0">
-        <div class="col-md-8">
-          <img src="../../../../public/img/LogoGift.png" alt="" class="img-fluid"/>
-        </div>
-        <div class="col-md-4 ps-2 pe-2 pb-4">
+        <div class="col-12 col-md-6 p-3">
           <h3 class="text-start fw-bold">The Perfect Gift When You</h3>
           <h3 class="text-start fw-bold">Don't Know Their Size</h3>
           <p class="text-start pt-3">
@@ -63,7 +60,7 @@
                     v-model="form_card_electronic.name"
                     required/>
                 </div>
-
+              
                 <div class="mb-3 text-start pt-2 pb-2">
                   <input
                     type="email"
@@ -72,7 +69,7 @@
                     v-model="form_card_electronic.email"
                   required/>
                 </div>
-
+              
                 <div class="mb-3 text-start pt-2 pb-2">
                   <input
                     type="text"
@@ -81,7 +78,7 @@
                     v-model="form_card_electronic.recipient_name"
                     required/>
                 </div>
-
+              
                 <div class="mb-3 text-start pt-2 pb-2">
                   <input
                     type="text"
@@ -90,7 +87,7 @@
                     v-model="form_card_electronic.recipient_email"
                     required />
                 </div>
-
+              
                 <div class="mb-3 text-start pt-2 pb-2">
                   <input
                     type="text"
@@ -99,15 +96,16 @@
                     v-model="form_card_electronic.message"
                   />
                 </div>
-
+              
                 <div class="select-amount pt-3 pb-3">
                   <label for="amount">Amount</label>
                   <br />
-                  <select name="amount" id="amount" v-model="form_card_electronic.amount">
-                    <option :value="{ amount: 25 }">$25</option>
-                    <option :value="{ amount: 50 }">$50</option>
-                    <option :value="{ amount: 100 }">$100</option>
-                    <option :value="{ amount: 200 }">$200</option>
+                  <select class="form-select" aria-label="amount" name="amount" id="amount"  v-model="form_card_electronic.amount">
+                    <option disabled value="">Please select Sum</option>
+                    <option :value="25">$25</option>
+                    <option :value="50">$50</option>
+                    <option :value="100">$100</option>
+                    <option :value="200">$200</option>
                   </select>
                 </div>
 
@@ -125,27 +123,30 @@
             >
               <form @submit.prevent="buyGiftCardPhysic">
                 <div class="row g-0">
-                  <div class="col-md-6">
+                  <div class="col-md-6 p-1">
                     <div class="select-amount pt-3 pb-3">
                       <label for="amount">Amount</label>
                       <br />
-                      <select name="amount" id="amount" v-model="form_card_physic.amount">
-                        <option :value="{ amount: 25 }">$25</option>
-                        <option :value="{ amount: 50 }">$50</option>
-                        <option :value="{ amount: 100 }">$100</option>
-                        <option :value="{ amount: 200 }">$200</option>
+                      <select class="form-select" aria-label="amount" name="amount" id="amount"  v-model="form_card_physic.amount">
+                        <option disabled value="">Please select Sum</option>
+                        <option :value="25">$25</option>
+                        <option :value="50">$50</option>
+                        <option :value="100">$100</option>
+                        <option :value="200">$200</option>
                       </select>
                     </div>
                   </div>
-                   <div class="col-md-6">
+                   <div class="col-md-6 p-1">
                     <div class="select-amount pt-3 pb-3">
                       <label for="qty">Qty</label>
                       <br />
-                      <select name="qty" id="qty"  v-model="form_card_physic.qty">
-                        <option :value="{ amount: 1 }"> 1 </option>
-                        <option :value="{ amount: 2 }"> 2 </option>
-                        <option :value="{ amount: 3 }"> 3 </option>
-                        <option :value="{ amount: 4 }"> 4 </option>
+                      <select  class="form-select" name="qty" id="qty"  v-model="form_card_physic.qty">
+                        <option disabled value="">Please select Quantity</option>
+                        <option :value="1"> 1 </option>
+                        <option :value="2"> 2 </option>
+                        <option :value="3"> 3 </option>
+                        <option :value="4"> 4 </option>
+                        <option :value="5"> 5 </option>
                       </select>
                     </div>
                   </div>
@@ -157,6 +158,9 @@
               </form>
             </div>
           </div>
+        </div>
+        <div class="col-12 col-md-6 p-3">
+          <img src="../../../../public/img/gift-card-banner.jpg" alt="" class="img-fluid"/>
         </div>
       </div>
     </div>
@@ -191,14 +195,15 @@ export default {
 
     const buyGiftCardElectronic = async () => {
       let user_id = JSON.parse(localStorage.getItem("userId"));
-      await storeGiftCard({ ...form_card_electronic, user_id});
-      await router.push({ name: "home" });
+     await storeGiftCard({ ...form_card_electronic, user_id});
+     // await router.push({ name: "home");
+     console.log(form_card_electronic);
     };
 
     const buyGiftCardPhysic = async () => {
       let user_id = JSON.parse(localStorage.getItem("userId"));
       await storeGiftCard({ ...form_card_physic, user_id});
-      await router.push({ name: "home" });
+      await router.push({ name: "home"});
     };
 
     return {

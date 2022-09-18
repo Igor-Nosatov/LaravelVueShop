@@ -15,7 +15,7 @@
         <div class="row g-0">
           <div class="col-md-12 g-0 d-flex flex-column">
             <div class="row g-0">
-              <div class="col-6 p-1">
+              <div class="col-12 col-md-6  p-1">
                 <p class="text-start">
                   <small class="text-start">
                     <span class="required-mark text-start">*</span>Required
@@ -71,7 +71,7 @@
                   >
                 </div>
               </div>
-              <div class="col-6 p-1">
+              <div class="col-12 col-md-6 p-1">
                 <div class="mb-3 text-start pt-5">
                   <label for="inputLocation" class="form-label text-start">
                     Location <span class="required-mark">*</span></label

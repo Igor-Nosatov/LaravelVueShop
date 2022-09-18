@@ -14,7 +14,7 @@ class GiftCardRepository implements GiftCardRepositoryInterface
    */
   public function createGiftCard(GiftCardRequest $request)
   {
-    $giftCard = GiftCard::create($request->all());
-    return  $giftCard;
+    $giftcard = GiftCard::create($request->all());
+    return $giftcard->toArray();
   }
 }

@@ -38,6 +38,8 @@ Route::get('/shop', [ShoesController::class, 'index']);
 Route::get('/options', [OptionController::class, 'index']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
+  /** POST        api/gift-card      */
+  Route::post('/gift-card', [GiftCardController::class, 'store']);
   /** POST         api/cart      */
   Route::post('/cart', [CartController::class, 'store']);
   /** GET         api/cart      */
@@ -76,8 +78,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
   Route::post('/checkout/{checkout}/destroy', [CheckoutController::class, 'destroy']);
   /** GET        api/account      */
   Route::get('/account', [AccountController::class, 'index']);
-  /** POST        api/gift-card      */
-  Route::post('/gift-card', [GiftCardController::class, 'store']);
    /** POST        api/auth/logout      */
   Route::post('/auth/logout', [AuthController::class, 'logout']);
 });

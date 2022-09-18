@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Models\Shop\GiftCard;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -64,6 +66,14 @@ class User extends Authenticatable
     public function checkout(): HasMany
     {
         return $this->hasMany(Checkout::class);
+    }
+
+        /**
+     * @return HasMany
+     */
+    public function giftCard(): HasMany
+    {
+        return $this->hasMany(GiftCard::class);
     }
 
   
