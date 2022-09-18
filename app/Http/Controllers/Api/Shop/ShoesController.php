@@ -38,7 +38,7 @@ class ShoesController  extends BaseController
      */
     public function show(Shoes $shoes)
     {
-        $response = $this->shoesRepository-> getShoesSingleData($shoes);
+        $response = $this->shoesRepository->getShoesSingleData($shoes);
         return  $this->successResponse($response, 'Get data for Snickers Single Page');
     }
 }

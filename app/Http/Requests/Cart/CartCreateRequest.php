@@ -24,28 +24,34 @@ class CartCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'quantity'=> [
+            'quantity' => [
                 'required',
-                'integer'
+                'integer',
             ],
-            'promo_code'=> [
+            'promo_code' => [
                 'string',
                 'min:5',
-                'max:255'
+                'max:255',
             ],
-           'shipped_days'=> [
+            'shipped_days' => [
                 'required',
                 'string',
-                'max:20'
+                'max:20',
             ],
             'user_id' => [
                 'required',
-                'exists:App\Models\User,id'
+                'exists:App\Models\User,id',
             ],
             'shoes_id' => [
                 'required',
-                'exists:App\Models\Shop\Shoes,id'
-            ]
+                'exists:App\Models\Shop\Shoes,id',
+            ],
+            'size_id' => [
+                'required',
+            ],
+            'width_id' => [
+                'required',
+            ],
         ];
     }
 }

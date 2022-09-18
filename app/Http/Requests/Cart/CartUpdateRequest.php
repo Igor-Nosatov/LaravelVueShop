@@ -43,7 +43,13 @@ class CartUpdateRequest extends FormRequest
             ],
             'shoes_id' => [
                 'exists:App\Models\Shop\Shoes,id'
-            ]
+            ],
+            'size_id' => [
+                'required',
+            ],
+            'width_id' => [
+                'required',
+            ],
         ];
     }
 }

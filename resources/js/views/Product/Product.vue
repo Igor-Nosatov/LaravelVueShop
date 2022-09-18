@@ -61,36 +61,25 @@
                 alt=""
                 width="150px"
                 class="p-2"
-            /></a>
-            <div class="card card-body flex-row flex-wrap">
-              <div
-                class="check-btn p-1"
-                v-for="item in shoesById.width"
-                :key="item.index"
-              >
-                <input
-                  type="checkbox"
-                  class="btn-check"
-                  id="btn-check-2"
-                  name="1"
-                  value="2"
-                />
-                <label class="btn btn-primary btn-category" for="btn-check-2">
-                  {{ item.name }}</label
-                >
-              </div>
+            />
+          </a>
+          <p class="text-start fw-bold">Select Shoes Size</p>
+          <div class="d-flex flex-row">
+            <div  v-for="item in shoesById.sizes"
+            :key="item.id">
+              <input type="radio" :id="item.id" :value="item.id" v-model="cartForm.size_id"  class="form-check-input mt-2"/>
+              <label :for="item.id"  class="form-check-label p-1"> {{ item.name }} cm</label>
             </div>
-            <p class="text-start fw-bold">Select width</p>
+          </div>
 
+
+            <p class="text-start fw-bold">Select width</p>
             <div class="d-flex flex-row">
-              <button
-                type="button"
-                class="btn btn-dark m-2"
-                v-for="item in shoesById.width"
-                :key="item.id"
-              >
-                {{ item.name }}
-              </button>
+              <div   v-for="item in shoesById.width"
+              :key="item.id">
+                <input type="radio" :id="item.id" :value="item.id" v-model="cartForm.width_id"   class="form-check-input mt-2"/>
+                <label :for="item.id"   class="form-check-label p-1"> {{ item.name }}</label>
+              </div>
             </div>
 
             <button
@@ -265,7 +254,7 @@
 
 
 <script>
-import { onMounted } from "vue";
+import { onMounted, reactive } from "vue";
 import { storeToRefs } from "pinia";
 import { shopStore } from "../../store/shopStore";
 import { cartStore } from "../../store/cartStore";
@@ -285,13 +274,18 @@ export default {
 
     const { storeToCart } = cartStore();
 
+    const cartForm = reactive({
+      width_id: "",
+      size_id: "",
+    });
+
     async function addItemToCart(shoesId) {
       if (JSON.parse(localStorage.getItem("userId"))) {
         let user_id = JSON.parse(localStorage.getItem("userId"));
         let shoes_id = shoesId;
         let shipped_days = "3";
         let quantity = parseInt("1");
-        await storeToCart({ shoes_id, user_id, shipped_days, quantity });
+        await storeToCart({ ...cartForm ,shoes_id, user_id, shipped_days, quantity });
       } else {
         await router.push({ name: "login" });
       }
@@ -307,6 +301,7 @@ export default {
       shoesById,
       addItemToCart,
       menShoesData,
+      cartForm
     };
   },
 };

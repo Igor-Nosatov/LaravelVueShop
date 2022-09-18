@@ -348,6 +348,8 @@
                   :alt="item.title"
                 />
 
+
+
                 <div class="card-body">
                   <div class="d-flex flex-row justify-content-between">
                     <h5 class="card-title Category-start fw-bold">
@@ -362,7 +364,7 @@
                       ${{ item.price }}
                     </p>
                   </div>
-
+              
                   <p class="text-start">Category: {{ item.category.name }}</p>
                   <div class="d-flex flex-row justify-content-start">
                     <i
@@ -377,6 +379,14 @@
                     ></i>
                   </div>
                 </div>
+
+
+
+
+
+
+
+
               </div>
             </div>
           </div>
@@ -414,7 +424,7 @@ export default {
 
     const { shoesData, optionsData } = storeToRefs(store);
     const { fetchShoesData, fetchOptionsData } = shopStore();
-    
+
     const { storeNewFavourite } = favouriteStore();
 
     async function favouriteItems(shoesId) {

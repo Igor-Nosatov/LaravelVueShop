@@ -68,7 +68,7 @@ class ShoesRepository implements ShoesRepositoryInterface
         foreach ($paginate['data'] as $value) {
             foreach ($value['reviews'] as $ratingValue) {
                 $ratingData[] = $ratingValue['rating'];
-                $averageRating = (array_sum($ratingData)) / (count($ratingData));
+                $averageRating = round((array_sum($ratingData)) / (count($ratingData)));
             }
           
             foreach ($value['size'] as $sizesValue) {

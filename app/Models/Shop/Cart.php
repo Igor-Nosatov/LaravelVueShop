@@ -23,7 +23,9 @@ class Cart extends Model
         'promo_code',
         'shipped_days',
         'shoes_id',
-        'user_id'
+        'user_id',
+        'size_id',
+        'width_id'
     ];
 
     /**
@@ -38,6 +40,8 @@ class Cart extends Model
         'shipped_days' => 'string',
         'shoes_id' => 'integer',
         'user_id' => 'integer',
+        'size_id' => 'integer',
+        'width_id' => 'integer',
     ];
 
     /**
