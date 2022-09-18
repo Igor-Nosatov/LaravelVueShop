@@ -7,6 +7,8 @@ use App\Repositories\Shop\Review\ReviewRepositoryInterface;
 use App\Http\Requests\Review\ReviewCreateRequest;
 use App\Http\Requests\Review\ReviewUpdateRequest;
 use App\Models\Shop\Review;
+use App\Models\Shop\Shoes;
+
 class ReviewController extends BaseController
 {
     /**
@@ -20,6 +22,12 @@ class ReviewController extends BaseController
     public function __construct(ReviewRepositoryInterface $reviewRepository)
     {
         $this->reviewRepository = $reviewRepository;
+    }
+
+    public function show(Shoes $shoes)
+    {
+        $response = $this->reviewRepository->showReviewForm($shoes);
+        return  $this->successResponse($response, 'Get shoes id and review form');
     }
 
     /**

@@ -5,13 +5,11 @@ namespace App\Repositories\Shop\Review;
 use App\Http\Requests\Review\ReviewCreateRequest;
 use App\Http\Requests\Review\ReviewUpdateRequest;
 use App\Models\Shop\Review;
+use App\Models\Shop\Shoes;
 
 interface ReviewRepositoryInterface
 {
-    /**
-     * @param ReviewCreateRequest $request
-     * @return mixed
-     */
+    public function showReviewForm(Shoes $shoes);
     public function addReviewComment(ReviewCreateRequest $request): mixed;
 
     /**

@@ -211,8 +211,10 @@
             <p> {{ shoesById.reviewCount }} Reviews</p>
           </div>
           <div class="d-flex flex-row justify-content-start">
-            <router-link :to="{ name: 'review' }" class="btn btn-outline-danger">
-              Create now
+            <router-link
+                :to="{ name: 'review', params:shoesById.id }"
+                class="btn btn-outline-danger">
+                Create now
             </router-link>
           </div>
         </div>
@@ -257,6 +259,7 @@
       </div>
     </div>
     <div class="col-md-2"></div>
+    {{ shoesById.id }}
   </div>
 </template>
 

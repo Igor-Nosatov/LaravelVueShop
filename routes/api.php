@@ -54,12 +54,20 @@ Route::middleware(['auth:sanctum'])->group(function () {
   Route::post('/favourite', [FavouriteController::class, 'store']);
   /** POST         api/favourite/{favourite}/destroy        */
   Route::post('/favourite/{favourite}/destroy', [FavouriteController::class, 'destroy']);
+
+
+  /** GET        api/review/{shoes}      */
+  Route::get('/review/{shoes}', [ReviewController::class, 'show']);
   /** POST        api/review/      */
   Route::post('/review', [ReviewController::class, 'store']);
   /** POST        api/review/{review}/update      */
   Route::post('/review/{review}/update', [ReviewController::class, 'update']);
   /** POST        api/review/{review}/destroy      */
   Route::post('/review/{review}/destroy', [ReviewController::class, 'destroy']);
+
+
+
+
   /** POST        api/checkout      */
   Route::post('/checkout', [CheckoutController::class, 'store']);
   /** GET        api/checkout      */

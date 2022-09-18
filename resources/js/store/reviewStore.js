@@ -2,6 +2,11 @@ import axios from 'axios';
 import { defineStore } from 'pinia';
 
 export const reviewStore = defineStore('reviewStore', {
+    state: () => {
+        return {
+          shoesReviewById: {},
+        };
+      },
     actions: {
         async storeNewReview(data){
             await axios.post('/api/review', data)
@@ -12,5 +17,10 @@ export const reviewStore = defineStore('reviewStore', {
         async destroyByIdReview(id) {
             await axios.delete(`/api/review/${id}/destroy`);
         },
+        async getShoesReviewById() {
+            this.shoesReviewById = await axios
+              .get(`/api/review/1`)
+              .then((response) => response.data.data);
+          },
     },
 });

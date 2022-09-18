@@ -37,15 +37,16 @@ const routes = [
         path: "/shop",
         name: "store",
         component: Store
-    }, {
-        path: "/shop/:id",
+    },
+     {
+        path: "/shop/product/:id",
         name: "product",
         component: Product,
         meta: {
             requiresAuth: true
         }
     }, {
-        path: "/review/",
+        path: "/review/:id",
         name: "review",
         component: Review,
         meta: {

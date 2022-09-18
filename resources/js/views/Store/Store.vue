@@ -352,7 +352,7 @@
                   <div class="d-flex flex-row justify-content-between">
                     <h5 class="card-title Category-start fw-bold">
                       <router-link
-                        :to="{ name: 'product', params: { id: item.id } }"
+                        :to="{ name: 'product', params: { id: item.id }}"
                         class="Category-dark fw-bold"
                       >
                         {{ item.title }}

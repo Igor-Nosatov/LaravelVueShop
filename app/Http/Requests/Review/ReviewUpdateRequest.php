@@ -30,21 +30,14 @@ class ReviewUpdateRequest extends FormRequest
                 'max:255'
             ],
             'nickname' => [
-                'required',
                 'string',
                 'max:255'
             ],
             'comment' => [
-                'required',
                 'string',
                 'max:1200'
             ],
-            'overall_fit' => [
-                'required',
-                'string'
-            ],
             'rating' => [
-                'required',
                 'integer'
             ],
             'image' => [
