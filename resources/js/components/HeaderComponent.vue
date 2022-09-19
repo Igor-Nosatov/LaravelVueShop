@@ -80,16 +80,25 @@
                 <i class="fa-solid fa-magnifying-glass"></i>
               </div>
             </form>
-            <i class="fa-solid fa-user fa-2x ps-5 pe-2"></i>
-            <router-link :to="{ name: 'login' }" class="pe-2 fw-bold text-dark"
-              >Log in</router-link
-            >
-            <span>|</span>
-            <router-link
-              :to="{ name: 'register' }"
-              class="pe-5 ps-2 fw-bold text-dark"
-              >Join</router-link
-            >
+           
+            <div  v-if="userName">
+              <i class="fa-solid fa-user fa-2x ps-5 pe-2"></i>
+              <span  class="user_name"> Welcome to us,  {{  userName }}</span>
+            </div>
+            <div v-else>
+              <i class="fa-solid fa-user fa-2x ps-5 pe-2"></i>
+              <router-link :to="{ name: 'login' }" class="pe-2 fw-bold text-dark"
+                >Log in</router-link
+              >
+              <span>|</span>
+              <router-link
+                :to="{ name: 'register' }"
+                class="pe-5 ps-2 fw-bold text-dark"
+                >Join</router-link
+              >
+              
+            </div>
+          
             <a href=""><i class="fa-solid fa-bag-shopping fa-2x"></i></a>
           </div>
         </div>
@@ -99,10 +108,27 @@
   </div>
 </template>
 
-<script setup>
+<script>
+import { authStore } from "../store/authStore";
+import { onMounted } from "vue";
+import { storeToRefs } from "pinia";
 
+export default {
+  setup() {
+    const store = authStore();
 
+    const {  userName } = storeToRefs(store);
+    const { getUserData } = authStore();
+    
+    onMounted(() => {
+      getUserData();
+    });
 
+    return {
+      userName
+    };
+  },
+};
 
 
   
@@ -142,6 +168,9 @@
   position: relative;
   left: -30px;
   top: 10px;
+}
+.user_name{
+  width: 50px;
 }
 
 @media (min-width: 76px) and (max-width: 400px) {
