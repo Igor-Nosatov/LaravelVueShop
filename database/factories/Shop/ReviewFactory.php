@@ -22,7 +22,6 @@ class ReviewFactory extends Factory
             'review_headline' => $this->faker->name(),
             'nickname' => $this->faker->name(),
             'comment' => $this->faker->text($maxNbChars = 2200),
-            'overall_fit' => $arrayValues[rand(0, 2)],
             'rating' => rand(1, 5),
             'image' => $this->faker->imageUrl($width = 640, $height = 480),
             'location' => $this->faker->streetAddress(),

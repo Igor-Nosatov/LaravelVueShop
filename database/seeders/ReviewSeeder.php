@@ -24,7 +24,6 @@ class ReviewSeeder extends Seeder
                         'review_headline' =>$faker->name(),
                         'nickname' =>$faker->name(),
                         'comment' =>$faker->name(),
-                        'overall_fit' => $arrayValues[rand(0, 2)],
                         'rating' => 4,
                         'image' =>$faker->imageUrl($width = 640, $height = 480),
                         'location' =>$faker->streetAddress(),

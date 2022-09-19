@@ -73,4 +73,25 @@ class CartRepository implements CartRepositoryInterface
     {
         $cart->delete();
     }
+
+    public function getCartDataAccount():array 
+    {
+        $cartData = Cart::where('user_id', Auth::id())->get();
+
+        $cartArrayData = [];
+        foreach ($cartData as $value) {
+
+            $shoesDataForCart = Shoes::with(['images', 'color', 'category'])->find($value['shoes_id']);
+            $cartArrayData[] = [
+                'title' => $shoesDataForCart['title'],
+                'price' => ($shoesDataForCart['price']) / 100,
+                'category' => $shoesDataForCart['category']['name'],
+                'type' => $shoesDataForCart['type']['name'],
+                'color' => $shoesDataForCart['color']['name'],
+                'image_url' => Storage::disk('public')->url('img/' .  $shoesDataForCart['images']['0']['name'] . '.webp')
+            ];
+        }
+
+        return $cartArrayData; 
+    }
 }

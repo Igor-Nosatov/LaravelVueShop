@@ -11,13 +11,12 @@
             </h6>
           </div>
           <div class="summary-block-desc">
-            <p class="text-start"><small>First Name:</small> {{accountData.user.first_name }}</p>
-            <p class="text-start"><small>Last Name: </small> {{accountData.user.last_name }}</p>
+            <p class="text-start"><small>First Name:</small> {{ accountData.first_name }}</p>
+            <p class="text-start"><small>Last Name: </small> {{ accountData.last_name }}</p>
             <p class="text-start">
-              <i class="fa-solid fa-envelope"></i> {{accountData.user.email }}
+              <i class="fa-solid fa-envelope"></i> {{accountData.email}}
             </p>
           </div>
-    
           <div class="summary-block">
             <h6 class="text-start text-dark ps-3 pt-3">My Wish List</h6>
           </div>
@@ -57,6 +56,7 @@
             </div>
           </div>
         </div>
+      
         <div class="col-md-6 p-1">
           <div class="summary-block">
             <h6 class="text-start text-dark ps-3 pt-3">Order History</h6>
@@ -120,18 +120,18 @@ export default {
   setup() {
 
     const store = accountStore();
-    const { accountData,favouriteData, cartData} = storeToRefs(store);
+    const { accountData, cartData,  favouriteData} = storeToRefs(store);
     
-    const { fetchAccountData,fetchFavouriteData } = accountStore();
+    const { fetchAccountData,fetchCartData,fetchFavouriteData } = accountStore();
 
     onMounted(() => {
-      fetchAccountData(), fetchFavouriteData(), fetchCartData();
+      fetchAccountData(), fetchCartData(), fetchFavouriteData();
     });
  
     return {
       accountData,
+      cartData,
       favouriteData,
-      cartData
     };
   }
 }

@@ -5,9 +5,9 @@ export const accountStore = defineStore("accountStore", {
     state: () => {
         return {
             accountData:{},
-            favouriteData:[],
-            cartData: []
-        };
+            cartData:[],
+            favouriteData:[]
+        }; 
     },
     actions: {
         async fetchAccountData() { 
@@ -15,18 +15,15 @@ export const accountStore = defineStore("accountStore", {
                 .get("/api/account")
                 .then((response) => response.data.data.user);
         },
-
-        async fetchFavouriteData() { 
-                this.favouriteData = await axios
-                .get("/api/account")
-                .then((response) => response.data.data.favourites);
-        },
-
         async fetchCartData() { 
-            this.accountData = await axios
-                this.cartData = await axios
-                .get("/api/account")
-                .then((response) => response.data.data.cart);
+            this.cartData = await axios
+                .get("/api/cart/account-data")
+                .then((response) => response.data.data);
+        },
+        async fetchFavouriteData() { 
+            this.favouriteData = await axios
+                .get("/api/favourite")
+                .then((response) => response.data.data);
         },
     },
 });

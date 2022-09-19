@@ -42,4 +42,9 @@ class FavouriteController extends  BaseController
         $this->favouriteRepository->deleteFromFavourite($favourite);
         return $this->emptyResponse('Delete item from favourite');
     }
+    public function getAccountFavouriteData()
+    {
+        $response = $this->favouriteRepository->getFavouriteDataAccount();
+        return $this->successResponse($response, 'Get Favourite Data For Account');
+    }
 }

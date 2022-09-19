@@ -26,4 +26,5 @@ interface CartRepositoryInterface
      * @return mixed
      */
     public function deleteFromCart(Cart $cart):void;
+    public function getCartDataAccount():array;
 }

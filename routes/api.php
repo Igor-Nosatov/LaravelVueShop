@@ -40,22 +40,32 @@ Route::get('/options', [OptionController::class, 'index']);
 Route::middleware(['auth:sanctum'])->group(function () {
   /** POST        api/gift-card      */
   Route::post('/gift-card', [GiftCardController::class, 'store']);
+
+
   /** POST         api/cart      */
   Route::post('/cart', [CartController::class, 'store']);
   /** GET         api/cart      */
   Route::get('/cart', [CartController::class, 'index']);
+  /** GET         api/cart/account-data      */
+  Route::get('/cart/account-data', [CartController::class, 'getAccountCartData']);
   /** POST        api/cart/{cart}/update      */
   Route::post('/cart/{cart}/update', [CartController::class, 'update']);
   /** POST        api/cart/{cart}/destroy      */
   Route::post('/cart/{cart}/destroy', [CartController::class, 'destroy']);
+
+
   /** GET          /me        */
   Route::get('/me', [AuthController::class, 'show']);
   /** GET          api/shop/{shoes}        */
   Route::get('/shop/{shoes}', [ShoesController::class, 'show']);
+
+
   /** POST         api/favourite        */
   Route::post('/favourite', [FavouriteController::class, 'store']);
   /** POST         api/favourite/{favourite}/destroy        */
   Route::post('/favourite/{favourite}/destroy', [FavouriteController::class, 'destroy']);
+  /** GET       api/favourite        */
+  Route::get('/favourite', [FavouriteController::class, 'getAccountFavouriteData']);
 
 
   /** GET        api/review/{shoes}      */

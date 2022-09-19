@@ -67,5 +67,11 @@ class CartController extends BaseController
         $this->cartRepository->deleteFromCart($cart);
         return $this->emptyResponse('Delete item from cart');
     }
+
+    public function getAccountCartData()
+    {
+        $response = $this->cartRepository->getCartDataAccount();
+        return $this->successResponse($response, 'Get Cart Data For Account');
+    }
 }
 
