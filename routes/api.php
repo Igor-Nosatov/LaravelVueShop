@@ -69,15 +69,16 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 
 
-
   /** POST        api/checkout      */
   Route::post('/checkout', [CheckoutController::class, 'store']);
   /** GET        api/checkout      */
   Route::get('/checkout', [CheckoutController::class, 'index']);
   /** POST        api/checkout/{checkout}/destroy      */
   Route::post('/checkout/{checkout}/destroy', [CheckoutController::class, 'destroy']);
+
   /** GET        api/account      */
   Route::get('/account', [AccountController::class, 'index']);
+
    /** POST        api/auth/logout      */
   Route::post('/auth/logout', [AuthController::class, 'logout']);
 });

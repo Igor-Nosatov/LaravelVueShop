@@ -342,9 +342,6 @@
     const store = cartStore();
     const { getCartData } = storeToRefs(store);
       
-
-
-
       return {
         getCartData
       };

@@ -8,9 +8,9 @@ export const accountStore = defineStore("accountStore", {
         };
     },
     actions: {
-        async fetchAllAccountData() {
+        async fetchAllAccountData() { 
             this.allAccountData = await axios
-                .get("/api//account")
+                .get("/api/account")
                 .then((response) => response.data.data);
         },
     },
