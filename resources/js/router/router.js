@@ -10,6 +10,7 @@ import Cart from "../views/Cart/Cart.vue";
 import Account from "../views/Account/Account.vue";
 import Checkout from "../views/Checkout/Checkout.vue";
 import GiftCard from "../views/GiftCard/GiftCard.vue";
+import NotFound from "../views/NotFound/NotFound.vue";
 
 import auth from "../services/auth/auth";
 auth.init();
@@ -74,13 +75,19 @@ const routes = [
         meta: {
             requiresAuth: true
         }
-    }, {
+    },
+     {
         path: "/gift-card",
         name: "giftCard",
         component: GiftCard,
         meta: {
             requiresAuth: true
         }
+    },
+    {
+        path: '/:pathMatch(.*)*',
+        name: 'NotFound',
+        component: NotFound
     },
 ];
 

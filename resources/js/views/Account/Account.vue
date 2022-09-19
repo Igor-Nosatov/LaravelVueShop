@@ -11,19 +11,19 @@
             </h6>
           </div>
           <div class="summary-block-desc">
-            <p class="text-start"><small>First Name:</small> {{allAccountData.user.first_name }}</p>
-            <p class="text-start"><small>Last Name: </small> {{allAccountData.user.last_name }}</p>
+            <p class="text-start"><small>First Name:</small> {{accountData.user.first_name }}</p>
+            <p class="text-start"><small>Last Name: </small> {{accountData.user.last_name }}</p>
             <p class="text-start">
-              <i class="fa-solid fa-envelope"></i> {{allAccountData.user.email }}
+              <i class="fa-solid fa-envelope"></i> {{accountData.user.email }}
             </p>
           </div>
-
+    
           <div class="summary-block">
             <h6 class="text-start text-dark ps-3 pt-3">My Wish List</h6>
           </div>
           <div class="summary-block-desc">
-
-            <div class="row g-0 product-cart p-2"  v-for="item in allAccountData.favourites"
+    
+            <div class="row g-0 product-cart p-2"  v-for="item in favouriteData"
             :key="item.index">
               <div class="col-md-4 d-flex justify-content-start">
                 <img
@@ -62,7 +62,7 @@
             <h6 class="text-start text-dark ps-3 pt-3">Order History</h6>
           </div>
           <div class="summary-block-desc">
-            <div class="row g-0 product-cart p-2"  v-for="item in allAccountData.cart"
+            <div class="row g-0 product-cart p-2"  v-for="item in cartData"
             :key="item.index">
               <div class="col-md-4 d-flex justify-content-start">
                 <img
@@ -120,21 +120,21 @@ export default {
   setup() {
 
     const store = accountStore();
-    const { allAccountData } = storeToRefs(store);
+    const { accountData,favouriteData, cartData} = storeToRefs(store);
     
-    const { fetchAllAccountData } = accountStore();
+    const { fetchAccountData,fetchFavouriteData } = accountStore();
 
     onMounted(() => {
-      fetchAllAccountData();
+      fetchAccountData(), fetchFavouriteData(), fetchCartData();
     });
-
+ 
     return {
-      allAccountData
+      accountData,
+      favouriteData,
+      cartData
     };
   }
 }
-
-
 
 </script>
 

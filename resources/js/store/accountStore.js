@@ -4,14 +4,29 @@ import { defineStore } from "pinia";
 export const accountStore = defineStore("accountStore", {
     state: () => {
         return {
-            allAccountData:[],
+            accountData:{},
+            favouriteData:[],
+            cartData: []
         };
     },
     actions: {
-        async fetchAllAccountData() { 
-            this.allAccountData = await axios
+        async fetchAccountData() { 
+            this.accountData = await axios
                 .get("/api/account")
-                .then((response) => response.data.data);
+                .then((response) => response.data.data.user);
+        },
+
+        async fetchFavouriteData() { 
+                this.favouriteData = await axios
+                .get("/api/account")
+                .then((response) => response.data.data.favourites);
+        },
+
+        async fetchCartData() { 
+            this.accountData = await axios
+                this.cartData = await axios
+                .get("/api/account")
+                .then((response) => response.data.data.cart);
         },
     },
 });
