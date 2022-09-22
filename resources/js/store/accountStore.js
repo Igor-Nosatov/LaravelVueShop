@@ -25,5 +25,10 @@ export const accountStore = defineStore("accountStore", {
                 .get("/api/favourite")
                 .then((response) => response.data.data);
         },
+        async destroyByIdFavourite(id)
+        {
+            await axios.post(`/api/favourite/${id}/destroy`);
+        }
     },
 });
+

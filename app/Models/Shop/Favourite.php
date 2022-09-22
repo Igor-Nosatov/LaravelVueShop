@@ -27,7 +27,7 @@ class Favourite extends Model
      */
     protected $casts = [
         'shoes_id' => 'integer',
-        'user_id' => 'integer',
+        'user_id' => 'integer'
     ];
 
     /**
