@@ -62,6 +62,7 @@ import { useRouter } from "vue-router";
 export default {
   setup() {
     const router = useRouter();
+
     const { loginCurrentUser } = authStore();
 
     const form = reactive({
@@ -72,7 +73,9 @@ export default {
     const loginUser = async () => {
       await loginCurrentUser({ ...form });
       await router.push({ name: "home" });
+      window.location.reload();
     };
+
 
     return {
       form,

@@ -109,6 +109,7 @@ export default {
     const registerUser = async () => {
       await registerNewUser({ ...form });
       await router.push({ name: "home" });
+      window.location.reload();
     };
 
     return {

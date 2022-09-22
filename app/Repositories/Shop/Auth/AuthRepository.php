@@ -32,7 +32,7 @@ class AuthRepository implements AuthRepositoryInterface
         $authData = [
             'userId' => User::where('id',$user->id)->first()->id,
             'userRole' => User::with(['role'])->where('id',$user->id)->first()->role_id,
-            'userName' => User::where('id',$user->id)->select(['first_name'])->first()->first_name.' '. User::where('id',$user->id)->select(['last_name'])->first()->last_name,
+            'userName' => User::where('id',$user->id)->select(['first_name'])->first()->first_name,
             'access_token' => $token,
             'token_type' => 'Bearer',
         ];
@@ -56,7 +56,7 @@ class AuthRepository implements AuthRepositoryInterface
         $authData = [
             'userId' => User::where('id',$user->id)->first()->id,
             'userRole' => User::with(['role'])->where('id',$user->id)->first()->role_id,
-            'userName' => User::where('id',$user->id)->select(['first_name'])->first()->first_name.' '. User::where('id',$user->id)->select(['last_name'])->first()->last_name,
+            'userName' => User::where('id',$user->id)->select(['first_name'])->first()->first_name,
             'access_token' => $token,
             'token_type' => 'Bearer',
         ];

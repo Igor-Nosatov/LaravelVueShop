@@ -17,11 +17,9 @@ export const cartStore = defineStore('cartStore',{
             console.log(data);
             await axios.post('/api/cart', data)
         },
-        async updateCart(id, cartById){
-            await axios.patch(`/api/cart/${id}/update`, cartById)
-        },
+
         async destroyByIdItemFromCart(id) {
-            await axios.delete(`/api/cart/${id}/destroy`);
+            await axios.post(`/api/cart/${id}/destroy`);
         },
     },
 });

@@ -49,6 +49,10 @@ export const authStore = defineStore("authStore", {
     },
 
     async logout() {
+      localStorage.removeItem("token");
+      localStorage.removeItem("userRole");
+      localStorage.removeItem("userId");
+      localStorage.removeItem("user");
       return await axios
         .get(`${window.location.origin}/api/logout`)
         .then((res) => {

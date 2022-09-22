@@ -284,8 +284,7 @@ export default {
         let user_id = JSON.parse(localStorage.getItem("userId"));
         let shoes_id = shoesId;
         let shipped_days = "3";
-        let quantity = parseInt("1");
-        await storeToCart({ ...cartForm ,shoes_id, user_id, shipped_days, quantity });
+        await storeToCart({ ...cartForm ,shoes_id, user_id, shipped_days });
       } else {
         await router.push({ name: "login" });
       }

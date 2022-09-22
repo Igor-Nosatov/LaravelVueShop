@@ -19,7 +19,6 @@ class Cart extends Model
      */
     protected $fillable = [
         'id',
-        'quantity',
         'promo_code',
         'shipped_days',
         'shoes_id',
@@ -35,7 +34,6 @@ class Cart extends Model
      */
     protected $casts = [
         'id'=> 'integer',
-        'quantity' => 'integer',
         'promo_code' => 'integer',
         'shipped_days' => 'string',
         'shoes_id' => 'integer',

@@ -24,10 +24,6 @@ class CartCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'quantity' => [
-                'required',
-                'integer',
-            ],
             'promo_code' => [
                 'string',
                 'min:5',

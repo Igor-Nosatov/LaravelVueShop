@@ -13,14 +13,6 @@ interface CartRepositoryInterface
      * @return mixed
      */
     public function addToCart(CartCreateRequest $request);
-
-    /**
-     * @param CartUpdateRequest $request
-     * @param Cart $cart
-     * @return mixed
-     */
-    public function updateToCart(CartUpdateRequest $request, Cart $cart): Cart;
-
     /**
      * @param Cart $cart
      * @return mixed

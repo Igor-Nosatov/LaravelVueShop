@@ -7,6 +7,8 @@ use App\Http\Requests\Cart\CartCreateRequest;
 use App\Http\Requests\Cart\CartUpdateRequest;
 use App\Models\Shop\Cart;
 use App\Models\Shop\Shoes;
+use App\Models\Shop\Size;
+use App\Models\Shop\Width;
 use App\Repositories\Shop\Cart\CartRepositoryInterface;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -27,18 +29,26 @@ class CartRepository implements CartRepositoryInterface
         foreach($cartData as $value)
         {
             $shoesData = Shoes::with(['images', 'color', 'category'])->find($value->shoes_id);
+            $sizeData = Size::find($value->size_id)->name;
+            $widthData = Width::find($value->width_id)->name;
+
             $cartShoesData [] = [
+                'cart_id' => $value->id,
+                'id' => $shoesData['id'],
                 'title' => $shoesData['title'],
                 'price' => ($shoesData['price']) / 100,
                 'category' => $shoesData['category']['name'],
                 'type' => $shoesData['type']['name'],
                 'color' => $shoesData['color']['name'],
-                'image_url' => Storage::disk('public')->url('img/' .  $shoesData['images']['0']['name'] . '.webp')
+                'image_url' => Storage::disk('public')->url('img/' .  $shoesData['images']['0']['name'] . '.webp'),
+                'size' => $sizeData,
+                'width' => $widthData,
+                'shipped_days'=> $value->shipped_days
             ];
             $subTotal[] = $shoesData['price'];
         }
 
-        $cartArray[] = [
+        $cartArray= [
             'shoes_data' => $cartShoesData,
             'sub_total' => (array_sum($subTotal)) / 100,
         ];
@@ -52,17 +62,6 @@ class CartRepository implements CartRepositoryInterface
     public function addToCart(CartCreateRequest $request)
     {
         return Cart::create($request->all());
-    }
-
-    /**
-     * @param CartUpdateRequest $request
-     * @param Cart $cart
-     * @return Cart
-     */
-    public function updateToCart(CartUpdateRequest $request, Cart $cart): Cart
-    {
-        $cart->update($request->all());
-        return $cart;
     }
 
     /**

@@ -32,7 +32,7 @@ class CartController extends BaseController
     public function index()
     {
         $response = $this->cartRepository->getCartData();
-        return $response; //$this->successResponse($response, 'Get Cart Data');
+        return $this->successResponse($response, 'Get Cart Data');
     }
 
     /**

@@ -84,6 +84,8 @@
             <div  v-if="userName">
               <i class="fa-solid fa-user fa-2x ps-5 pe-2"></i>
               <span  class="user_name"> Welcome to us,  {{  userName }}</span>
+              <span>|</span>
+              <button type="button" class="btn btn-light"   @click="userLogout">Logout</button>
             </div>
             <div v-else>
               <i class="fa-solid fa-user fa-2x ps-5 pe-2"></i>
@@ -112,20 +114,29 @@
 import { authStore } from "../store/authStore";
 import { onMounted } from "vue";
 import { storeToRefs } from "pinia";
+import { useRouter } from "vue-router";
 
 export default {
   setup() {
+    const router = useRouter();
     const store = authStore();
 
     const {  userName } = storeToRefs(store);
-    const { getUserData } = authStore();
+    const { getUserData, logout } = authStore();
     
+    const userLogout = async () => {
+      await logout()
+      await getUserData();
+    //  await router.push({ name: "home" });
+    };
+
     onMounted(() => {
       getUserData();
     });
 
     return {
-      userName
+      userName,
+      userLogout
     };
   },
 };
