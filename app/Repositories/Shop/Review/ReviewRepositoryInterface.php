@@ -10,6 +10,9 @@ use App\Models\Shop\Shoes;
 interface ReviewRepositoryInterface
 {
     public function showReviewForm(Shoes $shoes);
+
+    public function showReviewComment($id);
+
     public function addReviewComment(ReviewCreateRequest $request): mixed;
 
     /**

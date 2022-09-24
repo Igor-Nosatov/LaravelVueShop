@@ -26,8 +26,14 @@ class ReviewController extends BaseController
 
     public function show(Shoes $shoes)
     {
-        $response = $this->reviewRepository->showReviewForm($shoes);
-        return  $this->successResponse($response, 'Get shoes id and review form');
+       $response = $this->reviewRepository->showReviewForm($shoes);
+       return  $this->successResponse($response, 'Get shoes id and review form');
+    }
+
+    public function reviewShow($id)
+    {
+        $response = $this->reviewRepository->showReviewComment($id);
+        return  $this->successResponse($response, 'Get review id and review form');
     }
 
     /**

@@ -6,6 +6,7 @@ import Register from "../views/Auth/Register.vue";
 import Store from "../views/Store/Store.vue";
 import Product from "../views/Product/Product.vue";
 import Review from "../views/Review/Review.vue";
+import UpdateReview from "../views/Review/UpdateReview.vue";
 import Cart from "../views/Cart/Cart.vue";
 import Account from "../views/Account/Account.vue";
 import Checkout from "../views/Checkout/Checkout.vue";
@@ -46,14 +47,25 @@ const routes = [
         meta: {
             requiresAuth: true
         }
-    }, {
+    },
+    
+    {
         path: "/review/:id",
         name: "review",
         component: Review,
         meta: {
             requiresAuth: true
         }
-    }, {
+    },
+    {
+        path: "/review/:review/update",
+        name: "reviewUpdate",
+        component: UpdateReview,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
         path: "/account",
         name: "account",
         component: Account,

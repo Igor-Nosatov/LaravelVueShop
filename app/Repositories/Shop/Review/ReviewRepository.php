@@ -37,6 +37,13 @@ class ReviewRepository implements ReviewRepositoryInterface
         ];
         return $shoesArrayById;
     }
+
+    public function showReviewComment($id)
+    {
+        $review = Review::find($id);
+        return $review->toArray();
+    }
+
     /**
      * @param ReviewCreateRequest $request
      * @return mixed

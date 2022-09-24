@@ -23,6 +23,8 @@ use App\Repositories\Shop\Favourite\FavouriteRepositoryInterface;
 use App\Repositories\Shop\Favourite\FavouriteRepository;
 use App\Repositories\Shop\Account\AccountRepository;
 use App\Repositories\Shop\Account\AccountRepositoryInterface;
+use App\Repositories\Shop\SignUp\SignUpRepositoryInterface;
+use App\Repositories\Shop\SignUp\SignUpRepository;
 class RepositoryServiceProvider extends ServiceProvider
 {
     /**
@@ -42,6 +44,7 @@ class RepositoryServiceProvider extends ServiceProvider
             $this->app->bind(AuthRepositoryInterface::class, AuthRepository::class);
             $this->app->bind(FavouriteRepositoryInterface::class, FavouriteRepository::class);
             $this->app->bind(AccountRepositoryInterface::class, AccountRepository::class);
+            $this->app->bind(SignUpRepositoryInterface::class, SignUpRepository::class);
     }
 
     /**

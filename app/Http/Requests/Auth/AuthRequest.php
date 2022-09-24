@@ -28,18 +28,18 @@ class AuthRequest extends FormRequest
            'first_name' => [
                 'required',
                 'string',
-                'min:5',
+                'min:1',
                 'max:255'
             ],
             'last_name' => [
                 'required',
                 'string',
-                'min:5',
+                'min:1',
                 'max:255'
             ],
-            'email' => [
+          'email' => [
                 'required',
-                'string',
+                'email',
                 'min:3',
                 'max:255'
             ],

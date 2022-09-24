@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\Shop\CheckoutController;
 use App\Http\Controllers\Api\Shop\AccountController;
 use App\Http\Controllers\Api\Shop\ReviewController;
 use App\Http\Controllers\Api\Shop\GiftCardController;
+use App\Http\Controllers\Api\Shop\SignUpController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -41,7 +42,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
   /** POST        api/gift-card      */
   Route::post('/gift-card', [GiftCardController::class, 'store']);
 
-
   /** POST         api/cart      */
   Route::post('/cart', [CartController::class, 'store']);
   /** GET         api/cart      */
@@ -53,12 +53,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
   /** POST        api/cart/{cart}/destroy      */
   Route::post('/cart/{cart}/destroy', [CartController::class, 'destroy']);
 
-
   /** GET          /me        */
   Route::get('/me', [AuthController::class, 'show']);
   /** GET          api/shop/{shoes}        */
   Route::get('/shop/{shoes}', [ShoesController::class, 'show']);
-
 
   /** POST         api/favourite        */
   Route::post('/favourite', [FavouriteController::class, 'store']);
@@ -67,7 +65,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
   /** GET       api/favourite        */
   Route::get('/favourite', [FavouriteController::class, 'getAccountFavouriteData']);
 
-
+  Route::get('/review/{review}/show', [ReviewController::class, 'reviewShow']);
   /** GET        api/review/{shoes}      */
   Route::get('/review/{shoes}', [ReviewController::class, 'show']);
   /** POST        api/review/      */
@@ -76,8 +74,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
   Route::post('/review/{review}/update', [ReviewController::class, 'update']);
   /** POST        api/review/{review}/destroy      */
   Route::post('/review/{review}/destroy', [ReviewController::class, 'destroy']);
-
-
 
   /** POST        api/checkout      */
   Route::post('/checkout', [CheckoutController::class, 'store']);
@@ -88,7 +84,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
   /** GET        api/account      */
   Route::get('/account', [AccountController::class, 'index']);
-
    /** POST        api/auth/logout      */
   Route::post('/auth/logout', [AuthController::class, 'logout']);
+  
+  /** POST        api/auth/logout      */
+  Route::post('/sign-up', [SignUpController::class, 'store']);
 });

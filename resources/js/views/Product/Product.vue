@@ -195,7 +195,7 @@
           <div class="d-flex flex-row justify-content-start">
             <router-link
                 :to="{ name: 'review', params:shoesById.id }"
-                class="btn btn-outline-warning">
+                class="btn btn-outline-secondary">
                 Add your review
             </router-link>
           </div>
@@ -228,12 +228,23 @@
                 <span class="fw-bold"> Submitted: </span>  {{ itemReview.created_at }}
               </p>
               <p class="text-start"><span class="fw-bold">From: {{ itemReview.email }} </span> </p>
+              <p class="text-desc">
+               Location: {{ itemReview.location }}
+               </p>
               <p  class="text-start">
                 <button type="button" 
-                class="btn btn-outline-danger"  
+                class="btn btn-outline-danger m-2"  
                 @click="deleteMessage(itemReview.id, shoesById.id)">
                 Delete
               </button>
+             
+              <router-link
+                :to="{ 
+                  name: 'reviewUpdate', 
+                  params:{ review:itemReview.id }}"
+                type="button" class="btn btn-outline-dark  m-2">
+                Edit
+              </router-link>
               </p>
             </div>
           </div>

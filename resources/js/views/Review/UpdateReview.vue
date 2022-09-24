@@ -2,20 +2,11 @@
   <div class="row g-0 pt-5 pb-5">
     <div class="col-md-2"></div>
     <div class="col-md-8 p-1">
-      <form @submit.prevent="saveNewReview(shoesReviewById.id)">
-        <div class="row g-0">
-          <div class="d-flex flex-row justify-content-start">
-            <img :src="shoesReviewById.image" class="img-review no-border" />
-            <div class="pt-4 ps-2">
-              <h5 class="card-title fw-bold text-start">Write a Review</h5>
-              <p class="card-text text-start">{{ shoesReviewById.title }}</p>
-            </div>
-          </div>
-        </div>
+      <form @submit.prevent="updateReview(reviewById.shoes_id)">
         <div class="row g-0">
           <div class="col-md-12 g-0 d-flex flex-column">
             <div class="row g-0">
-              <div class="col-12 col-md-6  p-1">
+              <div class="col-12 col-md-6 p-1">
                 <p class="text-start">
                   <small class="text-start">
                     <span class="required-mark text-start">*</span>Required
@@ -31,7 +22,7 @@
                     type="text"
                     class="no-border form-control"
                     id="inputHeadline"
-                    v-model="form.review_headline"
+                    v-model="reviewById.review_headline"
                   />
                 </div>
                 <div class="mb-3 text-start pt-3">
@@ -44,7 +35,7 @@
                     max="5"
                     class="form-control no-border"
                     id="starRating"
-                    v-model="form.rating"
+                    v-model="reviewById.rating"
                     required
                   />
                 </div>
@@ -56,7 +47,7 @@
                     type="text"
                     class="no-border form-control"
                     id="inputNickname"
-                    v-model="form.nickname"
+                    v-model="reviewById.nickname"
                   />
                 </div>
                 <div class="mb-3 form-check text-start border-bottom pt-2">
@@ -64,7 +55,7 @@
                     type="checkbox"
                     class="form-check-input no-border"
                     id="iheck1"
-                    v-model="form.policy_agree"
+                    v-model="reviewById.policy_agree"
                   />
                   <label class="form-check-label text-start" for="iheck1"
                     >I agree with the terms and privacy policy</label
@@ -80,7 +71,7 @@
                     type="text"
                     class="no-border form-control"
                     id="inputLocation"
-                    v-model="form.location"
+                    v-model="reviewById.location"
                   />
                 </div>
                 <div class="mb-3 text-start pt-3">
@@ -91,7 +82,7 @@
                     type="email"
                     class="no-border form-control"
                     id="inputEmail1"
-                    v-model="form.email"
+                    v-model="reviewById.email"
                   />
                 </div>
                 <div class="form-floating pt-3">
@@ -103,7 +94,7 @@
                     placeholder="How you use the product. Things that are great about it. Things that aren't great about it."
                     id="floatingTextarea2"
                     style="height: 100px"
-                    v-model="form.comment"
+                    v-model="reviewById.comment"
                   ></textarea>
                 </div>
               </div>
@@ -128,54 +119,44 @@
   </div>
 </template>
 
-
-<script>
-import { onMounted, reactive } from "vue";
+  <script>
+import { onMounted } from "vue";
 import { storeToRefs } from "pinia";
 import { reviewStore } from "../../store/reviewStore";
 import { useRoute } from "vue-router";
 import { useRouter } from "vue-router";
+import { shopStore } from "../../store/shopStore";
 
 export default {
   setup() {
     const route = useRoute();
     const router = useRouter();
+    const store = reviewStore();
+    const { reviewById } = storeToRefs(store);
 
-    const reviewStoreRef = reviewStore();
-    const { shoesReviewById } = storeToRefs(reviewStoreRef);
-    const { getShoesReviewById, storeNewReview } = reviewStore();
+    const { getReviewForUpdate,updateCurrentReview } = reviewStore();
+    const { getShoesById } = shopStore();
 
-    const form = reactive({
-      review_headline: "",
-      nickname: "",
-      comment: "",
-      rating: "",
-      location: "",
-      email: "",
-      policy_agree: "",
-    });
-
-    async function saveNewReview(shoesId) {
-      let user_id = JSON.parse(localStorage.getItem("userId"));
-      let shoes_id = shoesId;
-      await storeNewReview({ ...form, shoes_id, user_id });
-      await router.push({ name: 'product', params: { id: shoes_id }});
-    }
+    const updateReview = async (shoes_id) => {
+      await updateCurrentReview(route.params.review, reviewById);
+      await router.push({ name: 'product', params: { id:  shoes_id}});
+      await getShoesById(shoes_id);
+    };
 
     onMounted(() => {
-      getShoesReviewById(route.params.id);
+      getReviewForUpdate(route.params.review);
     });
 
     return {
-      form,
-      shoesReviewById,
-      saveNewReview,
+      reviewById,
+      updateReview
     };
   },
 };
 </script>
+  
 
-<style scoped>
+  <style scoped>
 .img-review {
   height: 100px;
 }
@@ -202,5 +183,4 @@ export default {
   border: 1px solid #000;
 }
 </style>
-
-
+    

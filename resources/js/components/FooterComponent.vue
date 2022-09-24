@@ -2,13 +2,30 @@
   <div class="row g-0 sign-up-block justify-content-center pt-5 mt-5">
     <div class="col-md-2 pb-5"></div>
     <div class="col-sm-12 col-md-8 pb-5">
-      <div class="d-flex flex-row justify-content-center  align-items-center flex-wrap">
-        <p class="text-center text-white pt-3">
-          <small>Be the first to know about new arrivals</small>
-        </p>
-        <button type="button" class="btn btn-danger btn-lg btn-signup ms-2">
-          Sign up
-        </button>
+      <div
+        class="
+          d-flex
+          flex-row
+          justify-content-center
+          align-items-center
+          flex-wrap
+        "
+      >
+        <form @click="storeSignUp">
+          <div class="row">
+            <div class="col-6">
+              <input type="email" class="form-control" v-model="form.email" />
+            </div>
+            <div class="col-6">
+              <button
+                type="submit"
+                class="btn btn-danger btn-lg btn-signup ms-2"
+              >
+                Sign up
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
     <div class="col-md-2 pb-5"></div>
@@ -175,7 +192,7 @@
       <div class="row g-0">
         <div class="col-md-2"></div>
         <div class="col-sm-12 col-md-8">
-          <div class="d-flex flex-row justify-content-center  flex-wrap">
+          <div class="d-flex flex-row justify-content-center flex-wrap">
             <div class="pt-2">
               <span class="fw-bold">New Balance family of brands: </span>
             </div>
@@ -257,7 +274,29 @@
   </div>
 </template>
 
-<script setup>
+<script>
+import { reactive } from "vue";
+import { signUpStore } from "../../store/signUpStore";
+
+export default {
+  setup() {
+    const { storeSignUpUser } = signUpStore();
+
+    const form = reactive({
+      email: "",
+    });
+
+    const storeSignUp = async () => {
+      let user_id = JSON.parse(localStorage.getItem("userId"));
+      await storeSignUpUser({ ...form, user_id });
+    };
+
+    return {
+      form,
+      storeSignUp,
+    };
+  },
+};
 </script>
 
 <style scoped>
