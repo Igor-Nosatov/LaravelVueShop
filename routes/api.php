@@ -71,7 +71,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
   /** GET        api/review/{shoes}      */
   Route::get('/review/{shoes}', [ReviewController::class, 'show']);
   /** POST        api/review/      */
-  Route::post('/review', [ReviewController::class, 'store']);
+  Route::post('review', [ReviewController::class, 'store']);
   /** POST        api/review/{review}/update      */
   Route::post('/review/{review}/update', [ReviewController::class, 'update']);
   /** POST        api/review/{review}/destroy      */

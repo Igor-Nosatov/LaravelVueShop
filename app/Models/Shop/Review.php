@@ -42,7 +42,16 @@ class Review extends Model
         'policy_agree' => 'boolean',
         'user_id' => 'integer',
         'shoes_id' => 'integer',
+        'created_at'  => 'date:Y-m-d',
+        'updated_at'  => 'date:Y-m-d',
     ];
+
+        /**
+     * The storage format of the model's date columns.
+     *
+     * @var string
+     */
+    protected $date = 'U';
 
     /**
      * @return BelongsTo
