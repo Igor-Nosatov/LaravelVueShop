@@ -276,11 +276,11 @@
 
 <script>
 import { reactive } from "vue";
-import { signUpStore } from "../../store/signUpStore";
+import { signStore } from "./../store/signStore";
 
 export default {
   setup() {
-    const { storeSignUpUser } = signUpStore();
+    const { storeSignUpUser } = signStore();
 
     const form = reactive({
       email: "",
