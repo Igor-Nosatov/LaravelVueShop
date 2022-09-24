@@ -134,10 +134,12 @@ import { onMounted, reactive } from "vue";
 import { storeToRefs } from "pinia";
 import { reviewStore } from "../../store/reviewStore";
 import { useRoute } from "vue-router";
+import { useRouter } from "vue-router";
 
 export default {
   setup() {
     const route = useRoute();
+    const router = useRouter();
 
     const reviewStoreRef = reviewStore();
     const { shoesReviewById } = storeToRefs(reviewStoreRef);
@@ -157,6 +159,7 @@ export default {
       let user_id = JSON.parse(localStorage.getItem("userId"));
       let shoes_id = shoesId;
       await storeNewReview({ ...form, shoes_id, user_id });
+      await router.push({ name: 'product', params: { id: shoes_id }});
     }
 
     onMounted(() => {

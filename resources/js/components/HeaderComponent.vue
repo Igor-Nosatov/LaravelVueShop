@@ -127,7 +127,7 @@ export default {
     const userLogout = async () => {
       await logout()
       await getUserData();
-    //  await router.push({ name: "home" });
+      await router.push({ name: "home" });
     };
 
     onMounted(() => {

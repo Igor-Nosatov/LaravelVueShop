@@ -228,6 +228,13 @@
                 <span class="fw-bold"> Submitted: </span>  {{ itemReview.created_at }}
               </p>
               <p class="text-start"><span class="fw-bold">From: {{ itemReview.email }} </span> </p>
+              <p  class="text-start">
+                <button type="button" 
+                class="btn btn-outline-danger"  
+                @click="deleteMessage(itemReview.id, shoesById.id)">
+                Delete
+              </button>
+              </p>
             </div>
           </div>
         </div>
@@ -247,11 +254,14 @@ import { storeToRefs } from "pinia";
 import { shopStore } from "../../store/shopStore";
 import { cartStore } from "../../store/cartStore";
 import { homeStore } from "../../store/homeStore";
-import { useRoute } from "vue-router";
+import { reviewStore } from "../../store/reviewStore";
+import { useRoute } from "vue-router"; 
+import { useRouter } from "vue-router";
 
 export default {
   setup() {
     const route = useRoute();
+    const router = useRouter();
 
     const storeRef = shopStore();
     const { shoesById } = storeToRefs(storeRef);
@@ -261,6 +271,8 @@ export default {
     const { menShoesData } = storeToRefs(homeStoreData);
 
     const { storeToCart } = cartStore();
+
+    const { destroyByIdReview } = reviewStore();
 
     const cartForm = reactive({
       width_id: "",
@@ -278,6 +290,11 @@ export default {
       }
     }
 
+    async function deleteMessage (id){
+      await destroyByIdReview(id);
+      await getShoesById(route.params.id)
+    };
+
     const { fetchMenShoesData } = homeStore();
 
     onMounted(() => {
@@ -288,7 +305,8 @@ export default {
       shoesById,
       addItemToCart,
       menShoesData,
-      cartForm
+      cartForm,
+      deleteMessage
     };
   },
 };

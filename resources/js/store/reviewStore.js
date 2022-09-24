@@ -15,7 +15,7 @@ export const reviewStore = defineStore('reviewStore', {
             await axios.patch(`/api/review/${id}/update`, reviewById)
         },
         async destroyByIdReview(id) {
-            await axios.delete(`/api/review/${id}/destroy`);
+            await axios.post(`/api/review/${id}/destroy`);
         },
         async getShoesReviewById() {
             this.shoesReviewById = await axios
