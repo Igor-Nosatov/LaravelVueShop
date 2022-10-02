@@ -1,0 +1,507 @@
+{
+	"info": {
+		"_postman_id": "b2cdc1a7-ca1e-47f3-9a67-89b4c09da397",
+		"name": "NewBalance",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "562876"
+	},
+	"item": [
+		{
+			"name": "home",
+			"item": [
+				{
+					"name": "home",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/home",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"home"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "shop",
+			"item": [
+				{
+					"name": "shop",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/shop",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"shop"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "options shop",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "first_name",
+									"value": "test13",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "test13",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "r8gbh3s9Q!W@E#R$",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "test@test.com13",
+									"type": "text"
+								},
+								{
+									"key": "role_id",
+									"value": "3",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "single_product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6|I72wD1XTJH3LywdpmH58pp0VuDAhVWrUjQmRtNwX",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\n"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/review/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"review",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "first_name",
+									"value": "test13",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "test13",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "r8gbh3s9Q!W@E#R$",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "test@test.com13",
+									"type": "text"
+								},
+								{
+									"key": "role_id",
+									"value": "3",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "first_name",
+									"value": "test13",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "last_name",
+									"value": "test13",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "r8gbh3s9Q!W@E#R$",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "test@test.com13",
+									"type": "text"
+								},
+								{
+									"key": "role_id",
+									"value": "3",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "review",
+			"item": [
+				{
+					"name": "create_comment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6|I72wD1XTJH3LywdpmH58pp0VuDAhVWrUjQmRtNwX",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "review_headline",
+									"value": "arvdasvadvaevaev",
+									"type": "text"
+								},
+								{
+									"key": "nickname",
+									"value": "veavaewvaeva",
+									"type": "text"
+								},
+								{
+									"key": "comment",
+									"value": "saevdasrvesvaev",
+									"type": "text"
+								},
+								{
+									"key": "rating",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "location",
+									"value": "zdfvzsvsvdv",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "vsvs@awfaerf.arfaw",
+									"type": "text"
+								},
+								{
+									"key": "policy_agree",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "shoes_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/review",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"review"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "review_show",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6|I72wD1XTJH3LywdpmH58pp0VuDAhVWrUjQmRtNwX",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/review/126/show",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"review",
+								"126",
+								"show"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_comment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6|I72wD1XTJH3LywdpmH58pp0VuDAhVWrUjQmRtNwX",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "review_headline",
+									"value": "arvdasvadvaevaev5555555",
+									"type": "text"
+								},
+								{
+									"key": "nickname",
+									"value": "veavaewvaeva",
+									"type": "text"
+								},
+								{
+									"key": "comment",
+									"value": "saevdasrvesvaev",
+									"type": "text"
+								},
+								{
+									"key": "rating",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "location",
+									"value": "zdfvzsvsvdv",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "vsvs@awfaerf.arfaw",
+									"type": "text"
+								},
+								{
+									"key": "policy_agree",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "shoes_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/review/126/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"review",
+								"126",
+								"update"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "signUp",
+			"item": [
+				{
+					"name": "http://localhost:8000/api/sign-up",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6|I72wD1XTJH3LywdpmH58pp0VuDAhVWrUjQmRtNwX",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "vsvs@awfaerf.arfaw",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "5",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/sign-up",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"sign-up"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

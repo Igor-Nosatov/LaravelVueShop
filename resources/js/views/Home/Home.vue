@@ -3,16 +3,7 @@
     <div class="col-md-2"></div>
     <div class="col-sm-12 col-md-8 promo-bg">
       <div
-        class="
-          d-flex
-          flex-column
-          justify-content-start
-          align-items-start
-          pt-5
-          mt-5
-          ms-5
-          ps-5
-        "
+        class="d-flex flex-column justify-content-start align-items-start pt-5 mt-5 ms-5 ps-5"
       >
         <h1 class="text-start fs-1 fw-bold pt-5 pb-2 pl-5 text-shadow">
           Classics for kids
@@ -21,12 +12,12 @@
         <p class="text-start pt-2 fw-bold text-shadow">
           Give their style a fresh start for the new school year.
         </p>
-        <button
-          class="btn btn-danger btn-lg border-none pe-5 ps-5 fw-bold"
-          @click="$router.push('store')"
-        >
-          Shop Now
-        </button>
+        <router-link
+        :to="{ name: 'store' }"
+        class="btn btn-danger btn-lg ms-5 border-none fs-5"
+      >
+        Shop now
+      </router-link>
       </div>
     </div>
     <div class="col-md-2"></div>
@@ -362,9 +353,21 @@
         </div>
       </div>
       <div class="d-flex justify-content-center pt-4">
-        <button class="btn btn-outline-danger btn-lg text-danger">
-          Shop kids
-        </button>
+       
+        <router-link
+        :to="{ 
+          name: 'store',
+          query: {
+            gender: '1'
+          }
+        }"
+        class="btn btn-outline-danger btn-lg text-danger"
+      >
+      Shop kids
+      </router-link>
+
+
+
       </div>
     </div>
     <div class="col-md-2"></div>
@@ -405,9 +408,12 @@
             Pinnacle cushioning and essential stability, for the daily runner.
           </p>
           <div class="d-flex flex-row ms-2">
-            <button class="btn btn-danger btn-lg ms-5 border-none fs-5">
+            <router-link
+              :to="{ name: 'store' }"
+              class="btn btn-danger btn-lg ms-5 border-none fs-5"
+            >
               Shop now
-            </button>
+            </router-link>
           </div>
         </div>
         <div class="col-12 col-sm-12 col-md-12 col-lg-6 pt-2 pb-2">
@@ -461,7 +467,7 @@
     </div>
     <div class="col-md-2"></div>
   </div>
-</template> 
+</template>
 
 <script>
 import { onMounted } from "vue";
@@ -472,17 +478,18 @@ export default {
   setup() {
     //set specific store
     const store = homeStore();
-    const { menShoesData, womenShoesData, kidShoesData, genderCategoryData } = storeToRefs(store);
+    const { menShoesData, womenShoesData, kidShoesData, genderCategoryData } =
+      storeToRefs(store);
     //mount data what we use
     const {
       fetchMenShoesData,
       fetchWomenShoesData,
       fetchKidShoesData,
-      fetchGenderCategoryData, 
+      fetchGenderCategoryData,
     } = homeStore();
 
     onMounted(() => {
-        fetchMenShoesData(),
+      fetchMenShoesData(),
         fetchWomenShoesData(),
         fetchKidShoesData(),
         fetchGenderCategoryData();

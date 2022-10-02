@@ -46,6 +46,7 @@
                 </a>
               </div>
             </div>
+
             <div class="collapse" id="Category">
               <div class="card card-body">
                 <ul class="nav flex-column text-start">
@@ -59,6 +60,7 @@
                         type="checkbox"
                         class="form-check-input"
                         id="category"
+                        @click="selectFilters('categories', item.name)"
                       />
                       <label class="form-check-label" for="category">{{
                         item.name
@@ -348,13 +350,11 @@
                   :alt="item.title"
                 />
 
-
-
                 <div class="card-body">
                   <div class="d-flex flex-row justify-content-between">
                     <h5 class="card-title Category-start fw-bold">
                       <router-link
-                        :to="{ name: 'product', params: { id: item.id }}"
+                        :to="{ name: 'product', params: { id: item.id } }"
                         class="Category-dark fw-bold"
                       >
                         {{ item.title }}
@@ -364,7 +364,7 @@
                       ${{ item.price }}
                     </p>
                   </div>
-              
+
                   <p class="text-start">Category: {{ item.category.name }}</p>
                   <div class="d-flex flex-row justify-content-start">
                     <i
@@ -379,14 +379,6 @@
                     ></i>
                   </div>
                 </div>
-
-
-
-
-
-
-
-
               </div>
             </div>
           </div>
@@ -411,18 +403,27 @@
 
 
 <script>
-import { onMounted } from "vue";
+import {
+  onMounted,
+  reactive,
+  toRefs,
+  ref,
+  computed,
+  toRaw,
+  onUpdated,
+} from "vue";
 import { storeToRefs } from "pinia";
 import { shopStore } from "../../store/shopStore";
 import { favouriteStore } from "../../store/favouriteStore";
 import { useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 
 export default {
   setup() {
     const store = shopStore();
     const router = useRouter();
-
-    const { shoesData, optionsData } = storeToRefs(store);
+    const route = useRoute();
+    let { shoesData, optionsData } = storeToRefs(store);
     const { fetchShoesData, fetchOptionsData } = shopStore();
 
     const { storeNewFavourite } = favouriteStore();
@@ -436,6 +437,38 @@ export default {
         await router.push({ name: "login" });
       }
     }
+    const selected = {
+      categories: [],
+      colors: [],
+      support_types: [],
+      models: [],
+      width: [],
+      foot_wear_sizes: [],
+    };
+
+    async function selectFilters(filter, params) {
+
+      if (filter === "categories") {
+        if (selected.categories.includes(params) === true) {
+          let arrayElementIndex = selected.categories.indexOf(params);
+          selected.categories.splice(arrayElementIndex, 1);
+          fetchShoesData(selected.categories)
+        } else {
+          selected.categories.push(params);
+          fetchShoesData(selected.categories)
+        }
+      }
+
+      if (filter === "colors") {
+        if (selected.colors.includes(params) === true) {
+          let arrayElementIndex = selected.colors.indexOf(params);
+          selected.colors.splice(arrayElementIndex, 1);
+        } else {
+          selected.colors.push(params);
+        }
+      }
+      
+    }
 
     onMounted(() => {
       fetchShoesData(), fetchOptionsData();
@@ -445,6 +478,7 @@ export default {
       shoesData,
       optionsData,
       favouriteItems,
+      selectFilters,
     };
   },
 };

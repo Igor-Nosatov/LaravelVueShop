@@ -10,10 +10,23 @@ export const shopStore = defineStore("shopStore", {
     };
   },
   actions: {
-    async fetchShoesData() {
-      this.shoesData = await axios
-        .get("/api/shop")
-        .then((response) => response.data.data);
+    async fetchShoesData(params) {
+      if (params) {
+        if (params.length > 0) {
+          console.log(params.length);
+          this.shoesData = await axios
+            .get("/api/shop?category=1")
+            .then((response) => response.data.data);
+        } else {
+          this.shoesData = await axios
+            .get("/api/shop")
+            .then((response) => response.data.data);
+        }
+      } else {
+        this.shoesData = await axios
+          .get("/api/shop")
+          .then((response) => response.data.data);
+      }
     },
     async fetchOptionsData() {
       this.optionsData = await axios
