@@ -3,7 +3,7 @@ import {createRouter, createWebHistory} from "vue-router";
 import Home from "../views/Home/Home.vue";
 import Login from "../views/Auth/Login.vue";
 import Register from "../views/Auth/Register.vue";
-import Store from "../views/Store/Store.vue";
+import Catalog from "../views/Catalog/Catalog.vue";
 import Product from "../views/Product/Product.vue";
 import Review from "../views/Review/Review.vue";
 import UpdateReview from "../views/Review/UpdateReview.vue";
@@ -37,8 +37,8 @@ const routes = [
 
     {
         path: "/shop",
-        name: "store",
-        component: Store
+        name: "shop",
+        component: Catalog
     },
      {
         path: "/shop/product/:id",

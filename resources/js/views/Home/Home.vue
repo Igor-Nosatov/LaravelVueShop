@@ -13,7 +13,7 @@
           Give their style a fresh start for the new school year.
         </p>
         <router-link
-        :to="{ name: 'store' }"
+        :to="{ name: 'shop' }"
         class="btn btn-danger btn-lg ms-5 border-none fs-5"
       >
         Shop now
@@ -356,7 +356,7 @@
        
         <router-link
         :to="{ 
-          name: 'store',
+          name: 'shop',
           query: {
             gender: '1'
           }
@@ -409,7 +409,7 @@
           </p>
           <div class="d-flex flex-row ms-2">
             <router-link
-              :to="{ name: 'store' }"
+              :to="{ name: 'shop' }"
               class="btn btn-danger btn-lg ms-5 border-none fs-5"
             >
               Shop now

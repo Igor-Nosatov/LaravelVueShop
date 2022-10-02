@@ -60,7 +60,7 @@
                         type="checkbox"
                         class="form-check-input"
                         id="category"
-                        @click="selectFilters('categories', item.name)"
+                        @click="selectFilters('categories', item.name, item.id)"
                       />
                       <label class="form-check-label" for="category">{{
                         item.name
@@ -113,6 +113,7 @@
                         type="checkbox"
                         class="form-check-input"
                         id="supportTypes"
+                        @click="selectFilters('support_types', item.name, item.id)"
                       />
                       <label class="form-check-label" for="supportTypes">{{
                         item.name
@@ -165,6 +166,7 @@
                         type="checkbox"
                         class="form-check-input"
                         id="width"
+                        @click="selectFilters('width', item.name,  item.id)"
                       />
                       <label class="form-check-label" for="width">{{
                         item.name
@@ -218,6 +220,7 @@
                         type="checkbox"
                         class="form-check-input"
                         id="models"
+                        @click="selectFilters('models', item.name, item.id)"
                       />
                       <label class="form-check-label" for="models"
                         >#{{ item.name }}</label
@@ -259,24 +262,25 @@
             </div>
             <div class="collapse" id="size">
               <div class="card card-body flex-row flex-wrap">
-                <div
-                  class="check-btn p-1"
-                  v-for="item in optionsData.foot_wear_sizes"
-                  :key="item.index"
-                >
-                  <input
-                    type="checkbox"
-                    class="btn-check"
-                    id="btn-check-2"
-                    name="1"
-                    value="2"
-                  />
-                  <label
-                    class="btn btn-primary btn-category"
-                    for="btn-check-2"
-                    >{{ item.name }}</label
+                <ul class="nav flex-column text-start">
+                  <li
+                    class="nav-item"
+                    v-for="item in optionsData.foot_wear_sizes"
+                    :key="item.index"
                   >
-                </div>
+                    <div class="mb-3 form-check">
+                      <input
+                        type="checkbox"
+                        class="form-check-input"
+                        id="foot_wear_sizes"
+                        @click="selectFilters('foot_wear_sizes', item.name, item.id)"
+                      />
+                      <label class="form-check-label" for="foot_wear_sizes"
+                        >#{{ item.name }}</label
+                      >
+                    </div>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
@@ -311,20 +315,25 @@
             </div>
             <div class="collapse" id="color">
               <div class="card card-body flex-row flex-wrap">
-                <div
-                  class="col-4"
-                  v-for="item in optionsData.colors"
-                  :key="item.index"
-                >
-                  <div class="check-btn p-1">
-                    <input
-                      type="checkbox"
-                      class="checkbox-round"
-                      :style="{ 'background-color': item.name }"
-                    />
-                    {{ item.name }}
-                  </div>
-                </div>
+                <ul class="nav flex-column text-start">
+                  <li
+                    class="nav-item"
+                    v-for="item in optionsData.colors"
+                    :key="item.index"
+                  >
+                    <div class="mb-3 form-check">
+                      <input
+                        type="checkbox"
+                        class="form-check-input"
+                        id="colors"
+                        @click="selectFilters('colors', item.name, item.id)"
+                      />
+                      <label class="form-check-label" for="models"
+                        >#{{ item.name }}</label
+                      >
+                    </div>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
@@ -446,28 +455,69 @@ export default {
       foot_wear_sizes: [],
     };
 
-    async function selectFilters(filter, params) {
+    async function selectFilters(filter, name, id) {
+    
+      const checkFilterName = obj => obj.name === name;
 
       if (filter === "categories") {
-        if (selected.categories.includes(params) === true) {
-          let arrayElementIndex = selected.categories.indexOf(params);
-          selected.categories.splice(arrayElementIndex, 1);
-          fetchShoesData(selected.categories)
+        if (selected.categories.some(checkFilterName) === true) {
+          const findIndex = selected.categories.findIndex(a => a.id === id)
+          selected.categories.splice(findIndex, 1);
         } else {
-          selected.categories.push(params);
-          fetchShoesData(selected.categories)
+          selected.categories.push({ id: id, name: name });
         }
       }
 
+
       if (filter === "colors") {
-        if (selected.colors.includes(params) === true) {
-          let arrayElementIndex = selected.colors.indexOf(params);
-          selected.colors.splice(arrayElementIndex, 1);
+        if (selected.colors.some(checkFilterName) === true) {
+          const findIndex = selected.colors.findIndex(a => a.id === id)
+          selected.colors.splice(findIndex, 1);
         } else {
-          selected.colors.push(params);
+          selected.colors.push({ id: id, name: name });
         }
       }
-      
+
+      if (filter === "support_types") {
+        if (selected.support_types.some(checkFilterName) === true) {
+          const findIndex = selected.support_types.findIndex(a => a.id === id)
+          selected.support_types.splice(findIndex, 1);
+        } else {
+          selected.support_types.push({ id: id, name: name });
+        }
+      }
+
+      if (filter === "models") {
+        if (selected.models.some(checkFilterName) === true) {
+          const findIndex = selected.models.findIndex(a => a.id === id)
+          selected.models.splice(findIndex, 1);
+        } else {
+          selected.models.push({ id: id, name: name });
+        }
+      }
+
+      if (filter === "width") {
+        if (selected.width.some(checkFilterName) === true) {
+          const findIndex = selected.width.findIndex(a => a.id === id)
+          selected.width.splice(findIndex, 1);
+        } else {
+          selected.width.push({ id: id, name: name });
+        }
+      }
+
+      if (filter === "foot_wear_sizes") {
+        if (selected.foot_wear_sizes.some(checkFilterName) === true) {
+          const findIndex = selected.foot_wear_sizes.findIndex(a => a.id === id)
+          selected.foot_wear_sizes.splice(findIndex, 1);
+        } else {
+          selected.foot_wear_sizes.push({ id: id, name: name });
+        }
+      }
+
+
+
+      let queryString = Object.entries(selected).map(s => s[1].map(e => `${s[0]}=${e.id}`)).flat().join('&')
+      console.log(queryString)
     }
 
     onMounted(() => {
