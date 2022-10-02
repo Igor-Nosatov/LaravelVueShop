@@ -13,7 +13,7 @@ export const shopStore = defineStore("shopStore", {
     async fetchShoesData(params) {
       if (params) {
         this.shoesData = await axios
-        .get("/api/shop?category=1")
+        .get(`/api/shop?${params}`)
         .then((response) => response.data.data);
       } else {
         this.shoesData = await axios

@@ -60,7 +60,7 @@
                         type="checkbox"
                         class="form-check-input"
                         id="category"
-                        @click="selectFilters('categories', item.name, item.id)"
+                        @click="selectFilters('category', item.name, item.id)"
                       />
                       <label class="form-check-label" for="category">{{
                         item.name
@@ -447,7 +447,7 @@ export default {
       }
     }
     const selected = {
-      categories: [],
+      category: [],
       colors: [],
       support_types: [],
       models: [],
@@ -459,12 +459,12 @@ export default {
     
       const checkFilterName = obj => obj.name === name;
 
-      if (filter === "categories") {
-        if (selected.categories.some(checkFilterName) === true) {
-          const findIndex = selected.categories.findIndex(a => a.id === id)
-          selected.categories.splice(findIndex, 1);
+      if (filter === "category") {
+        if (selected.category.some(checkFilterName) === true) {
+          const findIndex = selected.category.findIndex(a => a.id === id)
+          selected.category.splice(findIndex, 1);
         } else {
-          selected.categories.push({ id: id, name: name });
+          selected.category.push({ id: id, name: name });
         }
       }
 
@@ -514,10 +514,8 @@ export default {
         }
       }
 
-
-
       let queryString = Object.entries(selected).map(s => s[1].map(e => `${s[0]}=${e.id}`)).flat().join('&')
-      console.log(queryString)
+      fetchShoesData(queryString)
     }
 
     onMounted(() => {
