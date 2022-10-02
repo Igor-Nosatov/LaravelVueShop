@@ -15,11 +15,13 @@ export const shopStore = defineStore("shopStore", {
         this.shoesData = await axios
         .get(`/api/shop?${params}`)
         .then((response) => response.data.data);
+        console.log(params);
       } else {
         this.shoesData = await axios
           .get("/api/shop")
           .then((response) => response.data.data);
       }
+     
     },
     async fetchOptionsData() {
       this.optionsData = await axios

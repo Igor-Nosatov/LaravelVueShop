@@ -110,7 +110,7 @@ class ShoesRepository implements ShoesRepositoryInterface
                     'id' => $value['sampler']['id'],
                     'name' =>  $value['sampler']['name'],
                 ],
-                'color' =>    $colorData = [
+                'color' => $colorData = [
                     'id' => $value['color']['id'],
                     'name' => $value['color']['name'],
                 ],

@@ -113,7 +113,9 @@
                         type="checkbox"
                         class="form-check-input"
                         id="supportTypes"
-                        @click="selectFilters('support_types', item.name, item.id)"
+                        @click="
+                          selectFilters('type', item.name, item.id)
+                        "
                       />
                       <label class="form-check-label" for="supportTypes">{{
                         item.name
@@ -166,7 +168,7 @@
                         type="checkbox"
                         class="form-check-input"
                         id="width"
-                        @click="selectFilters('width', item.name,  item.id)"
+                        @click="selectFilters('width', item.name, item.id)"
                       />
                       <label class="form-check-label" for="width">{{
                         item.name
@@ -219,10 +221,10 @@
                       <input
                         type="checkbox"
                         class="form-check-input"
-                        id="models"
-                        @click="selectFilters('models', item.name, item.id)"
+                        id="sampler"
+                        @click="selectFilters('sampler', item.name, item.id)"
                       />
-                      <label class="form-check-label" for="models"
+                      <label class="form-check-label" for="sampler"
                         >#{{ item.name }}</label
                       >
                     </div>
@@ -273,7 +275,9 @@
                         type="checkbox"
                         class="form-check-input"
                         id="foot_wear_sizes"
-                        @click="selectFilters('foot_wear_sizes', item.name, item.id)"
+                        @click="
+                          selectFilters('size', item.name, item.id)
+                        "
                       />
                       <label class="form-check-label" for="foot_wear_sizes"
                         >#{{ item.name }}</label
@@ -326,7 +330,7 @@
                         type="checkbox"
                         class="form-check-input"
                         id="colors"
-                        @click="selectFilters('colors', item.name, item.id)"
+                        @click="selectFilters('color', item.name, item.id)"
                       />
                       <label class="form-check-label" for="models"
                         >#{{ item.name }}</label
@@ -339,6 +343,17 @@
           </div>
         </div>
         <div class="col-md-9 pt-2 pb-2">
+          <div class="row g-0">
+            <div class="col-md-9"></div>
+            <div class="col-md-3">
+              <select class="form-select rounded-0"  aria-label="Default select example">
+                <option selected>Order by</option>
+                <option value="1">Most popular</option>
+                <option value="2">Low to high price</option>
+                <option value="3">High to low price</option>
+              </select>
+            </div>
+          </div>
           <div class="row g-0">
             <div
               class="col-md-4 p-1"
@@ -448,74 +463,80 @@ export default {
     }
     const selected = {
       category: [],
-      colors: [],
-      support_types: [],
-      models: [],
+      color: [],
+      type: [],
+      sampler: [],
       width: [],
-      foot_wear_sizes: [],
+      size: [],
     };
 
     async function selectFilters(filter, name, id) {
-    
-      const checkFilterName = obj => obj.name === name;
+      const checkFilterName = (obj) => obj.name === name;
 
       if (filter === "category") {
         if (selected.category.some(checkFilterName) === true) {
-          const findIndex = selected.category.findIndex(a => a.id === id)
+          const findIndex = selected.category.findIndex((a) => a.id === id);
           selected.category.splice(findIndex, 1);
         } else {
           selected.category.push({ id: id, name: name });
         }
       }
 
-
-      if (filter === "colors") {
-        if (selected.colors.some(checkFilterName) === true) {
-          const findIndex = selected.colors.findIndex(a => a.id === id)
-          selected.colors.splice(findIndex, 1);
+      if (filter === "color") {
+        if (selected.color.some(checkFilterName) === true) {
+          const findIndex = selected.color.findIndex((a) => a.id === id);
+          selected.color.splice(findIndex, 1);
         } else {
-          selected.colors.push({ id: id, name: name });
+          selected.color.push({ id: id, name: name });
         }
       }
 
-      if (filter === "support_types") {
-        if (selected.support_types.some(checkFilterName) === true) {
-          const findIndex = selected.support_types.findIndex(a => a.id === id)
-          selected.support_types.splice(findIndex, 1);
+      if (filter === "type") {
+        if (selected.type.some(checkFilterName) === true) {
+          const findIndex = selected.type.findIndex(
+            (a) => a.id === id
+          );
+          selected.type.splice(findIndex, 1);
         } else {
-          selected.support_types.push({ id: id, name: name });
+          selected.type.push({ id: id, name: name });
         }
       }
 
-      if (filter === "models") {
-        if (selected.models.some(checkFilterName) === true) {
-          const findIndex = selected.models.findIndex(a => a.id === id)
-          selected.models.splice(findIndex, 1);
+      if (filter === "sampler") {
+        if (selected.sampler.some(checkFilterName) === true) {
+          const findIndex = selected.sampler.findIndex((a) => a.id === id);
+          selected.sampler.splice(findIndex, 1);
         } else {
-          selected.models.push({ id: id, name: name });
+          selected.sampler.push({ id: id, name: name });
         }
       }
 
       if (filter === "width") {
         if (selected.width.some(checkFilterName) === true) {
-          const findIndex = selected.width.findIndex(a => a.id === id)
+          const findIndex = selected.width.findIndex((a) => a.id === id);
           selected.width.splice(findIndex, 1);
         } else {
           selected.width.push({ id: id, name: name });
         }
       }
 
-      if (filter === "foot_wear_sizes") {
-        if (selected.foot_wear_sizes.some(checkFilterName) === true) {
-          const findIndex = selected.foot_wear_sizes.findIndex(a => a.id === id)
-          selected.foot_wear_sizes.splice(findIndex, 1);
+      if (filter === "size") {
+        if (selected.size.some(checkFilterName) === true) {
+          const findIndex = selected.size.findIndex(
+            (a) => a.id === id
+          );
+          selected.size.splice(findIndex, 1);
         } else {
-          selected.foot_wear_sizes.push({ id: id, name: name });
+          selected.size.push({ id: id, name: name });
         }
       }
 
-      let queryString = Object.entries(selected).map(s => s[1].map(e => `${s[0]}=${e.id}`)).flat().join('&')
-      fetchShoesData(queryString)
+      let queryString = Object.entries(selected)
+        .map((s) => s[1].map((e) => `${s[0]}=${e.id}`))
+        .flat()
+        .join("&");
+
+      fetchShoesData(queryString);
     }
 
     onMounted(() => {
