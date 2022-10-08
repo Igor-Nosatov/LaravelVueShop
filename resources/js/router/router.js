@@ -38,7 +38,8 @@ const routes = [
     {
         path: "/shop",
         name: "shop",
-        component: Catalog
+        component: Catalog,
+        params: true
     },
      {
         path: "/shop/product/:id",
@@ -46,7 +47,8 @@ const routes = [
         component: Product,
         meta: {
             requiresAuth: true
-        }
+        },
+        params: true
     },
     
     {

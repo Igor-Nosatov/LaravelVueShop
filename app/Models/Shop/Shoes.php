@@ -148,7 +148,7 @@ class Shoes extends Model
     public function scopeGenderFilter($query, $genderId): mixed
     {
         return  $query->whereHas('gender', function ($query) use ($genderId) {
-            $query->whereIn('gender_id', $genderId);
+            $query->where('gender_id', $genderId);
         });
     }
 

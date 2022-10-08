@@ -455,7 +455,7 @@
 
 
 <script>
-import { onMounted } from "vue";
+import { onMounted, computed} from "vue";
 import { storeToRefs } from "pinia";
 import { shopStore } from "../../store/shopStore";
 import { favouriteStore } from "../../store/favouriteStore";
@@ -487,7 +487,7 @@ export default {
       type: [],
       sampler: [],
       width: [],
-      size: [],
+      size: []
     };
 
     const selectedOrder = {
@@ -523,6 +523,7 @@ export default {
         (queryString ? queryString : "") +
         (queryStringOrder&& queryString? "&" : "") +
         (queryStringOrder ? queryStringOrder : "");
+        console.log( fullUrlParams);
       fetchShoesData(fullUrlParams);
     }
 
@@ -650,9 +651,17 @@ export default {
 
       this.urlParamGenerate();
     }
-
+    
     onMounted(() => {
-      fetchShoesData(), fetchOptionsData();
+      const defaultPage = new URLSearchParams({page:"1"});
+      const queryDefaultPage = defaultPage.toString();
+
+      const genderFilterParam = new URLSearchParams(route.query);
+      const queryFilterParam = genderFilterParam.toString();
+
+      let urlParam = queryDefaultPage+'&'+ queryFilterParam;
+      fetchShoesData(urlParam), fetchOptionsData();
+     
     });
 
     return {

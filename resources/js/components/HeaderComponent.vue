@@ -56,13 +56,13 @@
               <li class="nav-item pe-2 ps-2">
                 <a class="nav-link text-dark" href="#">New</a>
               </li>
-              <li class="nav-item pe-2 ps-2">
+              <li class="nav-item pe-2 ps-2" @click="headerNavigation(1)">
                 <a class="nav-link text-dark" href="#">Men</a>
               </li>
-              <li class="nav-item pe-2 ps-2">
+              <li class="nav-item pe-2 ps-2" @click="headerNavigation(2)">
                 <a class="nav-link text-dark" href="#">Women</a>
               </li>
-              <li class="nav-item pe-2 ps-2">
+              <li class="nav-item pe-2 ps-2" @click="headerNavigation(3)">
                 <a class="nav-link text-dark" href="#">Kids</a>
               </li>
               <li class="nav-item pe-2 ps-2">
@@ -112,31 +112,44 @@
 
 <script>
 import { authStore } from "../store/authStore";
+import { shopStore } from "../store/shopStore";
 import { onMounted } from "vue";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
-
+import { useRoute } from "vue-router";
 export default {
   setup() {
     const router = useRouter();
+    const route = useRoute();
     const store = authStore();
 
     const {  userName } = storeToRefs(store);
     const { getUserData, logout } = authStore();
-    
+    const { fetchShoesData} = shopStore();
+
     const userLogout = async () => {
       await logout()
       await getUserData();
       await router.push({ name: "home" });
     };
+   async function headerNavigation(genderId)
+   {
+    router.push({path: '/shop', query : { gender: genderId}}); 
 
+    let queryDefaultPage = 'page' + '=' + '1'
+    let queryFilterParam = 'gender' + '=' + genderId
+    let urlParam = queryDefaultPage+'&'+ queryFilterParam;
+  
+    fetchShoesData(urlParam);
+   }
     onMounted(() => {
       getUserData();
     });
 
     return {
       userName,
-      userLogout
+      userLogout,
+      headerNavigation
     };
   },
 };
