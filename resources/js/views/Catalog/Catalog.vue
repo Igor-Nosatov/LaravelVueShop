@@ -495,9 +495,41 @@ export default {
       order_flow: [],
     };
 
+    const pagination = {
+      page:[]
+    }
+
+    //generate params for api 
+    async function urlParamGenerate()
+    {
+      let queryPageNumber = Object.entries(pagination)
+        .map((s) => s[1].map((e) => `${s[0]}=${e.pageNumber}`))
+        .flat()
+        .join("&");
+
+      let queryString = Object.entries(selected)
+        .map((s) => s[1].map((e) => `${s[0] + "[]"}=${e.id}`))
+        .flat()
+        .join("&");
+
+      let queryStringOrder = Object.entries(selectedOrder)
+        .map((s) => s[1].map((e) => `${s[0]}=${e.id}`))
+        .flat()
+        .join("&");
+
+      let fullUrlParams =
+        (queryPageNumber ? queryPageNumber : 'page=1') +
+        (queryStringOrder|| queryString? "&" : "") +
+        (queryString ? queryString : "") +
+        (queryStringOrder&& queryString? "&" : "") +
+        (queryStringOrder ? queryStringOrder : "");
+      fetchShoesData(fullUrlParams);
+    }
+
     async function selectFilters(filter, name, id) {
-      const checkFilterName = (obj) => obj.name === name;
-      const checkFilterOrderBy = (obj) => obj.id === filter;
+
+       const checkFilterName = (obj) => obj.name === name;
+       const checkFilterOrderBy = (obj) => obj.id === filter;
 
       if (filter === "price") {
         if (selectedOrder.order_by_name.some(checkFilterOrderBy) === true) {
@@ -575,26 +607,7 @@ export default {
         }
       }
 
-      let queryString = Object.entries(selected)
-        .map((s) => s[1].map((e) => `${s[0] + "[]"}=${e.id}`))
-        .flat()
-        .join("&");
-
-      let queryStringOrder = Object.entries(selectedOrder)
-        .map((s) => s[1].map((e) => `${s[0]}=${e.id}`))
-        .flat()
-        .join("&");
-
-      let fullUrlParams =
-        (queryString ? queryString : "") +
-        (queryStringOrder&& queryString? "&" : "") +
-        (queryStringOrder ? queryStringOrder : "");
-      fetchShoesData(fullUrlParams);
-    }
-
-
-    const pagination = {
-      page:[]
+      this.urlParamGenerate();
     }
 
     async function onClickPage(pageNumber) {
@@ -605,11 +618,7 @@ export default {
         pagination.page.push({ pageNumber: pageNumber });
       }
 
-      let queryPageNumber = Object.entries(pagination)
-        .map((s) => s[1].map((e) => `${s[0]}=${e.pageNumber}`))
-        .flat()
-        .join("&");
-      fetchShoesData(queryPageNumber);
+      this.urlParamGenerate();
     }
 
     async function onClickNextPage(currentPage,total_pages) {
@@ -624,12 +633,7 @@ export default {
         pagination.page.push({ pageNumber: currentPage+1 });
       }
 
-
-      let queryPageNumber = Object.entries(pagination)
-        .map((s) => s[1].map((e) => `${s[0]}=${e.pageNumber}`))
-        .flat()
-        .join("&");
-      fetchShoesData(queryPageNumber);
+      this.urlParamGenerate();
     }
 
     async function onClickPreviousPage(currentPage) {
@@ -644,11 +648,7 @@ export default {
         pagination.page.push({ pageNumber: currentPage-1 });
       }
 
-      let queryPageNumber = Object.entries(pagination)
-        .map((s) => s[1].map((e) => `${s[0]}=${e.pageNumber}`))
-        .flat()
-        .join("&");
-      fetchShoesData(queryPageNumber);
+      this.urlParamGenerate();
     }
 
     onMounted(() => {
@@ -663,7 +663,8 @@ export default {
       metaData,
       onClickPage,
       onClickNextPage,
-      onClickPreviousPage
+      onClickPreviousPage,
+      urlParamGenerate
     };
   },
 };
