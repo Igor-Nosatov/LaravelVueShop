@@ -53,9 +53,6 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-bold">
-              <li class="nav-item pe-2 ps-2">
-                <a class="nav-link text-dark" href="#">New</a>
-              </li>
               <li class="nav-item pe-2 ps-2" @click="headerNavigation(1)">
                 <a class="nav-link text-dark" href="#">Men</a>
               </li>
@@ -65,19 +62,17 @@
               <li class="nav-item pe-2 ps-2" @click="headerNavigation(3)">
                 <a class="nav-link text-dark" href="#">Kids</a>
               </li>
-              <li class="nav-item pe-2 ps-2">
-                <a class="nav-link text-dark" href="#">Sale</a>
-              </li>
             </ul>
-            <form class="d-flex justify-content-center" role="search">
+            <form class="d-flex justify-content-center" role="search"  @submit.prevent="searchShoes">
               <div class="input-group pb-4 pt-4">
                 <input
                   type="text"
                   class="form-control form-control-search form-control-width"
                   id="autoSizingInputGroup"
                   placeholder="Search"
+                  v-model="form.search"
                 />
-                <i class="fa-solid fa-magnifying-glass"></i>
+               <button type="submit"> <i class="fa-solid fa-magnifying-glass fa-2x"></i></button> 
               </div>
             </form>
            
@@ -113,7 +108,7 @@
 <script>
 import { authStore } from "../store/authStore";
 import { shopStore } from "../store/shopStore";
-import { onMounted } from "vue";
+import { onMounted,reactive } from "vue";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
 import { useRoute } from "vue-router";
@@ -126,6 +121,10 @@ export default {
     const {  userName } = storeToRefs(store);
     const { getUserData, logout } = authStore();
     const { fetchShoesData} = shopStore();
+
+    const form = reactive({
+      search: ""
+    });
 
     const userLogout = async () => {
       await logout()
@@ -142,6 +141,18 @@ export default {
   
     fetchShoesData(urlParam);
    }
+
+   async function searchShoes()
+   {
+    router.push({path: '/shop', query : { title: form.search}}); 
+
+     let queryDefaultPage = 'page' + '=' + '1'
+     let querySearchParam = 'title' + '=' + form.search
+     let urlParam = queryDefaultPage+'&'+ querySearchParam;
+
+     fetchShoesData(urlParam);
+   }
+
     onMounted(() => {
       getUserData();
     });
@@ -149,7 +160,9 @@ export default {
     return {
       userName,
       userLogout,
-      headerNavigation
+      headerNavigation,
+      form,
+      searchShoes
     };
   },
 };
