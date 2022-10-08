@@ -60,6 +60,7 @@
                         type="checkbox"
                         class="form-check-input"
                         id="category"
+                        name="category[]"
                         @click="selectFilters('category', item.name, item.id)"
                       />
                       <label class="form-check-label" for="category">{{
@@ -113,9 +114,7 @@
                         type="checkbox"
                         class="form-check-input"
                         id="supportTypes"
-                        @click="
-                          selectFilters('type', item.name, item.id)
-                        "
+                        @click="selectFilters('type', item.name, item.id)"
                       />
                       <label class="form-check-label" for="supportTypes">{{
                         item.name
@@ -275,9 +274,7 @@
                         type="checkbox"
                         class="form-check-input"
                         id="foot_wear_sizes"
-                        @click="
-                          selectFilters('size', item.name, item.id)
-                        "
+                        @click="selectFilters('size', item.name, item.id)"
                       />
                       <label class="form-check-label" for="foot_wear_sizes"
                         >#{{ item.name }}</label
@@ -344,14 +341,33 @@
         </div>
         <div class="col-md-9 pt-2 pb-2">
           <div class="row g-0">
-            <div class="col-md-9"></div>
-            <div class="col-md-3">
-              <select class="form-select rounded-0"  aria-label="Default select example">
-                <option selected>Order by</option>
-                <option value="1">Most popular</option>
-                <option value="2">Low to high price</option>
-                <option value="3">High to low price</option>
-              </select>
+            <div class="col-12 col-md-8"></div>
+            <div class="col-12 col-md-4">
+              <span>Order by: </span>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="inlineRadioOptions"
+                  id="inlineRadio1"
+                  @click="selectFilters('price', 'asc')"
+                />
+                <label class="form-check-label" for="inlineRadio1"
+                  >Low price</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="inlineRadioOptions"
+                  id="inlineRadio2"
+                  @click="selectFilters('price', 'desc')"
+                />
+                <label class="form-check-label" for="inlineRadio2"
+                  >High price</label
+                >
+              </div>
             </div>
           </div>
           <div class="row g-0">
@@ -406,18 +422,30 @@
               </div>
             </div>
           </div>
-          <div class="row g-0 pt-5 pb-5">
-            <div class="col-md-4"></div>
-            <div class="col-md-4 p-1">
-              <div class="d-flex flex-column justify-content-center">
-                <p>You have viewed 24 of 499 items</p>
-                <button class="btn btn-danger btn-lg no-border fw-bold">
-                  Load 24 more
-                </button>
+          <nav aria-label="Page navigation" class=" mt-5">
+            <ul class="pagination  pagination-lg rounded-0 justify-content-center ">
+              <li class="page-item rounded-0">
+                <a class="page-link rounded-0" tabindex="-1" @click="onClickPreviousPage(metaData.current_page)">Previous</a>
+              </li>
+              <li class="page-item rounded-0"   
+              @click="onClickPage(metaData.current_page)" 
+             >
+           <a class="page-link rounded-0">{{ metaData.current_page }}</a>
+         </li>
+              <div v-for="page in  metaData.total_pages" :key="page">
+               
+                <li class="page-item rounded-0"   
+                     @click="onClickPage(page)" 
+                     v-if="(metaData.current_page + 6) > page && (metaData.current_page) < page" >
+                  <a class="page-link rounded-0">{{ page }}</a>
+                </li>
               </div>
-            </div>
-            <div class="col-md-4"></div>
-          </div>
+            
+              <li class="page-item rounded-0">
+                <a class="page-link rounded-0"  @click="onClickNextPage(metaData.current_page,metaData.total_pages)">Next</a>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
     </div>
@@ -427,15 +455,7 @@
 
 
 <script>
-import {
-  onMounted,
-  reactive,
-  toRefs,
-  ref,
-  computed,
-  toRaw,
-  onUpdated,
-} from "vue";
+import { onMounted } from "vue";
 import { storeToRefs } from "pinia";
 import { shopStore } from "../../store/shopStore";
 import { favouriteStore } from "../../store/favouriteStore";
@@ -447,7 +467,7 @@ export default {
     const store = shopStore();
     const router = useRouter();
     const route = useRoute();
-    let { shoesData, optionsData } = storeToRefs(store);
+    let { shoesData, optionsData, metaData } = storeToRefs(store);
     const { fetchShoesData, fetchOptionsData } = shopStore();
 
     const { storeNewFavourite } = favouriteStore();
@@ -470,8 +490,32 @@ export default {
       size: [],
     };
 
+    const selectedOrder = {
+      order_by_name: [],
+      order_flow: [],
+    };
+
     async function selectFilters(filter, name, id) {
       const checkFilterName = (obj) => obj.name === name;
+      const checkFilterOrderBy = (obj) => obj.id === filter;
+
+      if (filter === "price") {
+        if (selectedOrder.order_by_name.some(checkFilterOrderBy) === true) {
+          const findIndex1 = selectedOrder.order_by_name.findIndex(
+            (a) => a.id === filter
+          );
+          selectedOrder.order_by_name.splice(findIndex1, 1);
+          const findIndex2 = selectedOrder.order_flow.findIndex(
+            (a) => a.id === name
+          );
+          selectedOrder.order_flow.splice(findIndex2, 1);
+          selectedOrder.order_by_name.push({ id: filter });
+          selectedOrder.order_flow.push({ id: name });
+        } else {
+          selectedOrder.order_by_name.push({ id: filter });
+          selectedOrder.order_flow.push({ id: name });
+        }
+      }
 
       if (filter === "category") {
         if (selected.category.some(checkFilterName) === true) {
@@ -532,11 +576,79 @@ export default {
       }
 
       let queryString = Object.entries(selected)
+        .map((s) => s[1].map((e) => `${s[0] + "[]"}=${e.id}`))
+        .flat()
+        .join("&");
+
+      let queryStringOrder = Object.entries(selectedOrder)
         .map((s) => s[1].map((e) => `${s[0]}=${e.id}`))
         .flat()
         .join("&");
 
-      fetchShoesData(queryString);
+      let fullUrlParams =
+        (queryString ? queryString : "") +
+        (queryStringOrder&& queryString? "&" : "") +
+        (queryStringOrder ? queryStringOrder : "");
+      fetchShoesData(fullUrlParams);
+    }
+
+
+    const pagination = {
+      page:[]
+    }
+
+    async function onClickPage(pageNumber) {
+      if(pagination.page.length !== 0){
+        pagination.page.splice(pagination.page['0'], 1);
+        pagination.page.push({ pageNumber: pageNumber });
+      }else{
+        pagination.page.push({ pageNumber: pageNumber });
+      }
+
+      let queryPageNumber = Object.entries(pagination)
+        .map((s) => s[1].map((e) => `${s[0]}=${e.pageNumber}`))
+        .flat()
+        .join("&");
+      fetchShoesData(queryPageNumber);
+    }
+
+    async function onClickNextPage(currentPage,total_pages) {
+      if(currentPage === total_pages){
+        pagination.page.splice(pagination.page['0'], 1);
+        pagination.page.push({ pageNumber: total_pages });
+      }
+      else if (pagination.page.length !== 0){
+        pagination.page.splice(pagination.page['0'], 1);
+        pagination.page.push({ pageNumber: currentPage+1 });
+      }else{
+        pagination.page.push({ pageNumber: currentPage+1 });
+      }
+
+
+      let queryPageNumber = Object.entries(pagination)
+        .map((s) => s[1].map((e) => `${s[0]}=${e.pageNumber}`))
+        .flat()
+        .join("&");
+      fetchShoesData(queryPageNumber);
+    }
+
+    async function onClickPreviousPage(currentPage) {
+      if(currentPage === 1){
+        pagination.page.splice(pagination.page['0'], 1);
+        pagination.page.push({ pageNumber: currentPage });
+      }
+      else if (pagination.page.length !== 0){
+        pagination.page.splice(pagination.page['0'], 1);
+        pagination.page.push({ pageNumber: currentPage-1 });
+      }else{
+        pagination.page.push({ pageNumber: currentPage-1 });
+      }
+
+      let queryPageNumber = Object.entries(pagination)
+        .map((s) => s[1].map((e) => `${s[0]}=${e.pageNumber}`))
+        .flat()
+        .join("&");
+      fetchShoesData(queryPageNumber);
     }
 
     onMounted(() => {
@@ -548,6 +660,10 @@ export default {
       optionsData,
       favouriteItems,
       selectFilters,
+      metaData,
+      onClickPage,
+      onClickNextPage,
+      onClickPreviousPage
     };
   },
 };

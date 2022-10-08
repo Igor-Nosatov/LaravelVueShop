@@ -124,7 +124,7 @@ class Shoes extends Model
     public function scopeCategoryFilter($query, $categoryId): mixed
     {
         return  $query->whereHas('category', function ($query) use ($categoryId) {
-            $query->where('category_id', $categoryId);
+           $query->whereIn('category_id', $categoryId);
         });
     }
 
@@ -136,7 +136,7 @@ class Shoes extends Model
     public function scopeTypeFilter($query, $typeId): mixed
     {
         return $query->whereHas('type', function ($query) use ($typeId) {
-            $query->where('type_id', $typeId);
+            $query->whereIn('type_id', $typeId);
         });
     }
 
@@ -148,7 +148,7 @@ class Shoes extends Model
     public function scopeGenderFilter($query, $genderId): mixed
     {
         return  $query->whereHas('gender', function ($query) use ($genderId) {
-            $query->where('gender_id', $genderId);
+            $query->whereIn('gender_id', $genderId);
         });
     }
 
@@ -159,8 +159,8 @@ class Shoes extends Model
      */
     public function scopeSamplerFilter($query, $samplerId): mixed
     {
-        return   $query->whereHas('sampler', function ($query) use ($samplerId) {
-            $query->where('sampler_id', $samplerId);
+        return $query->whereHas('sampler', function ($query) use ($samplerId) {
+            $query->whereIn('sampler_id', $samplerId);
         });
     }
 
@@ -172,7 +172,7 @@ class Shoes extends Model
     public function scopeColorFilter($query, $colorId): mixed
     {
         return  $query->whereHas('color', function ($query) use ($colorId) {
-            $query->where('color_id', $colorId);
+            $query->whereIn('color_id', $colorId);
         });
     }
 
@@ -184,7 +184,7 @@ class Shoes extends Model
     public function scopeSizeFilter($query, $sizesId): mixed
     {
         return $query->whereHas('size', function ($query) use ($sizesId) {
-            $query->where('size_id', $sizesId);
+            $query->whereIn('size_id', $sizesId);
         });
     }
 
@@ -196,7 +196,7 @@ class Shoes extends Model
     public function scopeWidthFilter($query, $widthId): mixed
     {
         return $query->whereHas('width', function ($query) use ($widthId) {
-            $query->where('width_id', $widthId);
+            $query->whereIn('width_id', $widthId);
         });
     }
 
@@ -207,7 +207,7 @@ class Shoes extends Model
      */
     public function scopeSearch($query, $title): mixed
     {
-        return $query->where('title', 'LIKE', "%{$title}%")
-            ->orWhere('description', 'LIKE', "%{$title}%");
+        return $query->where('title', 'LIKE', "%{$title}%");
     }
+   
 }

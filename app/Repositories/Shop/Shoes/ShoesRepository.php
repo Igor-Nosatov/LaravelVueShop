@@ -40,6 +40,9 @@ class ShoesRepository implements ShoesRepositoryInterface
         if ($request->filled('title')) {
             $query = $query->search($request->title);
         }
+        if ($request->filled('order_by_name') && $request->filled('order_flow')) {
+            $query = $query->orderBy($request->order_by_name, $request->order_flow );
+        }
 
         $paginate = $query->with([
             'images',
@@ -52,7 +55,6 @@ class ShoesRepository implements ShoesRepositoryInterface
             'size',
             'width',
         ])->paginate($paginationParam)->toArray();
-
 
           //lists of array for shop data
             $ratingData = [];
@@ -121,7 +123,7 @@ class ShoesRepository implements ShoesRepositoryInterface
 
         return [
             'meta' => [
-                'total' => $paginate['total'],
+                'total_pages' => (ceil($paginate['total'] / $paginate['per_page'])),
                 'per_page' => $paginate['per_page'],
                 'current_page' => $paginate['current_page'],
                 'first_page_url' => $paginate['first_page_url'],
