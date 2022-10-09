@@ -422,27 +422,55 @@
               </div>
             </div>
           </div>
-          <nav aria-label="Page navigation" class=" mt-5">
-            <ul class="pagination  pagination-lg rounded-0 justify-content-center ">
+          <nav aria-label="Page navigation" class="mt-5">
+            <ul
+              class="pagination pagination-lg rounded-0 justify-content-center"
+            >
               <li class="page-item rounded-0">
-                <a class="page-link rounded-0" tabindex="-1" @click="onClickPreviousPage(metaData.current_page)">Previous</a>
+                <a
+                  class="page-link rounded-0"
+                  tabindex="-1"
+                  @click="onClickPreviousPage(metaData.current_page)"
+                  >Previous</a
+                >
               </li>
-              <li class="page-item rounded-0"   
-              @click="onClickPage(metaData.current_page)" 
-             >
-           <a class="page-link rounded-0">{{ metaData.current_page }}</a>
-         </li>
-              <div v-for="page in  metaData.total_pages" :key="page">
-               
-                <li class="page-item rounded-0"   
-                     @click="onClickPage(page)" 
-                     v-if="(metaData.current_page + 6) > page && (metaData.current_page) < page" >
+             
+              <div v-for="page in metaData.total_pages" :key="page">
+                <li
+                class="page-item rounded-0"
+                @click="onClickPage(page)"
+                v-if=" page === 1"
+              >
+                <a class="page-link rounded-0">{{ page }}</a>
+              </li>
+                <li
+                  class="page-item rounded-0"
+                  @click="onClickPage(page)"
+                  v-if="
+                    (1 !== page) &&
+                    ((metaData.current_page + 3) > page) &&
+                    ((metaData.current_page - 2) < page) &&
+                    (metaData.total_pages !== page)"
+                >
                   <a class="page-link rounded-0">{{ page }}</a>
                 </li>
+                <li
+                class="page-item rounded-0"
+                @click="onClickPage(page)"
+                v-if="metaData.total_pages === page"
+              >
+                <a class="page-link rounded-0">{{ page }}</a>
+              </li>
               </div>
-            
+             
               <li class="page-item rounded-0">
-                <a class="page-link rounded-0"  @click="onClickNextPage(metaData.current_page,metaData.total_pages)">Next</a>
+                <a
+                  class="page-link rounded-0"
+                  @click="
+                    onClickNextPage(metaData.current_page, metaData.total_pages)
+                  "
+                  >Next</a
+                >
               </li>
             </ul>
           </nav>
@@ -455,7 +483,7 @@
 
 
 <script>
-import { onMounted, computed} from "vue";
+import { onMounted, computed } from "vue";
 import { storeToRefs } from "pinia";
 import { shopStore } from "../../store/shopStore";
 import { favouriteStore } from "../../store/favouriteStore";
@@ -487,7 +515,7 @@ export default {
       type: [],
       sampler: [],
       width: [],
-      size: []
+      size: [],
     };
 
     const selectedOrder = {
@@ -496,12 +524,11 @@ export default {
     };
 
     const pagination = {
-      page:[]
-    }
+      page: [],
+    };
 
-    //generate params for api 
-    async function urlParamGenerate()
-    {
+    //generate params for api
+    async function urlParamGenerate() {
       let queryPageNumber = Object.entries(pagination)
         .map((s) => s[1].map((e) => `${s[0]}=${e.pageNumber}`))
         .flat()
@@ -518,19 +545,18 @@ export default {
         .join("&");
 
       let fullUrlParams =
-        (queryPageNumber ? queryPageNumber : 'page=1') +
-        (queryStringOrder|| queryString? "&" : "") +
+        (queryPageNumber ? queryPageNumber : "page=1") +
+        (queryStringOrder || queryString ? "&" : "") +
         (queryString ? queryString : "") +
-        (queryStringOrder&& queryString? "&" : "") +
+        (queryStringOrder && queryString ? "&" : "") +
         (queryStringOrder ? queryStringOrder : "");
-        console.log( fullUrlParams);
+      console.log(fullUrlParams);
       fetchShoesData(fullUrlParams);
     }
 
     async function selectFilters(filter, name, id) {
-
-       const checkFilterName = (obj) => obj.name === name;
-       const checkFilterOrderBy = (obj) => obj.id === filter;
+      const checkFilterName = (obj) => obj.name === name;
+      const checkFilterOrderBy = (obj) => obj.id === filter;
 
       if (filter === "price") {
         if (selectedOrder.order_by_name.some(checkFilterOrderBy) === true) {
@@ -570,9 +596,7 @@ export default {
 
       if (filter === "type") {
         if (selected.type.some(checkFilterName) === true) {
-          const findIndex = selected.type.findIndex(
-            (a) => a.id === id
-          );
+          const findIndex = selected.type.findIndex((a) => a.id === id);
           selected.type.splice(findIndex, 1);
         } else {
           selected.type.push({ id: id, name: name });
@@ -599,9 +623,7 @@ export default {
 
       if (filter === "size") {
         if (selected.size.some(checkFilterName) === true) {
-          const findIndex = selected.size.findIndex(
-            (a) => a.id === id
-          );
+          const findIndex = selected.size.findIndex((a) => a.id === id);
           selected.size.splice(findIndex, 1);
         } else {
           selected.size.push({ id: id, name: name });
@@ -612,56 +634,53 @@ export default {
     }
 
     async function onClickPage(pageNumber) {
-      if(pagination.page.length !== 0){
-        pagination.page.splice(pagination.page['0'], 1);
+      if (pagination.page.length !== 0) {
+        pagination.page.splice(pagination.page["0"], 1);
         pagination.page.push({ pageNumber: pageNumber });
-      }else{
+      } else {
         pagination.page.push({ pageNumber: pageNumber });
       }
 
       this.urlParamGenerate();
     }
 
-    async function onClickNextPage(currentPage,total_pages) {
-      if(currentPage === total_pages){
-        pagination.page.splice(pagination.page['0'], 1);
+    async function onClickNextPage(currentPage, total_pages) {
+      if (currentPage === total_pages) {
+        pagination.page.splice(pagination.page["0"], 1);
         pagination.page.push({ pageNumber: total_pages });
-      }
-      else if (pagination.page.length !== 0){
-        pagination.page.splice(pagination.page['0'], 1);
-        pagination.page.push({ pageNumber: currentPage+1 });
-      }else{
-        pagination.page.push({ pageNumber: currentPage+1 });
+      } else if (pagination.page.length !== 0) {
+        pagination.page.splice(pagination.page["0"], 1);
+        pagination.page.push({ pageNumber: currentPage + 1 });
+      } else {
+        pagination.page.push({ pageNumber: currentPage + 1 });
       }
 
       this.urlParamGenerate();
     }
 
     async function onClickPreviousPage(currentPage) {
-      if(currentPage === 1){
-        pagination.page.splice(pagination.page['0'], 1);
+      if (currentPage === 1) {
+        pagination.page.splice(pagination.page["0"], 1);
         pagination.page.push({ pageNumber: currentPage });
-      }
-      else if (pagination.page.length !== 0){
-        pagination.page.splice(pagination.page['0'], 1);
-        pagination.page.push({ pageNumber: currentPage-1 });
-      }else{
-        pagination.page.push({ pageNumber: currentPage-1 });
+      } else if (pagination.page.length !== 0) {
+        pagination.page.splice(pagination.page["0"], 1);
+        pagination.page.push({ pageNumber: currentPage - 1 });
+      } else {
+        pagination.page.push({ pageNumber: currentPage - 1 });
       }
 
       this.urlParamGenerate();
     }
-    
+
     onMounted(() => {
-      const defaultPage = new URLSearchParams({page:"1"});
+      const defaultPage = new URLSearchParams({ page: "1" });
       const queryDefaultPage = defaultPage.toString();
 
       const genderFilterParam = new URLSearchParams(route.query);
       const queryFilterParam = genderFilterParam.toString();
 
-      let urlParam = queryDefaultPage+'&'+ queryFilterParam;
+      let urlParam = queryDefaultPage + "&" + queryFilterParam;
       fetchShoesData(urlParam), fetchOptionsData();
-     
     });
 
     return {
@@ -673,7 +692,7 @@ export default {
       onClickPage,
       onClickNextPage,
       onClickPreviousPage,
-      urlParamGenerate
+      urlParamGenerate,
     };
   },
 };
