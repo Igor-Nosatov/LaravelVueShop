@@ -425,7 +425,7 @@
           <nav aria-label="Page navigation" class="mt-5">
             <ul
               class="pagination pagination-lg rounded-0 justify-content-center"
-            >
+              v-if="metaData.total_pages > 1">
               <li class="page-item rounded-0">
                 <a
                   class="page-link rounded-0"
@@ -436,6 +436,7 @@
               </li>
              
               <div v-for="page in metaData.total_pages" :key="page">
+
                 <li
                 class="page-item rounded-0"
                 @click="onClickPage(page)"
@@ -457,7 +458,7 @@
                 <li
                 class="page-item rounded-0"
                 @click="onClickPage(page)"
-                v-if="metaData.total_pages === page"
+                v-if="metaData.total_pages  === page"
               >
                 <a class="page-link rounded-0">{{ page }}</a>
               </li>
