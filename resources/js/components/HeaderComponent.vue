@@ -4,25 +4,19 @@
     <div class="col-10">
       <div class="row g-0">
         <div class="col-sm-6 col-md-2 pt-3">
-          <p class="text-dark fw-bold">
-            <small><i class="fa-solid fa-phone"></i> + 9(999)999-99-09 </small>
+          <p class="text-dark fw-bold top-header-font-1">
+            <i class="fa-solid fa-phone"></i> + 9(999)999-99-09
           </p>
         </div>
         <div class="col-sm-6 col-md-2 offset-md-3 pt-3">
-          <p class="text-dark fw-bold">
-            <small>Free delivery from 250$ </small>
+          <p class="text-dark fw-bold top-header-font-1">
+            Free delivery from 250$
           </p>
         </div>
         <div class="col-sm-6 offset-md-3 col-md-2 pt-3">
-          <small class="ps-2 pe-2 fw-bold">
-            <a href="" class="text-dark">Contact</a>
-          </small>
-          <small class="ps-2 pe-2 fw-bold"
-            ><a href="" class="text-dark"> Help </a>
-          </small>
-          <small class="ps-2 pe-2 fw-bold"
-            ><a href="" class="text-dark"> Our stores </a>
-          </small>
+          <a href="" class="text-dark top-header-font-1 ps-2">Contact</a>
+          <a href="" class="text-dark top-header-font-1 ps-2"> Help </a>
+          <a href="" class="text-dark top-header-font-1 ps-2"> Our stores </a>
         </div>
       </div>
     </div>
@@ -53,50 +47,118 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-bold">
-              <li class="nav-item pe-2 ps-2" @click="headerNavigation(1)">
-                <a class="nav-link text-dark" href="#">Men</a>
+              <li
+                class="nav-item pe-2 ps-2 d-flex flex-row"
+                @click="headerNavigation(1)"
+              >
+                <div>
+                  <a class="nav-link text-dark top-header-font-2" href="#"
+                    >Men</a
+                  >
+                </div>
+                <div>
+                  <img
+                    src="../../../public/img/man_sneakers.png"
+                    class="link_img"
+                    @click="headerNavigation(1)"
+                  />
+                </div>
               </li>
-              <li class="nav-item pe-2 ps-2" @click="headerNavigation(2)">
-                <a class="nav-link text-dark" href="#">Women</a>
+
+              <li
+                class="nav-item pe-2 ps-2 d-flex flex-row"
+                @click="headerNavigation(2)"
+              >
+                <div>
+                  <a class="nav-link text-dark top-header-font-2" href="#"
+                    >Women</a
+                  >
+                </div>
+                <div>
+                  <img
+                    src="../../../public/img/women_sneakers.png"
+                    class="link_img"
+                    @click="headerNavigation(1)"
+                  />
+                </div>
               </li>
-              <li class="nav-item pe-2 ps-2" @click="headerNavigation(3)">
-                <a class="nav-link text-dark" href="#">Kids</a>
+
+              <li
+                class="nav-item pe-2 ps-2 d-flex flex-row"
+                @click="headerNavigation(3)"
+              >
+                <div>
+                  <a class="nav-link text-dark top-header-font-2" href="#"
+                    >Kids
+                  </a>
+                </div>
+                <div>
+                  <img
+                    src="../../../public/img/kid_sneakers.png"
+                    class="link_img1"
+                    @click="headerNavigation(1)"
+                  />
+                </div>
               </li>
             </ul>
-            <form class="d-flex justify-content-center" role="search"  @submit.prevent="searchShoes">
-              <div class="input-group pb-4 pt-4">
+            <form
+              class="justify-content-center mt-2 pe-5"
+              role="search"
+              @submit.prevent="searchShoes"
+            >
+              <div class="input-group mb-3">
                 <input
                   type="text"
-                  class="form-control form-control-search form-control-width"
-                  id="autoSizingInputGroup"
-                  placeholder="Search"
+                  class="form-control rounded-0 form-size"
+                  placeholder="Shoes title"
+                  aria-label="Shoes title"
+                  aria-describedby="basic-addon1"
                   v-model="form.search"
                 />
-               <button type="submit"> <i class="fa-solid fa-magnifying-glass fa-2x"></i></button> 
+                <span
+                  class="input-group-text rounded-0"
+                  id="basic-addon1"
+                  type="submit"
+                >
+                  <i class="fa-solid fa-magnifying-glass"></i
+                ></span>
               </div>
             </form>
-           
-            <div  v-if="userName">
-              <i class="fa-solid fa-user fa-2x ps-5 pe-2"></i>
-              <span  class="user_name"> Welcome to us,  {{  userName }}</span>
-              <span>|</span>
-              <button type="button" class="btn btn-light"   @click="userLogout">Logout</button>
+            <div v-if="userName" class="flex-row d-flex">
+              <div>
+                <span class="user_name"> Welcome to us, {{ userName }}</span>
+              </div>
+              <div><span>|</span></div>
+              <div>
+                <button type="button" class="btn btn-light" @click="userLogout">
+                  Logout
+                </button>
+              </div>
             </div>
-            <div v-else>
-              <i class="fa-solid fa-user fa-2x ps-5 pe-2"></i>
-              <router-link :to="{ name: 'login' }" class="pe-2 fw-bold text-dark"
-                >Log in</router-link
-              >
-              <span>|</span>
-              <router-link
-                :to="{ name: 'register' }"
-                class="pe-5 ps-2 fw-bold text-dark"
-                >Join</router-link
-              >
-              
+            <div v-else class="flex-row d-flex">
+              <div>
+                <router-link
+                  :to="{ name: 'login' }"
+                  class="pe-2 fw-bold text-dark"
+                  >Log in</router-link
+                >
+              </div>
+              <div><span>|</span></div>
+              <div>
+                <router-link
+                  :to="{ name: 'register' }"
+                  class="pe-5 ps-2 fw-bold text-dark"
+                  >Join</router-link
+                >
+              </div>
             </div>
-          
-            <a href=""><i class="fa-solid fa-bag-shopping fa-2x"></i></a>
+
+            <router-link
+              :to="{ name: 'cart' }"
+              class="pe-5 ps-2 fw-bold text-dark"
+              ><span class="mt-2">Cart </span>
+              <img src="../../../public/img/shop_bag.png" class="link_img ms-2"
+            /></router-link>
           </div>
         </div>
       </nav>
@@ -108,7 +170,7 @@
 <script>
 import { authStore } from "../store/authStore";
 import { shopStore } from "../store/shopStore";
-import { onMounted,reactive } from "vue";
+import { onMounted, reactive } from "vue";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
 import { useRoute } from "vue-router";
@@ -118,40 +180,38 @@ export default {
     const route = useRoute();
     const store = authStore();
 
-    const {  userName } = storeToRefs(store);
+    const { userName } = storeToRefs(store);
     const { getUserData, logout } = authStore();
-    const { fetchShoesData} = shopStore();
+    const { fetchShoesData } = shopStore();
 
     const form = reactive({
-      search: ""
+      search: "",
     });
 
     const userLogout = async () => {
-      await logout()
+      await logout();
       await getUserData();
       await router.push({ name: "home" });
     };
-   async function headerNavigation(genderId)
-   {
-    router.push({path: '/shop', query : { gender: genderId}}); 
+    async function headerNavigation(genderId) {
+      router.push({ path: "/shop", query: { gender: genderId } });
 
-    let queryDefaultPage = 'page' + '=' + '1'
-    let queryFilterParam = 'gender' + '=' + genderId
-    let urlParam = queryDefaultPage+'&'+ queryFilterParam;
-  
-    fetchShoesData(urlParam);
-   }
+      let queryDefaultPage = "page" + "=" + "1";
+      let queryFilterParam = "gender" + "=" + genderId;
+      let urlParam = queryDefaultPage + "&" + queryFilterParam;
 
-   async function searchShoes()
-   {
-    router.push({path: '/shop', query : { title: form.search}}); 
+      fetchShoesData(urlParam);
+    }
 
-     let queryDefaultPage = 'page' + '=' + '1'
-     let querySearchParam = 'title' + '=' + form.search
-     let urlParam = queryDefaultPage+'&'+ querySearchParam;
+    async function searchShoes() {
+      router.push({ path: "/shop", query: { title: form.search } });
 
-     fetchShoesData(urlParam);
-   }
+      let queryDefaultPage = "page" + "=" + "1";
+      let querySearchParam = "title" + "=" + form.search;
+      let urlParam = queryDefaultPage + "&" + querySearchParam;
+
+      fetchShoesData(urlParam);
+    }
 
     onMounted(() => {
       getUserData();
@@ -162,13 +222,10 @@ export default {
       userLogout,
       headerNavigation,
       form,
-      searchShoes
+      searchShoes,
     };
   },
 };
-
-
-  
 </script>
 
 <style scoped>
@@ -206,7 +263,7 @@ export default {
   left: -30px;
   top: 10px;
 }
-.user_name{
+.user_name {
   width: 50px;
 }
 
@@ -214,6 +271,36 @@ export default {
   .fa-magnifying-glass {
     display: none;
   }
+}
+
+.top-header-font-1 {
+  font-size: 16px;
+}
+
+.top-header-font-2 {
+  font-size: 22px !important;
+}
+
+.link_img {
+  height: 40px;
+  cursor: pointer;
+}
+
+.link_img1 {
+  margin-top: 3px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.fa-magnifying-glass {
+  position: relative;
+  position: relative;
+  top: -1px;
+  left: 1px;
+}
+
+.form-size {
+  height: 50px;
 }
 </style>
 

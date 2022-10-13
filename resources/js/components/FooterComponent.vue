@@ -13,16 +13,14 @@
       >
         <form @click="storeSignUp">
           <div class="row">
-            <div class="col-6">
-              <input type="email" class="form-control" v-model="form.email" />
-            </div>
-            <div class="col-6">
-              <button
+            <div class="input-group mb-3">
+              <input type="email" class="form-control rounded-0 sign_up_email" placeholder="News subscribe....." v-model="form.email" />
+              <span
+              class="btn btn-danger btn-lg btn-signup ms-2  rounded-0"
+                id="basic-addon1"
                 type="submit"
-                class="btn btn-danger btn-lg btn-signup ms-2"
               >
-                Sign up
-              </button>
+         <h4> Sign up</h4>  </span>
             </div>
           </div>
         </form>
@@ -142,12 +140,13 @@
         </div>
         <div class="col-sm-6 col-md-3 ps-3">
           <div class="d-flex justify-content-start">
-            <a class="navbar-brand" href="#">
+            <router-link :to="{ name: 'home' }" class="navbar-brand">
               <img
                 src="../../../public/img/logo.png"
                 alt="new balance logo"
                 class="logo"
-            /></a>
+              />
+            </router-link>
           </div>
           <p class="text-start">
             Independent since 1906, we empower people through sport and
@@ -194,25 +193,25 @@
         <div class="col-sm-12 col-md-8">
           <div class="d-flex flex-row justify-content-center flex-wrap">
             <div class="pt-2">
-              <span class="fw-bold">New Balance family of brands: </span>
+              <span class="">New Balance family of brands: </span>
             </div>
             <div class="p-1">
               <img
-                src="../../../public/img/1icon.svg"
+                src="../../../public/img/logo1.png"
                 alt=""
                 class="additional-logo"
               />
             </div>
-            <div class="p-1">
+            <div class="p-2">
               <img
-                src="../../../public/img/2icon.svg"
+                src="../../../public/img/logo2.png"
                 alt=""
                 class="additional-logo"
               />
             </div>
-            <div class="p-1">
+            <div class="p-2">
               <img
-                src="../../../public/img/3icon.svg"
+                src="../../../public/img/logo3.png"
                 alt=""
                 class="additional-logo1"
               />
@@ -333,6 +332,9 @@ export default {
 
 .nav-link-footer {
   font-size: 14px;
+}
+.sign_up_email{
+  min-width: 300px;
 }
 </style>
 

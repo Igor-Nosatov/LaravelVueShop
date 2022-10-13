@@ -48,6 +48,7 @@ class  HomeRepository implements HomeRepositoryInterface
         $categoryData = Gender::get();
         foreach ( $categoryData as $value) {
             $categoryShoesData[] = [
+                'id' => $value['id'],
                 'name' => $value['name'],
                 'image_url' =>  Storage::disk('public')->url('img/' .  $value['image'].'.webp')
             ];

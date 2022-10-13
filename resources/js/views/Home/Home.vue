@@ -353,21 +353,6 @@
         </div>
       </div>
       <div class="d-flex justify-content-center pt-4">
-       
-        <router-link
-        :to="{ 
-          name: 'shop',
-          query: {
-            gender: '1'
-          }
-        }"
-        class="btn btn-outline-danger btn-lg text-danger"
-      >
-      Shop kids
-      </router-link>
-
-
-
       </div>
     </div>
     <div class="col-md-2"></div>
@@ -384,8 +369,8 @@
           v-for="item in genderCategoryData"
           :key="item.index"
         >
-          <img :src="item.image_url" alt="" class="category-image mb-3" />
-          <a href="" class="text-dark text-middle fw-bold p-3 mt-4 fs-5">{{
+          <img :src="item.image_url" alt="" class="category-image mb-3" @click="shopByGender(item.id)" />
+          <a  class="text-dark text-middle fw-bold p-3 mt-4 fs-5" @click="shopByGender(item.id)" >{{
             item.name
           }}</a>
         </div>
@@ -427,10 +412,10 @@
             Pinnacle cushioning and essential stability, for the daily runner.
           </p>
           <div class="d-flex flex-row ms-2">
-            <button class="btn btn-danger btn-lg ms-5 border-none fs-5">
+            <button class="btn btn-danger btn-lg ms-5 border-none fs-5" @click="shopByGender(1)">
               Shop Men
             </button>
-            <button class="btn btn-danger btn-lg ms-5 border-none fs-5">
+            <button class="btn btn-danger btn-lg ms-5 border-none fs-5"  @click="shopByGender(2)">
               Shop Women
             </button>
           </div>
@@ -447,19 +432,19 @@
       <div class="row g-0">
         <div
           class="col-md-3 p-1"
-          v-for="item in menShoesData"
-          :key="item.index"
+          v-for="itemMenShoes in menShoesData"
+          :key="itemMenShoes.index"
         >
           <div class="card" style="width: 100%">
-            <img :src="item.image_url" class="card-img-top" />
+            <img :src="itemMenShoes.image_url" class="card-img-top" />
             <div class="card-body">
-              <p class="card-text">
-                <span class="product-title text-start">
-                  {{ item.title }}
+              <p class="card-text d-flex flex-column">
+                <span class="product-title ">
+                 Name: {{ itemMenShoes.title }}
                 </span>
-                <span class="product-price text-end">$ {{ item.price }}</span>
+                <span class="product-price">Price: ${{itemMenShoes.price }}</span>
+                <small class="product-category">Category: {{ itemMenShoes.gender }}</small>
               </p>
-              <small class="product-category">{{ item.gender }}</small>
             </div>
           </div>
         </div>
@@ -473,7 +458,8 @@
 import { onMounted } from "vue";
 import { storeToRefs } from "pinia";
 import { homeStore } from "../../store/homeStore";
-
+import { shopStore } from "../../store/shopStore";
+import { useRouter } from "vue-router";
 export default {
   setup() {
     //set specific store
@@ -487,6 +473,19 @@ export default {
       fetchKidShoesData,
       fetchGenderCategoryData,
     } = homeStore();
+    const router = useRouter();
+    const { fetchShoesData } = shopStore();
+
+    async function shopByGender(genderId) {
+      router.push({ path: "/shop", query: { gender: genderId } });
+
+      let queryDefaultPage = "page" + "=" + "1";
+      let queryFilterParam = "gender" + "=" + genderId;
+      let urlParam = queryDefaultPage + "&" + queryFilterParam;
+
+      fetchShoesData(urlParam);
+    }
+
 
     onMounted(() => {
       fetchMenShoesData(),
@@ -500,6 +499,7 @@ export default {
       womenShoesData,
       kidShoesData,
       genderCategoryData,
+      shopByGender
     };
   },
 };
