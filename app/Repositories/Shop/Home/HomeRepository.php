@@ -17,6 +17,7 @@ class  HomeRepository implements HomeRepositoryInterface
         $itemsMensShoesData = Shoes::with(['images','gender'])->where('gender_id',1)->take(4)->get();
         foreach ($itemsMensShoesData as $value) {
            $mensShoesData[] = [
+                'id' => $value['id'],
                 'title' => $value['title'],
                 'price' => $value['price'],
                 'gender' => $value['gender']['name'],
@@ -27,6 +28,7 @@ class  HomeRepository implements HomeRepositoryInterface
         $itemsWomensShoesData = Shoes::with(['images','gender'])->where('gender_id',2)->take(4)->get();
         foreach ($itemsWomensShoesData as $value) {
             $womenShoesData[] = [
+                'id' => $value['id'],
                 'title' => $value['title'],
                 'price' => $value['price'],
                 'gender' => $value['gender']['name'],
@@ -38,6 +40,7 @@ class  HomeRepository implements HomeRepositoryInterface
         $itemsKidsShoesData = Shoes::with(['images','gender'])->where('gender_id',3)->take(4)->get();
         foreach ($itemsKidsShoesData as $value) {
             $kidsShoesData[] = [
+                'id' => $value['id'],
                 'title' => $value['title'],
                 'price' => $value['price'],
                 'gender' => $value['gender']['name'],

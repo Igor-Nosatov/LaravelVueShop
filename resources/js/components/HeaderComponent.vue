@@ -48,7 +48,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-bold">
               <li
-                class="nav-item pe-2 ps-2 d-flex flex-row"
+                class="nav-item pe-1 ps-1 d-flex flex-row"
                 @click="headerNavigation(1)"
               >
                 <div>
@@ -66,7 +66,7 @@
               </li>
 
               <li
-                class="nav-item pe-2 ps-2 d-flex flex-row"
+                class="nav-item pe-1 ps-1 d-flex flex-row"
                 @click="headerNavigation(2)"
               >
                 <div>
@@ -84,7 +84,7 @@
               </li>
 
               <li
-                class="nav-item pe-2 ps-2 d-flex flex-row"
+                class="nav-item  pe-1 ps-1 d-flex flex-row"
                 @click="headerNavigation(3)"
               >
                 <div>
@@ -110,10 +110,11 @@
                 <input
                   type="text"
                   class="form-control rounded-0 form-size"
-                  placeholder="Shoes title"
-                  aria-label="Shoes title"
+                  placeholder="Shoes Name..."
+                  aria-label="Shoes Name..."
                   aria-describedby="basic-addon1"
                   v-model="form.search"
+                  required
                 />
                 <span
                   class="input-group-text rounded-0"
@@ -125,12 +126,12 @@
               </div>
             </form>
             <div v-if="userName" class="flex-row d-flex">
-              <div>
-                <span class="user_name"> Welcome to us, {{ userName }}</span>
+              <div class="mt-2">
+                <span class="user_name text-decoration-underline"> Welcome, {{ userName }}</span>
               </div>
-              <div><span>|</span></div>
-              <div>
-                <button type="button" class="btn btn-light" @click="userLogout">
+              <div  class="ps-2 mt-2"><span>|</span></div>
+              <div >
+                <button type="button" class="btn btn-light text-decoration-underline" @click="userLogout">
                   Logout
                 </button>
               </div>
@@ -153,12 +154,14 @@
               </div>
             </div>
 
-            <router-link
+          <router-link
               :to="{ name: 'cart' }"
-              class="pe-5 ps-2 fw-bold text-dark"
-              ><span class="mt-2">Cart </span>
-              <img src="../../../public/img/shop_bag.png" class="link_img ms-2"
-            /></router-link>
+              class="pe-5 fw-bold text-dark text-start pt-1 d-flex flex-row"
+              >
+             <h6 class="pt-2">Cart</h6>
+             <img src="../../../public/img/shop_bag.png" class="link_img ms-2"/>
+          </router-link>
+
           </div>
         </div>
       </nav>
@@ -278,7 +281,7 @@ export default {
 }
 
 .top-header-font-2 {
-  font-size: 22px !important;
+  font-size: 18px !important;
 }
 
 .link_img {

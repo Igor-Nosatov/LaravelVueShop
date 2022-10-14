@@ -1,7 +1,7 @@
 <template>
-  <div class="row g-0 sign-up-block justify-content-center pt-5 mt-5">
-    <div class="col-md-2 pb-5"></div>
-    <div class="col-sm-12 col-md-8 pb-5">
+  <div class="row g-0 sign-up-block justify-content-center pt-5">
+    <div class="col-2 pb-5"></div>
+    <div class="col-12 col-md-8 pb-5">
       <div
         class="
           d-flex
@@ -12,21 +12,26 @@
         "
       >
         <form @click="storeSignUp">
-          <div class="row">
-            <div class="input-group mb-3">
-              <input type="email" class="form-control rounded-0 sign_up_email" placeholder="News subscribe....." v-model="form.email" />
-              <span
-              class="btn btn-danger btn-lg btn-signup ms-2  rounded-0"
-                id="basic-addon1"
-                type="submit"
-              >
-         <h4> Sign up</h4>  </span>
+          <div class="row  g-0">
+            <div class="input-group mb-3 d-flex row g-0 ">
+              <div class="col-12 col-md-7 mt-2">
+                <input type="email" class="form-control rounded-0 sign_up_email  pt-3 pb-3" placeholder="News subscribe....." v-model="form.email" />
+              </div>
+              <div class="col-12 col-md-5 mt-2">
+                <div
+                class="btn btn-danger btn-lg btn-signup  rounded-0"
+                  id="basic-addon1"
+                  type="submit"
+                >
+                Sign Up
+                </div>
+              </div>
             </div>
           </div>
         </form>
       </div>
     </div>
-    <div class="col-md-2 pb-5"></div>
+    <div class="col-2 pb-5"></div>
   </div>
   <div class="row g-0 pt-5 pb-5">
     <div class="col-md-1"></div>
@@ -305,10 +310,11 @@ export default {
 .btn-signup {
   border-radius: 0px !important;
   height: 50px;
-  width: 250px;
+  width: 100%;
   font-size: 14px;
   float: left;
   font-weight: bold;
+  font-size:19px;
 }
 .logo {
   height: 80px;
@@ -333,8 +339,6 @@ export default {
 .nav-link-footer {
   font-size: 14px;
 }
-.sign_up_email{
-  min-width: 300px;
-}
+
 </style>
 

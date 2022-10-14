@@ -98,17 +98,18 @@
                     <div class="card" style="width: 100%">
                       <img :src="item.image_url" class="card-img-top" />
                       <div class="card-body">
-                        <p class="card-text">
-                          <span class="product-title text-start">
-                            {{ item.title }}
-                          </span>
-                          <span class="product-price text-end"
-                            >$ {{ item.price }}</span
-                          >
-                        </p>
-                        <small class="product-category">{{
+                        <p class="product-category text-center">Category: {{
                           item.gender
-                        }}</small>
+                        }}</p>
+                        <p class="product-price text-end  text-center"
+                        >Price: ${{ item.price }}</p
+                      >
+                        <router-link
+                        :to="{ name: 'product', params: { id: item.id } }"
+                         class="product-title  text-center"
+                      >
+                      Name: {{ item.title }}
+                      </router-link>
                       </div>
                     </div>
                   </div>
@@ -124,17 +125,18 @@
                     <div class="card" style="width: 100%">
                       <img :src="item.image_url" class="card-img-top" />
                       <div class="card-body">
-                        <p class="card-text">
-                          <span class="product-title text-start">
-                            {{ item.title }}
-                          </span>
-                          <span class="product-price text-end"
-                            >$ {{ item.price }}</span
-                          >
-                        </p>
-                        <small class="product-category">{{
+                        <p class="product-category text-center">Category: {{
                           item.gender
-                        }}</small>
+                        }}</p>
+                        <p class="product-price text-end  text-center"
+                        >Price: ${{ item.price }}</p
+                      >
+                        <router-link
+                        :to="{ name: 'product', params: { id: item.id } }"
+                         class="product-title  text-center"
+                      >
+                      Name: {{ item.title }}
+                      </router-link>
                       </div>
                     </div>
                   </div>
@@ -187,22 +189,23 @@
                     v-for="item in womenShoesData"
                     :key="item.index"
                   >
-                    <div class="card" style="width: 100%">
-                      <img :src="item.image_url" class="card-img-top" />
-                      <div class="card-body">
-                        <p class="card-text">
-                          <span class="product-title text-start">
-                            {{ item.title }}
-                          </span>
-                          <span class="product-price text-end"
-                            >$ {{ item.price }}</span
-                          >
-                        </p>
-                        <small class="product-category">{{
-                          item.gender
-                        }}</small>
-                      </div>
+                  <div class="card" style="width: 100%">
+                    <img :src="item.image_url" class="card-img-top" />
+                    <div class="card-body">
+                      <p class="product-category text-center">Category: {{
+                        item.gender
+                      }}</p>
+                      <p class="product-price text-end  text-center"
+                      >Price: ${{ item.price }}</p
+                    >
+                      <router-link
+                      :to="{ name: 'product', params: { id: item.id } }"
+                       class="product-title  text-center"
+                    >
+                    Name: {{ item.title }}
+                    </router-link>
                     </div>
+                  </div>
                   </div>
                 </div>
               </div>
@@ -213,22 +216,23 @@
                     v-for="item in womenShoesData"
                     :key="item.index"
                   >
-                    <div class="card" style="width: 100%">
-                      <img :src="item.image_url" class="card-img-top" />
-                      <div class="card-body">
-                        <p class="card-text">
-                          <span class="product-title text-start">
-                            {{ item.title }}
-                          </span>
-                          <span class="product-price text-end"
-                            >$ {{ item.price }}</span
-                          >
-                        </p>
-                        <small class="product-category">{{
-                          item.gender
-                        }}</small>
-                      </div>
+                  <div class="card" style="width: 100%">
+                    <img :src="item.image_url" class="card-img-top" />
+                    <div class="card-body">
+                      <p class="product-category text-center">Category: {{
+                        item.gender
+                      }}</p>
+                      <p class="product-price text-end  text-center"
+                      >Price: ${{ item.price }}</p
+                    >
+                      <router-link
+                      :to="{ name: 'product', params: { id: item.id } }"
+                       class="product-title  text-center"
+                    >
+                    Name: {{ item.title }}
+                    </router-link>
                     </div>
+                  </div>
                   </div>
                 </div>
               </div>
@@ -279,22 +283,23 @@
                     v-for="item in menShoesData"
                     :key="item.index"
                   >
-                    <div class="card" style="width: 100%">
-                      <img :src="item.image_url" class="card-img-top" />
-                      <div class="card-body">
-                        <p class="card-text">
-                          <span class="product-title text-start">
-                            {{ item.title }}
-                          </span>
-                          <span class="product-price text-end"
-                            >$ {{ item.price }}</span
-                          >
-                        </p>
-                        <small class="product-category">{{
-                          item.gender
-                        }}</small>
-                      </div>
+                  <div class="card" style="width: 100%">
+                    <img :src="item.image_url" class="card-img-top" />
+                    <div class="card-body">
+                      <p class="product-category text-center">Category: {{
+                        item.gender
+                      }}</p>
+                      <p class="product-price text-end  text-center"
+                      >Price: ${{ item.price }}</p
+                    >
+                      <router-link
+                      :to="{ name: 'product', params: { id: item.id } }"
+                       class="product-title  text-center"
+                    >
+                    Name: {{ item.title }}
+                    </router-link>
                     </div>
+                  </div>
                   </div>
                 </div>
               </div>
@@ -305,22 +310,23 @@
                     v-for="item in menShoesData"
                     :key="item.index"
                   >
-                    <div class="card" style="width: 100%">
-                      <img :src="item.image_url" class="card-img-top" />
-                      <div class="card-body">
-                        <p class="card-text">
-                          <span class="product-title text-start">
-                            {{ item.title }}
-                          </span>
-                          <span class="product-price text-end"
-                            >$ {{ item.price }}</span
-                          >
-                        </p>
-                        <small class="product-category">{{
-                          item.gender
-                        }}</small>
-                      </div>
+                  <div class="card" style="width: 100%">
+                    <img :src="item.image_url" class="card-img-top" />
+                    <div class="card-body">
+                      <p class="product-category text-center">Category: {{
+                        item.gender
+                      }}</p>
+                      <p class="product-price text-end  text-center"
+                      >Price: ${{ item.price }}</p
+                    >
+                      <router-link
+                      :to="{ name: 'product', params: { id: item.id } }"
+                       class="product-title  text-center"
+                    >
+                    Name: {{ item.title }}
+                    </router-link>
                     </div>
+                  </div>
                   </div>
                 </div>
               </div>
@@ -428,7 +434,7 @@
     <div class="col-md-2"></div>
     <div class="col-md-8 d-none d-sm-none d-md-none d-lg-block">
       <h3 class="text-start text-dark fw-bold">Recommended for you</h3>
-
+    
       <div class="row g-0">
         <div
           class="col-md-3 p-1"
@@ -439,11 +445,14 @@
             <img :src="itemMenShoes.image_url" class="card-img-top" />
             <div class="card-body">
               <p class="card-text d-flex flex-column">
-                <span class="product-title ">
-                 Name: {{ itemMenShoes.title }}
-                </span>
-                <span class="product-price">Price: ${{itemMenShoes.price }}</span>
-                <small class="product-category">Category: {{ itemMenShoes.gender }}</small>
+                <small class="product-category pt-1">Category: {{ itemMenShoes.gender }}</small>
+                <span class="product-price pt-1">Price: ${{itemMenShoes.price }}</span>
+                <router-link
+                :to="{ name: 'product', params: { id: itemMenShoes.id } }"
+                 class="product-title"
+              >
+              Name: {{ itemMenShoes.title }}
+              </router-link>
               </p>
             </div>
           </div>
