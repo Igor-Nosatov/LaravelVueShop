@@ -520,8 +520,54 @@ export default {
   width: 100%;
 }
 .banner-img {
-  height: 800px;
+  height: 700px;
   width: 100%;
+}
+
+@media screen and (max-width: 900px) {
+  .banner-img {
+    height: 550px;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .banner-img {
+    height: 500px;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 700px) {
+  .banner-img {
+    height: 480px;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .banner-img {
+    height: 450px;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 520px) {
+  .banner-img {
+    height: 400px;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 440px) {
+  .banner-img {
+    height: 350px;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 340px) {
+  .banner-img {
+    height: 300px;
+    width: 100%;
+  }
 }
 
 .promo-bg {
