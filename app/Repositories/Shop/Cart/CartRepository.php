@@ -82,6 +82,7 @@ class CartRepository implements CartRepositoryInterface
 
             $shoesDataForCart = Shoes::with(['images', 'color', 'category'])->find($value['shoes_id']);
             $cartArrayData[] = [
+                'id' => $shoesDataForCart['id'],
                 'title' => $shoesDataForCart['title'],
                 'price' => ($shoesDataForCart['price']) / 100,
                 'category' => $shoesDataForCart['category']['name'],

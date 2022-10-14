@@ -1,14 +1,14 @@
 <template>
   <div class="row g-0 pt-5 pb-5">
     <div class="col-md-2"></div>
-    <div class="col-md-8 p-1">
+    <div class="col-md-8 p-1" id="main-block">
       <div class="row g-0">
         <div class="col-md-8">
           <h5 class="text-start fw-bold pb-3">My Cart</h5>
 
           <div class="row g-0 product-cart"  v-for="item in getCartData.shoes_data"
           :key="item.index">
-            <div class="col-md-3 d-flex justify-content-start">
+            <div class="col-md-3 d-flex justify-content-start pt-3 pb-3">
               <img
                 :src="item.image_url"
                 class="cart-product-image"
@@ -18,14 +18,20 @@
             <div class="col-md-5 text-start">
               <div class="row g-0">
                 <div class="col-md-7">
-                  <h6 class="cart-product-title text-start fw-bold p-1">
-                 {{ item.title }}
-                  </h6>
-                  <small class="p-1">{{ item.category }}</small>
+                    <router-link
+                      :to="{ name: 'product', params: { id: item.id } }"
+                       class="cart-product-title text-start fw-bold p-1"
+                    >  Name: {{ item.title }}
+                  </router-link>
                 </div>
-                <div class="col-md-5">
-                  <p class="cart-product-price text-end fw-bold p-1">${{ item.price }}</p>
-                </div>
+              </div>
+              <div class="d-flex flex-row justify-content-start pt-2">
+                <div class="cart-fs-text ps-1">Price:</div>
+                <div class="cart-fs-text ps-3">${{ item.price }} </div>
+              </div>
+              <div class="d-flex flex-row justify-content-start pt-2">
+                <div class="cart-fs-text ps-1">Category:</div>
+                <div class="cart-fs-text ps-3">{{  item.category }}</div>
               </div>
               <div class="d-flex flex-row justify-content-start pt-2">
                 <div class="cart-fs-text ps-1">Color:</div>
@@ -40,7 +46,7 @@
                 <div class="cart-fs-text ps-3">{{ item.width }}</div>
               </div>
               <div class="d-flex flex-row justify-content-start pt-2">
-                <button type="button" class="btn btn-outline-danger" @click="deleteFromCart(item.cart_id)">Delete From Cart</button>
+                <button type="button" class="btn btn-outline-danger rounded-0" @click="deleteFromCart(item.cart_id)">Delete From Cart</button>
               </div>
             </div>
             <div class="col-md-3">
@@ -72,12 +78,14 @@
               <p class="ps-4 fw-bold">Order Total</p>
               <p class="pe-4 fw-bold">${{ getCartData.sub_total }}</p>
             </div>
-            <div class="d-grid gap-2 pe-2 ps-2">
-              <button class="btn btn-danger no-border">Checkout</button>
+            <div class="d-grid gap-2 pe-2 ps-2 mb-3">
+              <router-link
+            :to="{ name: 'checkout'}"
+            class="btn btn-danger  rounded-0">
+            Checkout
+             </router-link>
             </div>
-            <div class="d-flex flex-row justify-content-end pt-2 pb-2 pe-2">
-              <button class="btn btn-primary no-border">Paypal checkout</button>
-            </div>
+           
           </div>
         </div>
       </div>
@@ -98,22 +106,23 @@
                   v-for="item in menShoesData"
                   :key="item.index"
                 >
-                  <div class="card" style="width: 100%">
-                    <img :src="item.image_url" class="card-img-top" />
-                    <div class="card-body">
-                      <p class="card-text">
-                        <span class="product-title text-start">
-                          {{ item.title }}
-                        </span>
-                        <span class="product-price text-end"
-                          >$ {{ item.price }}</span
-                        >
-                      </p>
-                      <small class="product-category">{{
-                        item.gender
-                      }}</small>
-                    </div>
+                <div class="card" style="width: 100%">
+                  <img :src="item.image_url" class="card-img-top" />
+                  <div class="card-body">
+                    <p class="product-category text-center">Category: {{
+                      item.gender
+                    }}</p>
+                    <p class="product-price text-end  text-center"
+                    >Price: ${{ item.price }}</p
+                  >
+                    <router-link
+                    :to="{ name: 'product', params: { id: item.id } }"
+                     class="product-title  text-center"
+                  >
+                  Name: {{ item.title }}
+                  </router-link>
                   </div>
+                </div>
                 </div>
                 </div>
               </div>
@@ -124,22 +133,23 @@
                   v-for="item in womenShoesData"
                   :key="item.index"
                 >
-                  <div class="card" style="width: 100%">
-                    <img :src="item.image_url" class="card-img-top" />
-                    <div class="card-body">
-                      <p class="card-text">
-                        <span class="product-title text-start">
-                          {{ item.title }}
-                        </span>
-                        <span class="product-price text-end"
-                          >$ {{ item.price }}</span
-                        >
-                      </p>
-                      <small class="product-category">{{
-                        item.gender
-                      }}</small>
-                    </div>
+                <div class="card" style="width: 100%">
+                  <img :src="item.image_url" class="card-img-top" />
+                  <div class="card-body">
+                    <p class="product-category text-center">Category: {{
+                      item.gender
+                    }}</p>
+                    <p class="product-price text-end  text-center"
+                    >Price: ${{ item.price }}</p
+                  >
+                    <router-link
+                    :to="{ name: 'product', params: { id: item.id } }"
+                     class="product-title  text-center"
+                  >
+                  Name: {{ item.title }}
+                  </router-link>
                   </div>
+                </div>
                 </div>
                 </div>
               </div>
@@ -171,9 +181,6 @@
           </div>
         </div>
       </div>
-
-
-      {{ menShoesData }}
     </div>
     <div class="col-md-2"></div>
   </div>
@@ -198,8 +205,8 @@ export default {
 
     const deleteFromCart = async (id) => {
       await destroyByIdItemFromCart(id);
-      await router.push({ name: "store" });
       await fetchGetCartData();
+      window.location.reload();
     };
     
     const { fetchMenShoesData, fetchWomenShoesData } = homeStore();
@@ -233,7 +240,7 @@ export default {
   top: -20px;
 }
 .cart-fs-text {
-  font-size: 11px;
+  font-size: 14px;
 }
 .form-select {
   height: 40px !important;
@@ -244,6 +251,7 @@ export default {
 
 .order-summary-block {
   background-color: #e0e2e2;
+  padding-bottom: 20px;
 }
 
 .no-border {

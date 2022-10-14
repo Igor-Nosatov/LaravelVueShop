@@ -11,19 +11,19 @@
           flex-wrap
         "
       >
-        <form @click="storeSignUp">
+        <form @click="storeSignUp"> 
           <div class="row  g-0">
             <div class="input-group mb-3 d-flex row g-0 ">
               <div class="col-12 col-md-7 mt-2">
-                <input type="email" class="form-control rounded-0 sign_up_email  pt-3 pb-3" placeholder="News subscribe....." v-model="form.email" />
+                <input type="email" width="100%" class="form-control rounded-0 sign_up_email  pt-3 pb-3 flex-fill" placeholder="News subscribe....." v-model="form.email" />
               </div>
               <div class="col-12 col-md-5 mt-2">
                 <div
-                class="btn btn-danger btn-lg btn-signup  rounded-0"
+                class="btn btn-danger btn-lg btn-signup  rounded-0 flex-fill "
                   id="basic-addon1"
                   type="submit"
                 >
-                Sign Up
+               <span class="mt-4"> Sign Up</span>
                 </div>
               </div>
             </div>
@@ -293,6 +293,7 @@ export default {
     const storeSignUp = async () => {
       let user_id = JSON.parse(localStorage.getItem("userId"));
       await storeSignUpUser({ ...form, user_id });
+     target.reset();
     };
 
     return {
@@ -309,13 +310,29 @@ export default {
 }
 .btn-signup {
   border-radius: 0px !important;
-  height: 50px;
+  height: 58px;
   width: 100%;
   font-size: 14px;
   float: left;
   font-weight: bold;
   font-size:19px;
+  padding-top: 15px;
 }
+
+@media screen and (max-width: 800px) {
+  .btn-signup {
+    border-radius: 0px !important;
+    height: 58px;
+    width: 100%;
+    font-size: 14px;
+    float: left;
+    font-weight: bold;
+    font-size:19px;
+    padding-top: 15px;
+  }
+}
+
+
 .logo {
   height: 80px;
   width: 100%;
@@ -338,6 +355,28 @@ export default {
 
 .nav-link-footer {
   font-size: 14px;
+}
+.sign_up_email{
+  width:600px;
+}
+
+
+@media screen and (max-width: 978px) {
+  .sign_up_email{
+    width:500px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .sign_up_email{
+    width:100%;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .sign_up_email{
+    width:100%;
+  }
 }
 
 </style>

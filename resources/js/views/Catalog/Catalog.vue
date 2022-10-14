@@ -1,23 +1,11 @@
 <template>
   <div class="row g-0 pt-5 pb-5">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
+    <div class="col-2"></div>
+    <div class="col-8">
       <div class="row g-0">
-        <div class="col-md-3">
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="#">Men</a></li>
-              <li class="breadcrumb-item"><a href="#">Shoes</a></li>
-              <li class="breadcrumb-item active" aria-current="page">
-                Lifestyle
-              </li>
-            </ol>
-          </nav>
-        </div>
-      </div>
-      <div class="row g-0">
-        <div class="col-md-3 p-2">
+        <div class="col-12 col-sm-12 col-md-3  p-2">
           <div class="category1 pt-2">
+            <button type="button" class="btn btn-danger d-flex flex-start mb-2 rounded-0" @click="resetFilters">Reset filters</button>
             <div
               class="d-flex justify-content-between category-border-bottom pb-2"
             >
@@ -338,8 +326,9 @@
               </div>
             </div>
           </div>
+          <button type="button" class="btn btn-danger d-flex flex-start mb-2 rounded-0 mt-3" @click="resetFilters">Reset filters</button>
         </div>
-        <div class="col-md-9 pt-2 pb-2">
+        <div class="col-12 col-sm-12 col-md-9 pt-2 pb-2">
           <div class="row g-0">
             <div class="col-12 col-md-8"></div>
             <div class="col-12 col-md-4">
@@ -478,7 +467,8 @@
         </div>
       </div>
     </div>
-    <div class="col-md-2"></div>
+    <div class="col-2"></div>
+    
   </div>
 </template>
 
@@ -528,6 +518,11 @@ export default {
       page: [],
     };
 
+    async function resetFilters()
+    {
+      location.reload();
+    }
+
     //generate params for api
     async function urlParamGenerate() {
       let queryPageNumber = Object.entries(pagination)
@@ -551,7 +546,6 @@ export default {
         (queryString ? queryString : "") +
         (queryStringOrder && queryString ? "&" : "") +
         (queryStringOrder ? queryStringOrder : "");
-      console.log(fullUrlParams);
       fetchShoesData(fullUrlParams);
     }
 
@@ -694,6 +688,7 @@ export default {
       onClickNextPage,
       onClickPreviousPage,
       urlParamGenerate,
+      resetFilters
     };
   },
 };
@@ -717,6 +712,160 @@ export default {
   left: 100px;
   color: #9b3b3b;
 }
+
+@media screen and (max-width: 1280px) {
+  .relative-icon {
+    position: relative;
+    top: 40px;
+    left: 75px;
+    color: #9b3b3b;
+  }
+  
+}
+
+@media screen and (max-width:1357px) {
+  .relative-icon {
+    position: relative;
+    top: 45px;
+    left: 80px;
+    color: #9b3b3b;
+  }
+}
+@media screen and (max-width:1066px) {
+  .relative-icon {
+    position: relative;
+    top: 45px;
+    left: 60px;
+    color: #9b3b3b;
+  }
+}
+
+@media screen and (max-width:1045px) {
+  .relative-icon {
+    position: relative;
+    top: 45px;
+    left: 60px;
+    color: #9b3b3b;
+  }
+}
+
+
+@media screen and (max-width: 1024px) {
+  .relative-icon {
+    position: relative;
+    top: 40px;
+    left: 60px;
+    color: #9b3b3b;
+  }
+  
+}
+
+@media screen and (max-width: 914px) {
+  .relative-icon {
+    position: relative;
+    top: 45px;
+    left: 40px;
+    color: #9b3b3b;
+  }
+  
+}
+
+@media screen and (max-width: 821px) {
+  .relative-icon {
+    position: relative;
+    top: 45px;
+    left: 40px;
+    color: #9b3b3b;
+  }
+  
+}
+
+@media screen and (max-width:769px) {
+  .relative-icon {
+    position: relative;
+    top: 45px;
+    left: 210px;
+    color: #9b3b3b;
+  }
+  
+}
+
+@media screen and (max-width:653px) {
+  .relative-icon {
+    position: relative;
+    top: 45px;
+    left: 180px;
+    color: #9b3b3b;
+  }
+  
+}
+
+@media screen and (max-width:621px) {
+  .relative-icon {
+    position: relative;
+    top: 45px;
+    left: 150px;
+    color: #9b3b3b;
+  }
+  
+}
+
+@media screen and (max-width:541px) {
+  .relative-icon {
+    position: relative;
+    top: 45px;
+    left: 140px;
+    color: #9b3b3b;
+  }
+}
+
+@media screen and (max-width:490px) {
+  .relative-icon {
+    position: relative;
+    top: 45px;
+    left: 70px;
+    color: #9b3b3b;
+  }
+}
+
+@media screen and (max-width:415px) {
+  .relative-icon {
+    position: relative;
+    top: 45px;
+    left: 100px;
+    color: #9b3b3b;
+  }
+}
+
+@media screen and (max-width:412px) {
+  .relative-icon {
+    position: relative;
+    top: 45px;
+    left: 100px;
+    color: #9b3b3b;
+  }
+}
+
+@media screen and (max-width:370px) {
+  .relative-icon {
+    position: relative;
+    top: 45px;
+    left: 80px;
+    color: #9b3b3b;
+  }
+}
+
+@media screen and (max-width:300px) {
+  .relative-icon {
+    position: relative;
+    top: 45px;
+    left: 60px;
+    color: #9b3b3b;
+  }
+}
+
+
+
 .fa-heart:hover {
   color: #9b3b3b;
 }

@@ -4,7 +4,7 @@
     <div class="col-md-8">
       <h4 class="text-start text-dark pt-2 pb-2">Welcome back, Igor</h4>
       <div class="row g-0">
-        <div class="col-md-6 p-1">
+        <div class="col-12 col-sm-12 col-md-6 p-1">
           <div class="summary-block">
             <h6 class="text-start text-dark ps-3 pt-3">
               Personal & Account Details
@@ -24,20 +24,22 @@
     
             <div class="row g-0 product-cart p-2"  v-for="item in favouriteData"
             :key="item.index">
-              <div class="col-12 col-md-4 d-flex justify-content-start">
+              <div class="col-12 col-sm-12  col-md-12 col-lg-6 col-xs-6 text-start">
                 <img
                 :src="item.image_url"
                 class="cart-product-image"
                 :alt="item.title"
               />
               </div>
-              <div class="col-12 col-md-8 text-start">
+              <div class="col-12 col-sm-12  col-md-12 col-lg-6 col-xs-6 text-start">
                 <div class="row g-0">
-                  <div class="col-md-7">
-                    <h6 class="cart-product-title text-start fw-bold p-1">
-                     {{ item.title }}
-                    </h6>
-                    <small class="p-1"> {{ item.category }}</small>
+                  <div class="col-md-7"> 
+                    <router-link
+                    :to="{ name: 'product', params: { id: item.id } }"
+                     class="cart-product-title text-start fw-bold p-1"
+                  >
+                  Name: {{ item.title }}
+                  </router-link>
                   </div>
                 </div>
                 <div class="d-flex flex-row justify-content-start pt-2">
@@ -53,34 +55,38 @@
                   <div class="cart-fs-text ps-3">${{ item.price }}</div>
                 </div>
                 <div class="d-flex flex-row justify-content-start pt-2">
-                  <button type="button" class="btn btn-outline-danger" @click="deleteFromFavourite(item.favourite_id)">Delete From Favourite</button>
+                  <button type="button" class="btn btn-outline-danger rounded-0" @click="deleteFromFavourite(item.favourite_id)">Delete From Favourite</button>
                 </div>
               </div>
             </div>
           </div>
         </div>
       
-        <div class="col-12 col-md-6 p-1">
+        <div class="col-12  col-sm-12  col-md-6 p-1">
           <div class="summary-block">
             <h6 class="text-start text-dark ps-3 pt-3">Order History</h6>
           </div>
           <div class="summary-block-desc">
             <div class="row g-0 product-cart p-2"  v-for="item in cartData"
             :key="item.index">
-              <div class="col-md-4 d-flex justify-content-start">
+              <div class="col-12  col-sm-12   col-md-12 col-lg-6 col-xs-6 d-flex justify-content-start">
                 <img
                 :src="item.image_url"
                 class="cart-product-image"
                 :alt="item.title"
               />
               </div>
-              <div class="col-12 col-md-8 text-start">
+              <div class="col-12 col-sm-12  col-md-12 col-lg-6 col-xs-6 text-start">
                 <div class="row g-0">
                   <div class="col-md-7">
-                    <h6 class="cart-product-title text-start fw-bold p-1">
-                     {{ item.title }}
-                    </h6>
-                    <small class="p-1"> {{ item.category }}</small>
+                 
+                    <router-link
+                    :to="{ name: 'product', params: { id: item.id } }"
+                    class="cart-product-title text-start fw-bold p-1"
+                  >
+                  Name: {{ item.title }}
+                  </router-link>
+
                   </div>
                 </div>
                 <div class="d-flex flex-row justify-content-start pt-2">

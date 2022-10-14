@@ -103,8 +103,10 @@ const routes = [
         component: NotFound
     },
 ];
-
-const router = createRouter({history: createWebHistory(), routes});
+const scrollBehavior = (to, from, savedPosition) => {
+    return savedPosition || { top: 0, left: 0 }
+}
+const router = createRouter({history: createWebHistory(), routes, scrollBehavior});
 
 router.beforeEach((to, from, next) => {
     let userRole = JSON.parse(localStorage.getItem("userRole"));

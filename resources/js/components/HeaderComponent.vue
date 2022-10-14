@@ -127,11 +127,15 @@
             </form>
             <div v-if="userName" class="flex-row d-flex">
               <div class="mt-2">
-                <span class="user_name text-decoration-underline"> Welcome, {{ userName }}</span>
+                <router-link
+                :to="{ name: 'account' }"
+                class="pe-2 text-dark"
+                >Account</router-link
+              >
               </div>
               <div  class="ps-2 mt-2"><span>|</span></div>
               <div >
-                <button type="button" class="btn btn-light text-decoration-underline" @click="userLogout">
+                <button type="button" class="btn btn-light text-decoration-underline rounded-0" @click="userLogout">
                   Logout
                 </button>
               </div>

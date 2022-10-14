@@ -5,7 +5,11 @@
       <div class="row g-0">
         <div class="col-md-7">
           <p class="fw-bold text-start text-dark">
-            <a href="" class="text-dark">Back to shopping cart</a>
+            <router-link
+            :to="{ name: 'cart'}"
+            class="text-dark">
+           Back to shopping cart
+             </router-link>
           </p>
           <div class="block-shipping-address ms-1 me-1">
             <h6 class="fw-bold text-start text-white ps-3 pt-3">
@@ -150,7 +154,7 @@
               type="submit"
               class="btn btn-danger payment-btn fw-bold mt-5 ms-1"
             >
-              Continue to payment
+            Choose payment system
             </button>
           </form>
         </div>
@@ -314,7 +318,7 @@ export default {
   color: #fff;
   width: 300px;
   border-radius: 0px !important;
-  font-size: 13px;
+  font-size: 19px;
   height: 60px;
 }
 

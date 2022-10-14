@@ -3,23 +3,8 @@
     <div class="col-md-2"></div>
     <div class="col-md-8">
       <div class="row g-0">
-        <div class="col-md-3 ps-2">
-          <nav aria-label="breadcrum">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item">
-                <a href="#">{{ shoesById.gender }}</a>
-              </li>
-              <li class="breadcrumb-item"><a href="#">Shoes</a></li>
-              <li class="breadcrumb-item active" aria-current="page">
-                {{ shoesById.category }}
-              </li>
-            </ol>
-          </nav>
-        </div>
-      </div>
-      <div class="row g-0">
-        <div class="col-md-7 p-1">
-          <div class="d-flex flex-row flex-wrap">
+        <div class="col-12 col-sm-12  col-md-7 p-2 d-none d-sm-none  d-md-block d-lg-block d-xl-block">
+          <div class="d-flex flex-row flex-wrap" id="top-page">
             <img
               v-for="item in shoesById.images"
               :key="item.index"
@@ -41,7 +26,10 @@
             </ul>
           </div>
         </div>
-        <div class="col-md-5 p-1">
+
+
+
+        <div class="col-12 col-sm-12 col-md-5 p-2">
           <div class="product-card d-flex flex-column">
             <p class="text-start product-category">
               Category: {{ shoesById.category }}
@@ -83,7 +71,7 @@
             </div>
 
             <button
-              class="btn btn-danger btn-lg btn-signup m-2"
+              class="btn btn-danger btn-lg btn-signup m-2 rounded-0"
               @click="addItemToCart(shoesById.id)"
             >
               Add to cart
@@ -92,17 +80,41 @@
               <i class="fa-solid fa-message"></i>
               <a href="" class="text-dark"> Need help?</a>
             </p>
-            <p class="text-start">
+            <p class="text-start wishlist">
               <i class="fa-solid fa-heart"></i>
-              <a href="" class="text-dark"> Add to wish list</a>
+              <a class="text-dark"  @click="addToWishList(shoesById.id)"> Add to wish list</a>
             </p>
             <p class="text-start product-text">
               {{ shoesById.description }}
             </p>
           </div>
         </div>
+        <div class="col-12 col-sm-12  col-md-7 p-2 d-block d-sm-none d-md-none d-lg-none">
+          <div class="d-flex flex-row flex-wrap" id="top-page">
+            <img
+              v-for="item in shoesById.images"
+              :key="item.index"
+              :src="item.image_url"
+              alt="item.title"
+              class="p-1 product-image"
+            />
+          </div>
+          <div class="d-flex flex-row justify-content-start">
+            <ul class="list-group list-group-flush pt-3">
+              <li class="list-group-item fw-bold text-start">Features:</li>
+              <li
+                class="list-group-item text-start"
+                v-for="item in shoesById.features"
+                :key="item.id"
+              >
+                {{ item.name }}
+              </li>
+            </ul>
+          </div>
+        </div>
 
-        <div class="col-md-12 pb-4 pt-4 d-none d-sm-none d-md-none d-lg-block">
+
+        <div class="col-md-12 pb-4 pt-4 d-none d-sm-block d-md-none d-lg-block d-xl-none">
           <h3 class="text-start text-dark">You May Also Like</h3>
           <div
             id="carouselExampleControls"
@@ -195,7 +207,7 @@
           <div class="d-flex flex-row justify-content-start">
             <router-link
                 :to="{ name: 'review', params:shoesById.id }"
-                class="btn btn-outline-secondary">
+                class="btn btn-outline-secondary  rounded-0">
                 Add your review
             </router-link>
           </div>
@@ -233,7 +245,7 @@
                </p>
               <p  class="text-start">
                 <button type="button" 
-                class="btn btn-outline-danger m-2"  
+                class="btn btn-outline-danger m-2  rounded-0"  
                 @click="deleteMessage(itemReview.id, shoesById.id)">
                 Delete
               </button>
@@ -242,7 +254,7 @@
                 :to="{ 
                   name: 'reviewUpdate', 
                   params:{ review:itemReview.id }}"
-                type="button" class="btn btn-outline-dark  m-2">
+                type="button" class="btn btn-outline-dark  m-2  rounded-0">
                 Edit
               </router-link>
               </p>
@@ -250,7 +262,7 @@
           </div>
         </div>
         <div class="col-md-12 p-1 text-start pt-3">
-          <a href="" class="text-dark text-start fw-bold">Back to top</a>
+          <a href="#top-page" class="text-dark text-start fw-bold">Back to top</a>
         </div>
       </div>
     </div>
@@ -266,6 +278,7 @@ import { shopStore } from "../../store/shopStore";
 import { cartStore } from "../../store/cartStore";
 import { homeStore } from "../../store/homeStore";
 import { reviewStore } from "../../store/reviewStore";
+import { favouriteStore } from "../../store/favouriteStore";
 import { useRoute } from "vue-router"; 
 import { useRouter } from "vue-router";
 
@@ -284,7 +297,7 @@ export default {
     const { storeToCart } = cartStore();
 
     const { destroyByIdReview } = reviewStore();
-
+    const { storeNewFavourite } = favouriteStore();
     const cartForm = reactive({
       width_id: "",
       size_id: "",
@@ -296,6 +309,7 @@ export default {
         let shoes_id = shoesId;
         let shipped_days = "3";
         await storeToCart({ ...cartForm ,shoes_id, user_id, shipped_days });
+        await router.push({ name: "cart" });
       } else {
         await router.push({ name: "login" });
       }
@@ -305,6 +319,17 @@ export default {
       await destroyByIdReview(id);
       await getShoesById(route.params.id)
     };
+
+    async function addToWishList(shoesId)
+    {
+      if (JSON.parse(localStorage.getItem("userId"))) {
+        let user_id = JSON.parse(localStorage.getItem("userId"));
+        let shoes_id = shoesId;
+        await storeNewFavourite({ shoes_id, user_id });
+      } else {
+        await router.push({ name: "login" });
+      }
+    }
 
     const { fetchMenShoesData } = homeStore();
 
@@ -317,7 +342,8 @@ export default {
       addItemToCart,
       menShoesData,
       cartForm,
-      deleteMessage
+      deleteMessage,
+      addToWishList
     };
   },
 };
@@ -352,5 +378,8 @@ export default {
 
 .border-none {
   border-radius: 0px !important;
+}
+.wishlist{
+cursor: pointer;
 }
 </style>
