@@ -6,7 +6,7 @@ export const favouriteStore = defineStore("favouriteStore", {
         async storeNewFavourite(data){
             await axios.post('/api/favourite', data)
         },
-        async destroyByIdFavourite(id) {
+        async destroyByIdFavourite( id) {
             await axios.delete(`/api/favourite/${id}/destroy`);
         },
     },

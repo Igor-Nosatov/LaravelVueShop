@@ -2,9 +2,11 @@
 
 namespace App\Repositories\Shop\Shoes;
 
+use App\Models\Shop\Favourite;
 use Illuminate\Http\Request;
 use App\Repositories\Shop\Shoes\ShoesRepositoryInterface;
 use App\Models\Shop\Shoes;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class ShoesRepository implements ShoesRepositoryInterface
@@ -61,16 +63,14 @@ class ShoesRepository implements ShoesRepositoryInterface
             $sizeData = [];
             $widthData = [];
             $shoesData = [];
-            $categoryData = [];
-            $typeData = [];
-            $genderData = [];
-            $samplerData = [];
-            $colorData = [];
+            $averageRating = ['qty' => 0];
 
         foreach ($paginate['data'] as $value) {
             foreach ($value['reviews'] as $ratingValue) {
                 $ratingData[] = $ratingValue['rating'];
-                $averageRating = round((array_sum($ratingData)) / (count($ratingData)));
+                if(count($ratingData)!== 0){
+                    $averageRating =['qty' => round((array_sum($ratingData)) / (count($ratingData)))];
+                }
             }
           
             foreach ($value['size'] as $sizesValue) {
@@ -87,6 +87,12 @@ class ShoesRepository implements ShoesRepositoryInterface
                 ];
             }
 
+            if(!empty(Favourite::where('user_id',Auth::id())->where('shoes_id',$value['id'])->first())){
+                $favourite_id = Favourite::where('user_id',Auth::id())->where('shoes_id',$value['id'])->first()->id;
+            }else{
+                $favourite_id = null;
+            }
+      
             //format shoes data
             $shoesData[] = [
                 'id' => $value['id'],
@@ -94,25 +100,26 @@ class ShoesRepository implements ShoesRepositoryInterface
                 'price' =>  (float)number_format(( $value['price']/100), 2, '.', '') ,   
                 'style_code' => $value['style_code'],
                 'image_url' => Storage::disk('public')->url('img/' .  $value['images']['0']['name'] . '.webp'),
-                'average_rating' =>  $averageRating,
-                'count_empty_star' =>  '5' - $averageRating,
-                'category' =>  $categoryData = [
+
+                'average_rating' =>  $averageRating['qty'],
+
+                'category' =>  [
                     'id' => $value['category']['id'],
                     'name' => $value['category']['name'],
                 ],
-                'type' =>  $typeData = [
+                'type' =>  [
                     'id' => $value['type']['id'],
                     'name' => $value['type']['name'],
                 ],
-                'gender' =>  $genderData = [
+                'gender' => [
                     'id' => $value['gender']['id'],
                     'name' => $value['gender']['name'],
                 ],
-                'sampler' =>  $samplerData = [
+                'sampler' =>  [
                     'id' => $value['sampler']['id'],
                     'name' =>  $value['sampler']['name'],
                 ],
-                'color' => $colorData = [
+                'color' => [
                     'id' => $value['color']['id'],
                     'name' => $value['color']['name'],
                 ],

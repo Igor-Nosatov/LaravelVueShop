@@ -366,19 +366,7 @@
               :key="item.index"
             >
               <div class="card" style="width: 100%">
-                <a
-                  href=""
-                  class="relative-icon"
-                  @click="favouriteItems(item.id)"
-                >
-                  <i class="fa-solid fa-heart fa-2x"></i>
-                </a>
-                <img
-                  :src="item.image_url"
-                  class="card-img-top img-fluid no-border"
-                  :alt="item.title"
-                />
-
+                <img :src="item.image_url" class="card-img-top" />
                 <div class="card-body">
                   <div class="d-flex flex-row justify-content-between">
                     <h5 class="card-title Category-start fw-bold">
@@ -395,18 +383,22 @@
                   </div>
 
                   <p class="text-start">Category: {{ item.category.name }}</p>
-                  <div class="d-flex flex-row justify-content-start">
-                    <i
-                      class="fa-solid fa-star star-yellow"
+
+                  <div class="d-flex flex-row justify-content-start" v-if="item.average_rating">
+
+                   Rating: <i
+                      class="fa-solid fa-star star-yellow pt-1"
                       v-for="n in item.average_rating"
                       :key="n"
                     ></i>
-                    <i
-                      class="fa-solid fa-star"
-                      v-for="n in item.count_empty_star"
-                      :key="n"
-                    ></i>
+
                   </div>
+                  <div class="d-flex flex-row justify-content-start" v-else>
+
+                    Rating: check and you rating !!!
+                  </div>
+
+
                 </div>
               </div>
             </div>
@@ -496,6 +488,7 @@ export default {
         let user_id = JSON.parse(localStorage.getItem("userId"));
         let shoes_id = shoesId;
         await storeNewFavourite({ shoes_id, user_id });
+        location.reload();
       } else {
         await router.push({ name: "login" });
       }

@@ -84,7 +84,7 @@
               </li>
 
               <li
-                class="nav-item  pe-1 ps-1 d-flex flex-row"
+                class="nav-item pe-1 ps-1 d-flex flex-row"
                 @click="headerNavigation(3)"
               >
                 <div>
@@ -127,15 +127,17 @@
             </form>
             <div v-if="userName" class="flex-row d-flex">
               <div class="mt-2">
-                <router-link
-                :to="{ name: 'account' }"
-                class="pe-2 text-dark"
-                >Account</router-link
-              >
+                <router-link :to="{ name: 'account' }" class="pe-2 text-dark"
+                  >Account</router-link
+                >
               </div>
-              <div  class="ps-2 mt-2"><span>|</span></div>
-              <div >
-                <button type="button" class="btn btn-light text-decoration-underline rounded-0" @click="userLogout">
+              <div class="ps-2 mt-2"><span>|</span></div>
+              <div>
+                <button
+                  type="button"
+                  class="btn btn-light text-decoration-underline rounded-0"
+                  @click="userLogout"
+                >
                   Logout
                 </button>
               </div>
@@ -158,14 +160,24 @@
               </div>
             </div>
 
-          <router-link
+            <router-link
               :to="{ name: 'cart' }"
+              class="pe-1 fw-bold text-dark text-start pt-1 d-flex flex-row"
+            >
+              <img
+                src="../../../public/img/shop_bag.png"
+                class="link_img ms-2"
+              />
+            </router-link>
+            <router-link
+              :to="{ name: 'account' }"
               class="pe-5 fw-bold text-dark text-start pt-1 d-flex flex-row"
-              >
-             <h6 class="pt-2">Cart</h6>
-             <img src="../../../public/img/shop_bag.png" class="link_img ms-2"/>
-          </router-link>
-
+            >
+              <img
+                src="../../../public/img/wishlist.png"
+                class="link_img ms-2"
+              />
+            </router-link>
           </div>
         </div>
       </nav>

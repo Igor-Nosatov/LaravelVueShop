@@ -44,12 +44,7 @@ class AuthRequest extends FormRequest
                 'max:255'
             ],
             'password' => [
-                'required', Password::min(8)
-                    ->mixedCase()
-                    ->letters()
-                    ->numbers()
-                    ->symbols()
-                    ->uncompromised()
+                'required', Password::min(8)  
             ]
         ];
     }

@@ -55,7 +55,7 @@
                   <div class="cart-fs-text ps-3">${{ item.price }}</div>
                 </div>
                 <div class="d-flex flex-row justify-content-start pt-2">
-                  <button type="button" class="btn btn-outline-danger rounded-0" @click="deleteFromFavourite(item.favourite_id)">Delete From Favourite</button>
+                  <button type="button" class="btn btn-outline-danger rounded-0" @click="deleteFromFavourite(item.favourite_id)">Delete From Wishlist</button>
                 </div>
               </div>
             </div>

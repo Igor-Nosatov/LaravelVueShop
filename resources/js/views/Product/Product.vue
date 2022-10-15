@@ -326,6 +326,7 @@ export default {
         let user_id = JSON.parse(localStorage.getItem("userId"));
         let shoes_id = shoesId;
         await storeNewFavourite({ shoes_id, user_id });
+        await router.push({ name: "account" });
       } else {
         await router.push({ name: "login" });
       }
