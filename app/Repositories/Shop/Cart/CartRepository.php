@@ -94,4 +94,11 @@ class CartRepository implements CartRepositoryInterface
 
         return $cartArrayData; 
     }
+
+    public function getCartCount()
+    {
+        $cartCount = [];
+        $cartCount = [ 'total' => Cart::where('user_id', Auth::id())->count()];
+        return  $cartCount; 
+    }
 }

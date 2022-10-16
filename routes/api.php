@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\Shop\OptionController;
 use App\Http\Controllers\Api\Shop\ReviewController;
 use App\Http\Controllers\Api\Shop\ShoesController;
 use App\Http\Controllers\Api\Shop\SignUpController;
+use App\Http\Controllers\Api\Shop\CountUserDataController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,6 +40,7 @@ Route::get('/shop', [ShoesController::class, 'index']);
 /** GET          api/options      */
 Route::get('/options', [OptionController::class, 'index']);
 
+
 Route::middleware(['auth:sanctum'])->group(function () {
     /** POST        api/gift-card      */
     Route::post('/gift-card', [GiftCardController::class, 'store']);
@@ -54,10 +56,18 @@ Route::middleware(['auth:sanctum'])->group(function () {
     /** POST        api/cart/{cart}/destroy      */
     Route::post('/cart/{cart}/destroy', [CartController::class, 'destroy']);
 
+
+    /** GET        api/cart/data-count      */
+    Route::get('/cart/data-count', [CartController::class, 'count']);
+      /** GET       api/favourite/data-count        */
+      Route::get('/favourite/data-count', [FavouriteController::class, 'count']);
+
+
     /** GET          /me        */
     Route::get('/me', [AuthController::class, 'show']);
     /** GET          api/shop/{shoes}        */
     Route::get('/shop/{shoes}', [ShoesController::class, 'show']);
+
 
     /** POST         api/favourite        */
     Route::post('/favourite', [FavouriteController::class, 'store']);
@@ -65,6 +75,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/favourite/{favourite}/destroy', [FavouriteController::class, 'destroy']);
     /** GET       api/favourite        */
     Route::get('/favourite', [FavouriteController::class, 'getAccountFavouriteData']);
+
+   
+
 
     Route::get('/review/{review}/show', [ReviewController::class, 'reviewShow']);
     /** GET        api/review/{shoes}      */

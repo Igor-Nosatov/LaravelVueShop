@@ -310,6 +310,7 @@ export default {
         let shipped_days = "3";
         await storeToCart({ ...cartForm ,shoes_id, user_id, shipped_days });
         await router.push({ name: "cart" });
+        location.reload();
       } else {
         await router.push({ name: "login" });
       }

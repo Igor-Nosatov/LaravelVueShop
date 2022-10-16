@@ -60,4 +60,11 @@ class FavouriteRepository implements FavouriteRepositoryInterface
 
         return $favouriteArrayData;
     }
+
+    public function getFavouriteCount()
+    {
+        $favouriteCount = [];
+        $favouriteCount = [ 'total' => Favourite::where('user_id', Auth::id())->count()];
+        return   $favouriteCount;
+    }
 }

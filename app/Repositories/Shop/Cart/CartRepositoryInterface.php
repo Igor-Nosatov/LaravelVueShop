@@ -19,4 +19,5 @@ interface CartRepositoryInterface
      */
     public function deleteFromCart(Cart $cart):void;
     public function getCartDataAccount():array;
+    public function getCartCount();
 }

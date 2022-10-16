@@ -20,4 +20,5 @@ interface FavouriteRepositoryInterface
      */
     public function deleteFromFavourite(Favourite $favourite):void;
     public function getFavouriteDataAccount():array ;
+    public function getFavouriteCount();
 }

@@ -14,9 +14,13 @@
           </p>
         </div>
         <div class="col-sm-6 offset-md-3 col-md-2 pt-3">
+          <router-link 
+            :to="{ name: 'account' }" 
+            class="text-dark top-header-font-1 ps-2"
+            >Account
+          </router-link>
           <a href="" class="text-dark top-header-font-1 ps-2">Contact</a>
           <a href="" class="text-dark top-header-font-1 ps-2"> Help </a>
-          <a href="" class="text-dark top-header-font-1 ps-2"> Our stores </a>
         </div>
       </div>
     </div>
@@ -126,11 +130,13 @@
               </div>
             </form>
             <div v-if="userName" class="flex-row d-flex">
+
+
               <div class="mt-2">
-                <router-link :to="{ name: 'account' }" class="pe-2 text-dark"
-                  >Account</router-link
-                >
+               <h6 class="pt-1 fw-bold">Welcome {{userName}}</h6>
               </div>
+
+
               <div class="ps-2 mt-2"><span>|</span></div>
               <div>
                 <button
@@ -162,17 +168,21 @@
 
             <router-link
               :to="{ name: 'cart' }"
-              class="pe-1 fw-bold text-dark text-start pt-1 d-flex flex-row"
+              class="pe-1 fw-bold text-dark text-start pt-1 d-flex flex-row text-decoration-none"
             >
+              <div class="total-count text-decoration-none" v-if="getCartCount"><span class="text-count">{{ getCartCount }}</span></div>
+              <div class="total-count text-decoration-none"  v-else><span class="text-count">0</span> </div>
               <img
                 src="../../../public/img/shop_bag.png"
                 class="link_img ms-2"
               />
             </router-link>
-            <router-link
+           <router-link
               :to="{ name: 'account' }"
-              class="pe-5 fw-bold text-dark text-start pt-1 d-flex flex-row"
+              class="pe-5 fw-bold text-dark text-start pt-1 d-flex flex-row text-decoration-none"
             >
+            <div class="total-count text-decoration-none" v-if="getFavouriteCount"><span class="text-count">{{ getFavouriteCount }}</span></div>
+            <div class="total-count text-decoration-none" v-else><span class="text-count">0</span>  </div>
               <img
                 src="../../../public/img/wishlist.png"
                 class="link_img ms-2"
@@ -193,15 +203,28 @@ import { onMounted, reactive } from "vue";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
 import { useRoute } from "vue-router";
+import { cartStore } from "../store/cartStore";
+import { favouriteStore } from "../store/favouriteStore";
+
 export default {
   setup() {
     const router = useRouter();
     const route = useRoute();
     const store = authStore();
 
+    const cartStoreData = cartStore();
+    const favouriteStoreData = favouriteStore();
+
     const { userName } = storeToRefs(store);
+    const { getCartCount } = storeToRefs(cartStoreData);
+
+    const { getFavouriteCount } = storeToRefs(favouriteStoreData);
+
+
     const { getUserData, logout } = authStore();
     const { fetchShoesData } = shopStore();
+    const { fetchGetCartCount} = cartStore();
+    const { fetchGetFavouriteCount} = favouriteStore();
 
     const form = reactive({
       search: "",
@@ -233,7 +256,7 @@ export default {
     }
 
     onMounted(() => {
-      getUserData();
+      getUserData(), fetchGetCartCount(),fetchGetFavouriteCount()
     });
 
     return {
@@ -242,6 +265,9 @@ export default {
       headerNavigation,
       form,
       searchShoes,
+      getCartCount,
+      getFavouriteCount,
+      
     };
   },
 };
@@ -320,6 +346,24 @@ export default {
 
 .form-size {
   height: 50px;
+}
+
+.btn-light{
+  margin-top: 2px;
+}
+.total-count{
+  position: relative;
+  background-color: #d7d1f1;
+  height: 20px;
+  width: 20px;
+  left: 20px;
+  border-radius: 100%;
+  text-decoration: none !important;
+}
+.text-count{
+  text-decoration: none !important;
+  position: relative;
+  left: 6px;
 }
 </style>
 

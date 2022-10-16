@@ -73,5 +73,12 @@ class CartController extends BaseController
         $response = $this->cartRepository->getCartDataAccount();
         return $this->successResponse($response, 'Get Cart Data For Account');
     }
+
+    public function count()
+    {
+        $response = $this->cartRepository->getCartCount();
+        return $this->successResponse($response, 'Get Cart Count');
+    }
+
 }
 

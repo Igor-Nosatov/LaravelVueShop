@@ -5,6 +5,7 @@ export const cartStore = defineStore('cartStore',{
     state: () => {
         return {
             getCartData:[],
+            getCartCount:null,
         };
     },
     actions: {
@@ -20,6 +21,12 @@ export const cartStore = defineStore('cartStore',{
 
         async destroyByIdItemFromCart(id) {
             await axios.post(`/api/cart/${id}/destroy`);
+        },
+
+        async fetchGetCartCount() {
+            this.getCartCount = await axios
+                .get('/api/cart/data-count')
+                .then((response) => response.data.data.total); 
         },
     },
 });

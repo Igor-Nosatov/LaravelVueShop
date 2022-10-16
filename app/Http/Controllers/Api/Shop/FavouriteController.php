@@ -47,4 +47,10 @@ class FavouriteController extends  BaseController
         $response = $this->favouriteRepository->getFavouriteDataAccount();
         return $this->successResponse($response, 'Get Favourite Data For Account');
     }
+
+    public function count()
+    {
+        $response = $this->favouriteRepository->getFavouriteCount();
+        return $this->successResponse($response, 'Get Favourite Data Count');
+    }
 }
